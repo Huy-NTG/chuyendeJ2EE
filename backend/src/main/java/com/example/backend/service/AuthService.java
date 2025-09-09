@@ -47,30 +47,30 @@ public class AuthService {
             saved.getEmail(), saved.getRole(), token);
     }
     // hàm mã hóa mật khẩu đã bị xóa
-    // public UserResponse login(LoginRequest request) {
-    //     User user = userRepository.findByUsername(request.getUsername())
-    //             .orElseThrow(() -> new RuntimeException("User not found"));
-
-    //     if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-    //         throw new RuntimeException("Invalid password");
-    //     }
-
-    //     String token = jwtUtils.generateToken(user.getUsername(), user.getRole());
-    //     return new UserResponse(user.getId(), user.getUsername(),
-    //             user.getEmail(), user.getRole(), token);
-    // }
-    // hàm mã hóa mật khẩu đã bị xóa, thay bằng so sánh trực tiếp
     public UserResponse login(LoginRequest request) {
-    User user = userRepository.findByUsername(request.getUsername())
-            .orElseThrow(() -> new RuntimeException("User not found"));
+        User user = userRepository.findByUsername(request.getUsername())
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
-    // So sánh trực tiếp (không dùng BCrypt)
-    if (!request.getPassword().equals(user.getPassword())) {
-        throw new RuntimeException("Invalid password");
-    }
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            throw new RuntimeException("Invalid password");
+        }
 
-    String token = jwtUtils.generateToken(user.getUsername(), user.getRole());
-    return new UserResponse(user.getId(), user.getUsername(),
-            user.getEmail(), user.getRole(), token);
+        String token = jwtUtils.generateToken(user.getUsername(), user.getRole());
+        return new UserResponse(user.getId(), user.getUsername(),
+                user.getEmail(), user.getRole(), token);
     }
+    // hàm mã hóa mật khẩu đã bị xóa, thay bằng so sánh trực tiếp
+    // public UserResponse login(LoginRequest request) {
+    // User user = userRepository.findByUsername(request.getUsername())
+    //         .orElseThrow(() -> new RuntimeException("User not found"));
+
+    // // So sánh trực tiếp (không dùng BCrypt)
+    // if (!request.getPassword().equals(user.getPassword())) {
+    //     throw new RuntimeException("Invalid password");
+    // }
+
+    // String token = jwtUtils.generateToken(user.getUsername(), user.getRole());
+    // return new UserResponse(user.getId(), user.getUsername(),
+    //         user.getEmail(), user.getRole(), token);
+    // }
 }
