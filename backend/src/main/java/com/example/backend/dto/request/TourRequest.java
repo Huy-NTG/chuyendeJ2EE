@@ -1,16 +1,15 @@
-package com.example.backend.dto;
+package com.example.backend.dto.request;
 
+import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TourDTO {
-    private Long id;
+public class TourRequest {
     private String name;
     private String location;
     private String description;
