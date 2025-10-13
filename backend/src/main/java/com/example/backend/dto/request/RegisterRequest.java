@@ -1,12 +1,11 @@
-package com.example.backend.dto;
+package com.example.backend.dto.request;
 
 import lombok.*;
 
-
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class RegisterRequest {
     private String username;
     private String password;
