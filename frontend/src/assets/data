@@ -1,0 +1,162 @@
+export const placeData = [
+  {
+    type: "Quốc tế",
+    data: [
+      {
+        title: "Châu Á",
+        places: ["Thái Lan", "Singapore", "Trung Quốc", "Hàn Quốc", "Nhật Bản"],
+      },
+      {
+        title: "Châu Âu",
+        places: ["Pháp", "Đức", "Ý", "Anh", "Tây Ban Nha"],
+      },
+      {
+        title: "Châu Mỹ",
+        places: ["Mỹ", "Canada", "Brazil", "Mexico", "Argentina"],
+      },
+      {
+        title: "Châu Úc",
+        places: ["Úc", "New Zealand", "Sydney", "Perth", "Melbourne"],
+      },
+      {
+        title: "Châu Phi",
+        places: ["Ai Cập", "Nam Phi", "Maroc", "Nigeria", "Kenya"],
+      },
+    ],
+  },
+  {
+    type: "Trong nước",
+    data: [
+      {
+        title: "Miền Bắc",
+        places: ["Hà Giang", "Quảng Ninh", "Lào Cai", "Ninh Bình", "Yên Bái"],
+      },
+      {
+        title: "Miền Trung",
+        places: ["Đà Nẵng", "Huế", "Quảng Bình", "Quy Nhơn", "Phú Yên"],
+      },
+      {
+        title: "Miền Đông Nam Bộ",
+        places: ["Tây Ninh", "TP. Hồ Chí Minh", "Đồng Nai", "Bà Rịa-Vũng Tàu", "Côn Đảo"],
+      },
+      {
+        title: "Miền Tây Nam Bộ",
+        places: ["Phú Quốc", "Cần Thơ", "Cà Mau", "Bạc Liêu", "Tiền Giang"],
+      },
+    ],
+  },
+];
+
+
+// src/data/travelData.js
+export const travelData = [
+  {
+    title: "Du lịch trong nước",
+    region: [
+      "Hà Nội",
+      "Huế",
+      "Hạ Long",
+      "Quảng Bình",
+      "Đà Nẵng",
+      "Quảng Nam",
+      "Nha Trang",
+      "Đà Lạt",
+      "Phan Thiết",
+      "Bà Rịa - Vũng Tàu",
+      "Phú Quốc",
+      "Cần Thơ",
+      "Bắc Kạn",
+      "Hà Giang",
+      "Quy Nhơn",
+      "Côn Đảo"
+    ]
+  },
+  {
+    title: "Du lịch nước ngoài",
+    region: [
+      "Trung Quốc",
+      "Thái Lan",
+      "Malaysia",
+      "Singapore",
+      "Hàn Quốc",
+      "Úc",
+      "Mỹ",
+      "Nhật Bản",
+      "Ấn Độ",
+      "Nga",
+      "Đài Loan",
+      "Maldives",
+      "Na Uy",
+      "Tây Ban Nha",
+      "Hà Lan",
+      "Đức"
+    ]
+  }
+];
+
+export const inforData = [
+    "Khảo sát tỷ lệ đạt Visa",
+    "Tạp chí du lịch",
+    "Tin tức",
+    "Site map",
+    "Trợ giúp",
+    "Chính sách riêng tư",
+    "Thỏa thuận sử dụng",
+    "Chính sách bảo vệ dữ liệu cá nhân"
+];
+
+export const mockTours = [
+    {
+        id: 1,
+        image: 'https://bcp.cdnchinhphu.vn/334894974524682240/2023/2/7/hn-1675770617088584662218.jpg', // Thay bằng link ảnh thật
+        name: 'Đà Nẵng - Bà Nà - Hội An (Khách sạn 4 sao)',
+        code: 'NDSGN302-105-181025VN-D',
+        startLocation: 'TP. Hồ Chí Minh',
+        startDate: '18/10/2025',
+        duration: '3N2Đ',
+        remainingSlots: 2,
+        price: 6590000,
+        discountedPrice: 6090000,
+        region: 'Bắc Trung Bộ',
+        isFlashSale: true,
+        flashSaleEndTime: '08:10:54', // Giả lập thời gian còn lại
+        images: ['https://cdn3.ivivu.com/2022/07/Gi%E1%BB%9Bi-thi%E1%BB%87u-du-l%E1%BB%8Bch-%C4%90%C3%A0-N%E1%BA%B5ng-ivivu-1-e1743500641858.jpg',
+         'https://banahills.sunworld.vn/wp-content/uploads/2020/03/L%C3%A0ng-ph%C3%A1p-6-1024x737.jpg',
+          'https://hoianrt.vn/wp-content/uploads/2025/03/480939251_666649865718622_6760164020497092974_n.jpg'], 
+        schedule: [
+            { day: 'Ngày 1', title: 'TP. Hồ Chí Minh - Nha Trang - Tháp Bà', content: 'Khởi hành tại Sài Gòn, nhận phòng, chiều tham quan Tháp Bà Ponagar.' },
+            { day: 'Ngày 2', title: 'Vinwonders Nha Trang', content: 'Cả ngày khám phá công viên giải trí Vinwonders với các trò chơi cảm giác mạnh và thuỷ cung.' },
+            { day: 'Ngày 3', title: 'Đảo Hòn Mun - Lặn biển', content: 'Tham quan và lặn biển ngắm san hô tại khu vực Hòn Mun.' },
+            { day: 'Ngày 4', title: 'Chợ Đầm - Kết thúc tour', content: 'Mua sắm đặc sản tại chợ Đầm và trở về TP. Hồ Chí Minh.' },
+        ],
+        includes: ['Vé máy bay khứ hồi', 'Khách sạn 4 sao', 'Các bữa ăn theo lịch trình'],
+        excludes: ['Chi phí cá nhân', 'Vé vào cổng ngoài chương trình'],
+        
+    },
+    {
+        id: 2,
+        image: 'https://bcp.cdnchinhphu.vn/334894974524682240/2023/2/7/hn-1675770617088584662218.jpg', // Thay bằng link ảnh thật
+        name: 'Đà Nẵng - Bà Nà - Hội An (Khách sạn 4 sao)',
+        code: 'NDSGN302-105-181025VN-D',
+        startLocation: 'TP. Hồ Chí Minh',
+        startDate: '18/10/2025',
+        duration: '3N2Đ',
+        remainingSlots: 2,
+        price: 6590000,
+        discountedPrice: 6090000,
+        region: 'Bắc Trung Bộ',
+        isFlashSale: true,
+        flashSaleEndTime: '08:10:54', // Giả lập thời gian còn lại\
+        images: ['img/nt-1.jpg', 'img/nt-2.jpg', 'img/nt-3.jpg'], 
+        schedule: [
+            { day: 'Ngày 1', title: 'TP. Hồ Chí Minh - Nha Trang - Tháp Bà', content: 'Khởi hành tại Sài Gòn, nhận phòng, chiều tham quan Tháp Bà Ponagar.' },
+            { day: 'Ngày 2', title: 'Vinwonders Nha Trang', content: 'Cả ngày khám phá công viên giải trí Vinwonders với các trò chơi cảm giác mạnh và thuỷ cung.' },
+            { day: 'Ngày 3', title: 'Đảo Hòn Mun - Lặn biển', content: 'Tham quan và lặn biển ngắm san hô tại khu vực Hòn Mun.' },
+            { day: 'Ngày 4', title: 'Chợ Đầm - Kết thúc tour', content: 'Mua sắm đặc sản tại chợ Đầm và trở về TP. Hồ Chí Minh.' },
+        ],
+        includes: ['Vé máy bay khứ hồi', 'Khách sạn 4 sao', 'Các bữa ăn theo lịch trình'],
+        excludes: ['Chi phí cá nhân', 'Vé vào cổng ngoài chương trình'],
+    },
+    // ... Thêm các tour khác
+];
+

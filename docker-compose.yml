@@ -1,0 +1,26 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: travel-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: travel_tour
+      MYSQL_USER: travel_user 
+      MYSQL_PASSWORD: pass123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: travel-phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: db  
+      PMA_USER: root
+      PMA_PASSWORD: root123
+    ports:
+      - "8080:80"
+volumes:
+  mysql_data:
