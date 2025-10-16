@@ -1,0 +1,11 @@
+.admin-container {
+  display: flex;
+}
+
+.main-content {
+  margin-left: 240px; // trừ khoảng sidebar
+  padding: 20px;
+  flex: 1;
+  background-color: #f8fafc;
+  min-height: 100vh;
+}
