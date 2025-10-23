@@ -67,4 +67,10 @@ public class TourController {
         List<TourResponse> tours = tourService.searchToursByName(name);
         return ResponseEntity.ok(tours);
     }
+    // API đếm tổng số tour
+    @GetMapping("/count")
+    public ResponseEntity<Long> countTours() {
+        long count = tourService.countTours();
+        return ResponseEntity.ok(count);
+    }
 }

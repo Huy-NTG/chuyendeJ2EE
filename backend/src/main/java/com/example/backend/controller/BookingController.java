@@ -53,4 +53,10 @@ public class BookingController {
         bookingService.deleteBooking(id);
         return ResponseEntity.noContent().build();
     }
+    // API đếm tổng số booking
+    @GetMapping("/count")
+    public ResponseEntity<Long> countTours() {
+        long count = bookingService.countBooking();
+        return ResponseEntity.ok(count);
+    }
 }

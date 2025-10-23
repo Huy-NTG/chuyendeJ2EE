@@ -54,4 +54,10 @@ public class FlightController {
         List<FlightResponse> flights = flightService.searchFlightsByAirline(airline);
         return ResponseEntity.ok(flights);
     }
+    // API đếm tổng số flight
+    @GetMapping("/count")
+    public ResponseEntity<Long> countTours() {
+        long count = flightService.countFlight();
+        return ResponseEntity.ok(count);
+    }
 }

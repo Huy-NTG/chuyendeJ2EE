@@ -62,4 +62,8 @@ public class FlightService {
                 .map(flightMapper::toResponse)
                 .collect(Collectors.toList());
     }
+    // Đếm tổng số flight
+    public long countFlight() {
+        return flightRepository.count();
+    }
 }

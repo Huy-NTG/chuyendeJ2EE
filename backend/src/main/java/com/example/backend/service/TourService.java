@@ -98,4 +98,8 @@ public class TourService {
                 .map(toursMapper::toResponse)
                 .collect(Collectors.toList());
     }
+    // Đếm tổng số tour
+    public long countTours() {
+        return toursRepository.count();
+    }
 }
