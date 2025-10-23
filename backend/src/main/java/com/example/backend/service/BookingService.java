@@ -67,4 +67,8 @@ public class BookingService {
         }
         bookingRepository.deleteById(id);
     }
+    // Đếm tổng số Booking
+    public long countBooking() {
+        return bookingRepository.count();
+    }
 }
