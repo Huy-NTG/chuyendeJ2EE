@@ -1,6 +1,8 @@
 package com.example.backend.dto.response;
 
 import lombok.*;
+
+import jakarta.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 

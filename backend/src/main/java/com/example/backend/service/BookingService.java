@@ -2,14 +2,14 @@ package com.example.backend.service;
 
 import com.example.backend.dto.request.BookingRequest;
 import com.example.backend.dto.response.BookingResponse;
-import com.example.backend.entity.Booking;
-import com.example.backend.entity.User;
+import com.example.backend.entity.*;
 import com.example.backend.mapper.BookingMapper;
-import com.example.backend.repository.BookingRepository;
-import com.example.backend.repository.UserRepository;
+import com.example.backend.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,6 +20,9 @@ public class BookingService {
     private final BookingRepository bookingRepository;
     private final UserRepository userRepository;
     private final BookingMapper bookingMapper;
+    private final TourRepository tourRepository;
+    private final FlightRepository flightRepository;
+    private final HotelRepository hotelRepository;
 
     // Tạo booking mới
     public BookingResponse createBooking(BookingRequest request) {
@@ -27,7 +30,28 @@ public class BookingService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         Booking booking = bookingMapper.toBooking(request);
-        booking.setUser(user); // gắn user vào entity
+        booking.setUser(user);
+        BigDecimal totalPrice;
+        switch (request.getServiceType()) {
+            case TOUR -> {
+                Tours tour = tourRepository.findById(request.getServiceId())
+                        .orElseThrow(() -> new RuntimeException("Tour not found"));
+                totalPrice = tour.getPrice();
+            }
+            case FLIGHT -> {
+                Flight flight = flightRepository.findById(request.getServiceId())
+                        .orElseThrow(() -> new RuntimeException("Flight not found"));
+                totalPrice = flight.getPrice();
+            }
+            case HOTEL -> {
+                Hotel hotel = hotelRepository.findById(request.getServiceId())
+                        .orElseThrow(() -> new RuntimeException("Hotel not found"));
+                totalPrice = hotel.getPricePerNight();
+            }
+            default -> throw new RuntimeException("Invalid service type");
+        }
+        booking.setTotalPrice(totalPrice);
+        booking.setBookingDate(LocalDateTime.now());
         booking = bookingRepository.save(booking);
 
         return bookingMapper.toBookingResponse(booking);

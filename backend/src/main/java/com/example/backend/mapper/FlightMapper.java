@@ -4,7 +4,6 @@ import com.example.backend.dto.request.FlightRequest;
 import com.example.backend.dto.response.FlightResponse;
 import com.example.backend.entity.Flight;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")

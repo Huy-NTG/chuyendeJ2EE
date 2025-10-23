@@ -23,6 +23,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
             // Auth không cần token
                 .requestMatchers("/api/auth/**").permitAll()
+                .requestMatchers("/api/ai/**").permitAll()
 
                 // Tour: cho phép xem và tìm kiếm không cần token
                 .requestMatchers(HttpMethod.GET, "/api/tours", "/api/tours/*", "/api/tours/search/**").permitAll()
@@ -34,8 +35,7 @@ public class SecurityConfig {
 
                 // Admin API
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
-
-                // Các request khác cần đăng nhập
+                            // Các request khác cần đăng nhập
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
