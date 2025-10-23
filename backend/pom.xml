@@ -156,11 +156,9 @@
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
-=======
                     <release>21</release>
                     <source>21</source>
                     <target>21</target>
->>>>>>> 7a5c912d4653e8a944ae466c344c5f1147596b23
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
