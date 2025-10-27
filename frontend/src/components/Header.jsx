@@ -56,7 +56,9 @@ export default function Header(){
                     <div className="main_header w-12/12 flex items-center flex-row justify-center">
                         <div className="main__header--wrapper flex justify-between w-10/12 relative">
                             <div className="main__header-left p-1">
-                                <img src={logo} className="h-16 w-48" alt="logo"></img>
+                                <Link to="/"> {/* Khi click logo sẽ quay về trang chủ */}
+                                    <img src={logo} className="h-16 w-48 cursor-pointer" alt="logo" />
+                                </Link>
                             </div>
                             <div className="main__header-right w-2/4 flex items-center justify-end">
                                 <ul className="main_header--list w-auto flex justify-between items-center text-black text-xl font-semibold gap-5">
@@ -110,7 +112,6 @@ export default function Header(){
                             </div>
                         </div>
                     </div>
-                    {/* --- Popup Login/Register Form --- */}
                     {showForm && (
                         <div className="fixed inset-0 flex justify-center items-center bg-black/40 z-50">
                             {/* overlay click */}
@@ -125,11 +126,13 @@ export default function Header(){
                                 <LoginForm
                                 onSubmit={(data) => console.log("Login:", data)}
                                 onSwitch={() => setIsLogin(false)}
+                                onClose={() => setShowForm(false)}
                                 />
                             ) : (
                                 <RegisterForm
                                 onSubmit={(data) => console.log("Register:", data)}
                                 onSwitch={() => setIsLogin(true)}
+                                onClose={() => setShowForm(false)}
                                 />
                             )}
                             </div>

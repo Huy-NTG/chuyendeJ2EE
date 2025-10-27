@@ -1,10 +1,10 @@
 import React from "react";
 import { travelData, inforData } from "../assets/data";
+import { Link } from "react-router-dom";
 
 export default function Footer(){
-
     return (
-        <div className="footer flex justify-center items-centerx bg-blue-200 bottom-0">
+        <div className="footer flex justify-center items-center bg-blue-200 bottom-0 p-5">
             <div className="footer--wrapper">
                 <div className="footer__content">
                     <div className="footer__content--wrapper grid grid-cols-3 grid-rows-2 gap-5">
@@ -17,12 +17,14 @@ export default function Footer(){
                                     </div>
                                     <div className="region grid grid-cols-2 grid-rows-8 gap-2.5">
                                         {travel.region.map((region, i) => (
-                                            <a 
-                                                className="relative group inline-block w-fit font-medium"
-                                                key={i}
-                                                title={region}>{region}
-                                                <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-                                            </a>
+                                            <Link to={`/tour/search/${region}`}>
+                                                <a 
+                                                    className="relative group inline-block w-fit font-medium"
+                                                    key={i}
+                                                    title={region}>{region}
+                                                    <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                                                </a>
+                                            </Link>
                                         ))}
                                     </div>
                                 </div>

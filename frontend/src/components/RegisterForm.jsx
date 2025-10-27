@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
+import { register } from "../services/authService";
 
-export default function RegisterForm({onSubmit, onSwitch}) {
+export default function RegisterForm({ onSwitch, onClose}) {
     const [formData, setFormData] = useState({username: "", email: "", 
                                                 phone: "", password: ""});
     const [confirm, setConfirm] = useState("");
@@ -27,11 +28,10 @@ export default function RegisterForm({onSubmit, onSwitch}) {
             newErrors.username = "Tên đăng nhập không được để trống";
         else if (formData.username.length < 6)
             newErrors.username = "Tên đăng nhập phải có ít nhất 6 k tự"
-        if (!formData.email.trim()) {
+        if (!formData.email.trim()) 
             newErrors.email = "Email không được để trống";
-        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+        else if (!/\S+@\S+\.\S+/.test(formData.email)) 
             newErrors.email = "Email không hợp lệ";
-        }
         if (!formData.phone.trim())
             newErrors.phone = "Số điện thoại không được để trống";
         else if(!/^(0|\+84)(3[2-9]|5[2689]|7[0|6-9]|8[1-9]|9[0-9])[0-9]{7}$/.test(formData.phone))
@@ -41,28 +41,52 @@ export default function RegisterForm({onSubmit, onSwitch}) {
         } else if (formData.password.length < 8) {
             newErrors.password = "Mật khẩu phải có ít nhất 8 ký tự";
         }
-
         if (confirm !== formData.password) {
             newErrors.confirm = "Mật khẩu xác nhận không khớp";
         }
-
         return newErrors;
     };
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const validationErrors = validateForm();
-        if (Object.keys(validationErrors).length > 0) {
-            setErrors(validationErrors);
-        } else {
-            setErrors({});
-            onSubmit(formData); // ✅ gửi dữ liệu nếu hợp lệ
-            onSwitch();
+    // Giả định: 
+// 1. Bạn đã import { register } from './authApi.js';
+// 2. onSwitch là hàm chuyển đổi form (ví dụ: từ Register sang Login)
+// 3. setSuccessMessage/setErrorMessage là hàm cập nhật UI
+
+const handleSubmit = async (e) => { // 🔑 Phải là async
+    e.preventDefault();
+    const validationErrors = validateForm();
+    
+    if (Object.keys(validationErrors).length > 0) {
+        setErrors(validationErrors);
+    } else {
+        setErrors({});
+        
+        try {
+            // 🔑 GỌI HÀM API REGISTER ĐÃ SỬA
+            const userData = await register(formData); 
+            
+            // Xử lý thành công: userData chứa user info và token đã được lưu vào sessionStorage
+            console.log("Đăng ký thành công:", userData.username);
+            
+            // Thông báo thành công và chuyển sang form Login (hoặc chuyển sang trang chính)
+            // Tùy chọn: setSuccessMessage(`Đăng ký thành công! Chào mừng ${userData.username}`);
+            onSwitch(); 
+            
+        } catch (error) {
+            // Xử lý lỗi từ backend (ví dụ: Username already taken)
+            console.error("Đăng ký thất bại", error);
+            // Tùy chọn: setErrorMessage(error.message);
+            // Nếu lỗi là do username/email đã tồn tại, bạn có thể setErrors cho field cụ thể
+            setErrors({ general: error.message }); 
         }
-    };
+    }
+};
 
     return (
         <div className="register flex justify-center bg-white rounded-xl">
             <div className="register--wrapper px-8 w-96 mt-5 mb-5">
+                <div className="flex justify-end">
+                    <button onClick={onClose} className="fa-solid fa-x inline-block text-gray-400 hover:text-black"></button>
+                </div>
                 <h2 className="register__title text-2xl flex justify-center font-bold mb-2">Đăng ký</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="register__field">

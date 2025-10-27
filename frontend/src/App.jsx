@@ -7,7 +7,7 @@ import Success from './components/Success.jsx';
 import LoginForm from './components/LoginForm.jsx';
 import RegisterForm from './components/RegisterForm.jsx';
 import TourList from './components/TourList.jsx';
-import TourDetail from './pages/TourDetail.jsx';
+import TourDetailPage from './pages/TourDetailPage.jsx';
 function App() {
 
   const [showLogin, setShowLogin] = useState(true);
@@ -23,10 +23,10 @@ function App() {
     // </div>
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/login" element={<LoginForm />} />
-      <Route path="/register" element={<RegisterForm />} />
+      {/* <Route path="/login" element={<LoginForm />} /> */}
+      {/* <Route path="/register" element={<RegisterForm />} /> */}
       {/* 👈 Thêm Route chi tiết tour */}
-      <Route path="/tour/:id" element={<TourDetail />} />
+      <Route path="/tour/:id" element={<TourDetailPage />} />
     </Routes>
     // <Error></Error>
     // <Success></Success>

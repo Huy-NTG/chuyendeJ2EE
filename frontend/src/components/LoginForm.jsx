@@ -1,20 +1,14 @@
 import React, { useRef,useState } from "react";
 import "../styles/style.css";
+import { login } from "../services/authService";
 
-export default function LoginForm({onSubmit, onSwitch}) {
+export default function LoginForm({onSwitch, onClose}) {
     const [formData, setFormData] = useState({username: "", password: ""});
-    const [showPassword, setShowPassword] = useState(true);
+    const [showPassword, setShowPassword] = useState(false);
     const inputRef = useRef(null);
     const [isFocused, setIsFocused] = useState(false);
     const [errors, setErrors] = useState({});
 
-    const validateForm = () => {
-        const newErrors = [{}];
-        if(formData.username.trim())
-            newErrors.username = "Tên đăng nhập không được để trống";
-        if (!formData.password.trim()) 
-            newErrors.password = "Mật khẩu không được để trống";
-    }
     const togglePassword = () => {
             setShowPassword((s) => !s);
             inputRef.current?.focus();
@@ -25,13 +19,27 @@ export default function LoginForm({onSubmit, onSwitch}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        onSubmit(formData);
+        try {
+            // GỌI HÀM API ĐÃ ĐƯỢC CẬP NHẬT TRONG CANVAS
+            const userData = await login(formData); 
+            // userData chứa user info, token đã được lưu vào sessionStorage
+            alert(`Đăng nhập thành công! Chào mừng ${userData.username}`);
+            onClose();
+            // Chuyển hướng người dùng sau khi đăng nhập thành công
+            // navigate('/home'); // Ví dụ
+        } catch (error) {
+            // Axios/hàm login đã xử lý lỗi và ném ra thông báo dễ hiểu
+            console.error("Lỗi đăng nhập:", error);
+            alert(`Đăng nhập thất bại! Chi tiết: ${error.message}`);
+        }
     };
-
 
     return (
         <div className="login flex justify-center bg-white rounded-xl">
             <div className="login--wrapper px-8 w-96 mt-5 mb-5 ">
+                <div className="flex justify-end">
+                    <button onClick={onClose} className="fa-solid fa-x inline-block text-gray-400 hover:text-black"></button>
+                </div>
                 <h2 className="login__title text-2xl flex justify-center font-bold mb-2 right-0">Đăng nhập</h2>
                 <form onSubmit={handleSubmit} className="login__form">
                     <div className="login__field">
