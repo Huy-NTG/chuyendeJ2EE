@@ -10,7 +10,7 @@ export default function TourCard({tour}){
         }).format(amount).replace('₫', ' ₫'); // Thêm khoảng trắng
     };
     return (
-        <Link to={`/tour/${tour.id}`}>
+        <Link to={`/tours/${tour.id}`}>
             <div className="tour-card bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 border border-gray-100">
                 <div className="tour-card__image relative">
                     <img 

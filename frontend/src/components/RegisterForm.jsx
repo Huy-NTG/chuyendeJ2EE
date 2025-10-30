@@ -36,41 +36,33 @@ export default function RegisterForm({ onSwitch, onClose}) {
             newErrors.phone = "Số điện thoại không được để trống";
         else if(!/^(0|\+84)(3[2-9]|5[2689]|7[0|6-9]|8[1-9]|9[0-9])[0-9]{7}$/.test(formData.phone))
             newErrors.phone = "Số điện thoại không hợp lệ";
-        if (!formData.password.trim()) {
+        if (!formData.password.trim()) 
             newErrors.password = "Mật khẩu không được để trống";
-        } else if (formData.password.length < 8) {
+        else if (formData.password.length < 8) 
             newErrors.password = "Mật khẩu phải có ít nhất 8 ký tự";
-        }
-        if (confirm !== formData.password) {
+        if (confirm !== formData.password) 
             newErrors.confirm = "Mật khẩu xác nhận không khớp";
-        }
         return newErrors;
     };
     // Giả định: 
 // 1. Bạn đã import { register } from './authApi.js';
 // 2. onSwitch là hàm chuyển đổi form (ví dụ: từ Register sang Login)
 // 3. setSuccessMessage/setErrorMessage là hàm cập nhật UI
-
 const handleSubmit = async (e) => { // 🔑 Phải là async
     e.preventDefault();
     const validationErrors = validateForm();
-    
     if (Object.keys(validationErrors).length > 0) {
         setErrors(validationErrors);
     } else {
         setErrors({});
-        
         try {
             // 🔑 GỌI HÀM API REGISTER ĐÃ SỬA
             const userData = await register(formData); 
-            
             // Xử lý thành công: userData chứa user info và token đã được lưu vào sessionStorage
             console.log("Đăng ký thành công:", userData.username);
-            
             // Thông báo thành công và chuyển sang form Login (hoặc chuyển sang trang chính)
             // Tùy chọn: setSuccessMessage(`Đăng ký thành công! Chào mừng ${userData.username}`);
             onSwitch(); 
-            
         } catch (error) {
             // Xử lý lỗi từ backend (ví dụ: Username already taken)
             console.error("Đăng ký thất bại", error);

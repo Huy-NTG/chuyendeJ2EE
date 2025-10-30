@@ -12,18 +12,15 @@ export default function BannerSlider() {
             prevIndex === bannerImages.length - 1 ? 0 : prevIndex + 1
         );
     };
-
     const goToPrevious = () => {
         setCurrentIndex((prevIndex) => 
             prevIndex === 0 ? bannerImages.length - 1 : prevIndex - 1
         );
     };
-
     useEffect(() => {
         const intervalId = setInterval(() => {
             goToNext();
-        }, 5000); // Tự động chuyển slide sau mỗi 5 giây (5000ms)
-
+        }, 5000); 
         return () => clearInterval(intervalId);
     }, [currentIndex]); 
     return (
@@ -55,8 +52,6 @@ export default function BannerSlider() {
             >
                 {'>'}
             </button>
-
-            {/* Chỉ báo (Dots) */}
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
                 {bannerImages.map((_, index) => (
                     <button

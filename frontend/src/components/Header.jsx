@@ -5,6 +5,7 @@ import { placeData } from "../assets/data";
 import { Link } from "react-router-dom";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
+import { slugify } from "../utils/stringUtils";
 
 export default function Header(){
     const [showNavPlace, setShowNavPlace] = useState(false);
@@ -12,7 +13,6 @@ export default function Header(){
 
     const [showForm, setShowForm] = useState(false);
     const [isLogin, setIsLogin] = useState(true);
-
 
     const toggleNavPlace = (type) => {
     if (activeType === type) {
@@ -84,19 +84,26 @@ export default function Header(){
                                                     <div className="list-title mb-1.5">
                                                         <p className="text-black text-xl font-bold">{region.title}</p>
                                                     </div>
-                                                    <div className="list-view ">
-                                                        <ul className="list-view--wrapper flex flex-col gap-2.5 h-12/12 ">
-                                                            {region.places.map((place, i) => (
-                                                                <li 
-                                                                    key={i}
-                                                                    className="list-view__item text-black font-medium relative group">
-                                                                    <a title={place} className="inline-block relative group">{place}
-                                                                        <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-                                                                    </a>
-                                                                </li>
-                                                            ))}
-                                                        </ul>
-                                                    </div>
+                                                        <div className="list-view ">
+                                                            <ul className="list-view--wrapper flex flex-col gap-2.5 h-12/12 ">
+                                                                {region.places.map((place, i) => (
+                                                                <Link to={`/tours/search/${place}`}
+                                                                    //to={{
+                                                                        //pathname: `/tour/search/${slugify(place)}`,
+                                                                        //state: { placeName: place } // <-- Gửi tên gốc có dấu
+                                                                    //}}
+                                                                    >
+                                                                    <li 
+                                                                        key={i}
+                                                                        className="list-view__item text-black font-medium relative group">
+                                                                        <a title={place} className="inline-block relative group">{place}
+                                                                            <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                                                                        </a>
+                                                                    </li>
+                                                                </Link>
+                                                                ))}
+                                                            </ul>
+                                                        </div> 
                                                     <div className="list-show-all text-black mt-2.5">
                                                         <button>
                                                             <a>Xem tất cả</a>
@@ -114,13 +121,10 @@ export default function Header(){
                     </div>
                     {showForm && (
                         <div className="fixed inset-0 flex justify-center items-center bg-black/40 z-50">
-                            {/* overlay click */}
                             <div
                             className="absolute inset-0"
                             onClick={() => setShowForm(false)}
                             ></div>
-
-                            {/* form hiển thị */}
                             <div className="relative z-10">
                             {isLogin ? (
                                 <LoginForm

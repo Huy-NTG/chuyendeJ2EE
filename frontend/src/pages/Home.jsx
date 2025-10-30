@@ -18,8 +18,8 @@ export default function HomePage(){
                     <SearchWidget />
                 </div>
                 <div className="py-10 flex justify-center items-center p-5">
-                    <TourList></TourList>
-                    {/* <TourSlider/> */}
+                    {/* <TourList></TourList> */}
+                    <TourSlider/>
                 </div>
                 {/* Favourite place */}
                 <FavouritePlace></FavouritePlace>

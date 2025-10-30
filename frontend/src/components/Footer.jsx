@@ -17,14 +17,14 @@ export default function Footer(){
                                     </div>
                                     <div className="region grid grid-cols-2 grid-rows-8 gap-2.5">
                                         {travel.region.map((region, i) => (
-                                            <Link to={`/tour/search/${region}`}>
+                                            // <Link to={`/tour/search/${region}`}>
                                                 <a 
                                                     className="relative group inline-block w-fit font-medium"
                                                     key={i}
                                                     title={region}>{region}
                                                     <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
                                                 </a>
-                                            </Link>
+                                            // </Link>
                                         ))}
                                     </div>
                                 </div>
