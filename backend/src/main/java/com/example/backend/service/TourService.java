@@ -7,8 +7,15 @@ import com.example.backend.mapper.TourMapper;
 import com.example.backend.repository.TourRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -17,10 +24,30 @@ public class TourService {
 
     private final TourRepository toursRepository;
     private final TourMapper toursMapper;
+    private String saveImage(MultipartFile file) {
+        try {
+            String fileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
+            Path path = Paths.get("uploads/" + fileName);
+            Files.createDirectories(path.getParent());
+            Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+
+            return fileName; // ✅ chỉ lưu tên file, không kèm /uploads/
+        } catch (IOException e) {
+            throw new RuntimeException("Không thể lưu ảnh: " + e.getMessage());
+        }
+    }
 
     // Tạo tour mới
     public TourResponse createTour(TourRequest request) {
+        String imageUrl = null;
+
+        if (request.getImage() != null && !request.getImage().isEmpty()) {
+            imageUrl = saveImage(request.getImage());
+        }
+
         Tours tour = toursMapper.toEntity(request);
+        tour.setImageUrl(imageUrl);
+
         tour = toursRepository.save(tour);
         return toursMapper.toResponse(tour);
     }

@@ -3,7 +3,6 @@ import styles from './ToursItem.module.scss';
 import classNames from "classnames/bind";
 
 const cx = classNames.bind(styles);
-
 const ToursItem = ({ tour, onViewDetail }) => {
   return (
     <div className={cx("tour-card")}>
@@ -15,13 +14,11 @@ const ToursItem = ({ tour, onViewDetail }) => {
           className={cx("tour-image")}
         />
       </div>
-
       {/* Nội dung */}
       <div className={cx("tour-content")}>
         <h3 className={cx("tour-name")}>{tour.name}</h3>
         <p className={cx("tour-location")}>📍 {tour.location}</p>
         <p className={cx("tour-description")}>{tour.description}</p>
-
         <div className={cx("tour-info")}>
           <span className={cx("tour-date")}>
             🗓 {tour.startDate} → {tour.endDate}
@@ -30,7 +27,6 @@ const ToursItem = ({ tour, onViewDetail }) => {
             🧍‍♂️ {tour.seats} chỗ
           </span>
         </div>
-
         <div className={cx("tour-footer")}>
           <span className={cx("tour-price")}>
             {tour.price?.toLocaleString()} ₫
@@ -46,5 +42,4 @@ const ToursItem = ({ tour, onViewDetail }) => {
     </div>
   );
 };
-
 export default ToursItem;

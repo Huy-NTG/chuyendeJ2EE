@@ -34,10 +34,15 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
 
                         // ✅ Cho phép GET dữ liệu public
-                        .requestMatchers(HttpMethod.GET, "/api/tours/**", "/api/hotels/**", "/api/users/count").permitAll()
-
+                        .requestMatchers(HttpMethod.GET,
+                                "/api/tours/**",
+                                "/api/hotels/**",
+                                "/api/users/count",
+                                "/api/flights/count",
+                                "/api/bookings/count").permitAll()
+                                .requestMatchers("/api/tours/**").permitAll()
                         // ✅ ADMIN quyền cao
-                        .requestMatchers(HttpMethod.POST, "/api/tours/**", "/api/hotels/**").hasRole("ADMIN")
+//                        .requestMatchers(HttpMethod.POST, "/api/tours/**", "/api/hotels/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/tours/**", "/api/hotels/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/tours/**", "/api/hotels/**").hasRole("ADMIN")
 
