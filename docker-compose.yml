@@ -4,10 +4,8 @@ services:
     container_name: travel-mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root123
-      MYSQL_DATABASE: travel_tour
-      MYSQL_USER: travel_user 
-      MYSQL_PASSWORD: pass123
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: travel_booking
     ports:
       - "3306:3306"
     volumes:
@@ -19,7 +17,7 @@ services:
     environment:
       PMA_HOST: db  
       PMA_USER: root
-      PMA_PASSWORD: root123
+      PMA_PASSWORD: 123456
     ports:
       - "8080:80"
 volumes:
