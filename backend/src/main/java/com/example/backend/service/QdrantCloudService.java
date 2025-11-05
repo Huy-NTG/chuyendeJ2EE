@@ -1,6 +1,7 @@
 package com.example.backend.service;
 
 import io.qdrant.client.QdrantClient;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -13,8 +14,12 @@ import java.util.*;
 @Service
 public class QdrantCloudService {
 
-    private static final String QDRANT_URL = "https://730a3e1d-8478-412b-9cb9-b6b1fe24a52d.us-east4-0.gcp.cloud.qdrant.io";
-    private static final String API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.0ax2pviqhul30WyDLTMkuIQOR0wDwR85KguQoaXv5RE";
+
+    @Value("${spring.ai.qdrant.client.url}")
+    private String QDRANT_URL;
+
+    @Value("${spring.ai.qdrant.client.api-key}")
+    private String API_KEY;
 
     private final RestTemplate restTemplate;
     private final QdrantClient qdrantClient;

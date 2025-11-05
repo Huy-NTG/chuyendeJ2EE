@@ -1,5 +1,6 @@
 package com.example.backend.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import java.util.List;
@@ -10,13 +11,18 @@ import com.example.backend.dto.response.SearchResult;
 public class DeepSeekService {
     private final WebClient webClient;
 
-    public DeepSeekService() {
+    public DeepSeekService(
+            @Value("${openrouter.url}") String baseUrl,
+            @Value("${openrouter.key}") String apiKey,
+            @Value("${openrouter.referer}") String referer,
+            @Value("${openrouter.title}") String title
+    ) {
         this.webClient = WebClient.builder()
-                .baseUrl("https://openrouter.ai/api/v1/chat/completions")
+                .baseUrl(baseUrl)
                 .defaultHeader("Content-Type", "application/json")
-                .defaultHeader("Authorization", "Bearer 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")
-                .defaultHeader("HTTP-Referer", "http://localhost:8080")
-                .defaultHeader("X-Title", "Spring Boot DeepSeek Integration")
+                .defaultHeader("Authorization", "Bearer " + apiKey)
+                .defaultHeader("HTTP-Referer", referer)
+                .defaultHeader("X-Title", title)
                 .build();
     }
 

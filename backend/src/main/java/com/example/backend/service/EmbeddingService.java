@@ -4,6 +4,7 @@ import org.springframework.ai.embedding.EmbeddingRequest;
 import org.springframework.ai.embedding.EmbeddingResponse;
 import org.springframework.ai.vertexai.embedding.text.VertexAiTextEmbeddingModel;
 import org.springframework.ai.vertexai.embedding.text.VertexAiTextEmbeddingOptions;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,13 +14,16 @@ public class EmbeddingService {
 
     private final VertexAiTextEmbeddingModel embeddingModel;
 
+    @Value("${spring.ai.vertex.embedding.model}")
+    private String model;
+
     public EmbeddingService(VertexAiTextEmbeddingModel embeddingModel) {
         this.embeddingModel = embeddingModel;
     }
 
     public float[] embedAndLog(String text) {
         VertexAiTextEmbeddingOptions options = VertexAiTextEmbeddingOptions.builder()
-                .model("text-embedding-005")
+                .model(model)
                 .build();
 
         EmbeddingRequest request = new EmbeddingRequest(List.of(text), options);
