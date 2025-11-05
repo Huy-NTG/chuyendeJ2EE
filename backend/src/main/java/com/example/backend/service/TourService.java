@@ -2,17 +2,16 @@ package com.example.backend.service;
 
 import com.example.backend.dto.request.TourRequest;
 import com.example.backend.dto.response.TourResponse;
-import com.example.backend.entity.TourEmbedding;
+
 import com.example.backend.entity.Tours;
 import com.example.backend.mapper.TourMapper;
 import com.example.backend.repository.TourEmbeddingRepository;
 import com.example.backend.repository.TourRepository;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,34 +25,11 @@ public class TourService {
     private final TourEmbeddingRepository embeddingRepository;
 
 
-    public TourResponse recommend(String query) throws IOException {
-//        List<Double> queryEmbed = embeddingService.generateEmbedding(query);
-
-        List<TourEmbedding> all = embeddingRepository.findAll();
-        double bestScore = -1;
-        Tours bestTour = null;
-
-        for (TourEmbedding e : all) {
-            List<Double> tourVec = new Gson().fromJson(e.getEmbedding(),
-                    new TypeToken<List<Double>>() {}.getType());
-            double score = embeddingService.cosineSimilarity(queryEmbed, tourVec);
-            if (score > bestScore) {
-                bestScore = score;
-                bestTour = e.getTour();
-            }
-        }
-        return toursMapper.toResponse(bestTour);
-    }
     // Tạo tour mới
     public TourResponse createTour(TourRequest request) {
         try {
             Tours tour = toursMapper.toEntity(request);
             tour = toursRepository.save(tour);
-            List<Double> embedding = embeddingService.generateEmbedding(tour.getDescription());
-            TourEmbedding e = new TourEmbedding();
-            e.setTour(tour);
-            e.setEmbedding(new Gson().toJson(embedding));
-            embeddingRepository.save(e);
             return toursMapper.toResponse(tour);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());

@@ -1,4 +1,6 @@
 package com.example.backend.config;
+
+import com.example.backend.security.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -6,13 +8,15 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import com.example.backend.security.JwtAuthenticationFilter;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
+
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final UrlBasedCorsConfigurationSource corsConfigurationSource;
 
@@ -21,47 +25,31 @@ public class SecurityConfig {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
         this.corsConfigurationSource = corsConfigurationSource;
     }
-
+    /**
+     * ✅ Cấu hình SecurityFilterChain (JWT + quyền truy cập)
+     */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-<<<<<<< HEAD
-        http.csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(auth -> auth
-            // Auth không cần token
-                .requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers("/api/ai/**").permitAll()
-=======
         http
-                .csrf(csrf -> csrf.disable()) // ✅ Tắt CSRF vì dùng JWT
+                .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource)) // ✅ Gọi cấu hình CORS
                 .authorizeHttpRequests(auth -> auth
-                        // ✅ Cho phép public các ảnh
                         .requestMatchers("/uploads/**").permitAll()
-                        // ✅ Auth APIs - không cần token
                         .requestMatchers("/api/auth/**").permitAll()
->>>>>>> 7a5c912d4653e8a944ae466c344c5f1147596b23
+                        .requestMatchers("/api/ai/**").permitAll()
 
                         // ✅ Cho phép GET dữ liệu public
                         .requestMatchers(HttpMethod.GET, "/api/tours/**", "/api/hotels/**", "/api/users/count").permitAll()
-
+                        .requestMatchers(HttpMethod.POST,"/api/embedding/**").permitAll()
                         // ✅ ADMIN quyền cao
                         .requestMatchers(HttpMethod.POST, "/api/tours/**", "/api/hotels/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/tours/**", "/api/hotels/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/tours/**", "/api/hotels/**").hasRole("ADMIN")
 
-<<<<<<< HEAD
-                // Admin API
-                .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                            // Các request khác cần đăng nhập
-                .anyRequest().authenticated()
-            )
-            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-=======
                         // ✅ Các endpoint khác cần đăng nhập
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
->>>>>>> 7a5c912d4653e8a944ae466c344c5f1147596b23
 
         return http.build();
     }

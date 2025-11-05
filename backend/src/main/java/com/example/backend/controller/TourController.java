@@ -24,12 +24,6 @@ public class TourController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/recommend")
-    public ResponseEntity<TourResponse> recommend(@RequestParam String query) throws IOException {
-        TourResponse best = tourService.recommend(query);
-        return ResponseEntity.ok(best);
-    }
-
     // Cập nhật tour
     @PutMapping("/{id}")
     public ResponseEntity<TourResponse> updateTour(
