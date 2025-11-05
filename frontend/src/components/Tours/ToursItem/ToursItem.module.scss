@@ -85,3 +85,24 @@
 .detail-btn:hover {
   background-color: #125ca1;
 }
+
+
+.btn-group {
+  display: flex;
+  gap: 8px;
+}
+
+.delete-btn {
+  padding: 6px 12px;
+  background-color: #e53935;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #b71c1c;
+}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify"; 
 import ToursList from "../../../components/Tours/ToursList/ToursList";
 import SearchBarTour from "../../../components/Tours/SearchBarTour/SearchBarTour";
 import AddTourForm from "../../../components/Tours/ToursAddForm/AddTourForm";
@@ -43,11 +44,23 @@ const AdminTours = () => {
   fetchTours();
   setSelectedTourId(null);
   };
+  // 🗑 Hàm xóa tour
+  const handleDeleteTour = async (id) => {
+    if (!window.confirm("⚠️ Bạn có chắc muốn xóa tour này không?")) return;
+    try {
+      await axios.delete(`http://localhost:8080/api/tours/${id}`);
+      setTours((prev) => prev.filter((tour) => tour.id !== id));
+      toast.success("✅ Xóa tour thành công!");
+    } catch (error) {
+      toast.error("❌ Không thể xóa tour!");
+      console.error(error);
+    }
+  };
   return (
      <div className={cx("admin-tours")}>
       <h2>Quản lý Tour</h2>
       <SearchBarTour onSearch={setKeyword} onAddClick={() => setShowAddForm(true)} />
-      <ToursList tours={tours} onViewDetail={setSelectedTourId} />
+      <ToursList tours={tours} onViewDetail={setSelectedTourId} onDelete={handleDeleteTour} />
       {/* Form thêm tour */}
       {showAddForm && (
         <AddTourForm

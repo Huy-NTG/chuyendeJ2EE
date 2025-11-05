@@ -24,6 +24,7 @@ public class TourService {
 
     private final TourRepository toursRepository;
     private final TourMapper toursMapper;
+    // hàm lưu ảnh
     private String saveImage(MultipartFile file) {
         try {
             String fileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
@@ -34,6 +35,17 @@ public class TourService {
             return fileName; // ✅ chỉ lưu tên file, không kèm /uploads/
         } catch (IOException e) {
             throw new RuntimeException("Không thể lưu ảnh: " + e.getMessage());
+        }
+    }
+    // hàm xóa ảnh
+    private void deleteImage(String fileName) {
+        if (fileName == null || fileName.isEmpty()) return;
+        try {
+            Path path = Paths.get("uploads/" + fileName);
+            Files.deleteIfExists(path); // ✅ Xóa nếu tồn tại, không lỗi nếu file không có
+            System.out.println("🗑️ Đã xóa ảnh cũ: " + fileName);
+        } catch (IOException e) {
+            System.err.println("⚠️ Không thể xóa ảnh: " + e.getMessage());
         }
     }
 
@@ -52,13 +64,27 @@ public class TourService {
         return toursMapper.toResponse(tour);
     }
 
-    // Cập nhật tour
+    // ✏️ Cập nhật tour
     public TourResponse updateTour(Long id, TourRequest request) {
         Tours tour = toursRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Tour not found"));
+                .orElseThrow(() -> new RuntimeException("Tour không tồn tại"));
+
+        // ⚙️ Cập nhật các trường text
         toursMapper.updateEntity(tour, request);
-        tour = toursRepository.save(tour);
-        return toursMapper.toResponse(tour);
+
+        // 🖼 Nếu có ảnh mới -> xóa ảnh cũ + lưu ảnh mới
+        if (request.getImage() != null && !request.getImage().isEmpty()) {
+            // 🗑 Xóa ảnh cũ trước
+            deleteImage(tour.getImageUrl());
+
+            // 💾 Lưu ảnh mới
+            String newImage = saveImage(request.getImage());
+            tour.setImageUrl(newImage);
+        }
+
+        // 🧩 Lưu thay đổi
+        Tours updated = toursRepository.save(tour);
+        return toursMapper.toResponse(updated);
     }
 
     // Lấy tour theo ID

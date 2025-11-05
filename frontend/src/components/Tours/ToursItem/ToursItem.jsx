@@ -3,7 +3,7 @@ import styles from './ToursItem.module.scss';
 import classNames from "classnames/bind";
 
 const cx = classNames.bind(styles);
-const ToursItem = ({ tour, onViewDetail }) => {
+const ToursItem = ({ tour, onViewDetail, onDelete }) => {
   return (
     <div className={cx("tour-card")}>
       {/* Ảnh tour */}
@@ -31,12 +31,20 @@ const ToursItem = ({ tour, onViewDetail }) => {
           <span className={cx("tour-price")}>
             {tour.price?.toLocaleString()} ₫
           </span>
-          <button
-            className={cx("detail-btn")}
-            onClick={() => onViewDetail && onViewDetail(tour.id)}
-          >
-            Xem chi tiết
-          </button>
+          <div className={cx("btn-group")}>
+            <button
+              className={cx("detail-btn")}
+              onClick={() => onViewDetail && onViewDetail(tour.id)}
+            >
+              Xem chi tiết
+            </button>
+            <button
+              className={cx("delete-btn")}
+              onClick={() => onDelete && onDelete(tour.id)}
+            >
+              🗑 Xóa
+            </button>
+          </div>
         </div>
       </div>
     </div>

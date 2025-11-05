@@ -24,11 +24,12 @@ public class TourController {
         return ResponseEntity.ok(response);
     }
 
-    // Cập nhật tour
-    @PutMapping("/{id}")
+
+    // ✏️ Cập nhật tour (có thể kèm ảnh mới)
+    @PutMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<TourResponse> updateTour(
             @PathVariable Long id,
-            @RequestBody TourRequest request
+            @ModelAttribute TourRequest request
     ) {
         TourResponse response = tourService.updateTour(id, request);
         return ResponseEntity.ok(response);

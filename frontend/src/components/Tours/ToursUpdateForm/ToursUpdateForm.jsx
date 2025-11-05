@@ -114,7 +114,6 @@ const TourUpdateForm = ({ tourId, onClose, onSuccess }) => {
             onChange={handleChange}
             placeholder="Số chỗ"
           />
-
           {/* 🖼 Hiển thị ảnh hiện tại và preview ảnh mới */}
           <div className={cx("image-section")}>
             <label>Ảnh hiện tại:</label>
@@ -125,7 +124,6 @@ const TourUpdateForm = ({ tourId, onClose, onSuccess }) => {
                 className={cx("tour-image")}
               />
             </div>
-
             <label>Ảnh mới:</label>
             <input type="file" accept="image/*" onChange={handleFileChange} />
             {previewUrl && (
@@ -135,7 +133,6 @@ const TourUpdateForm = ({ tourId, onClose, onSuccess }) => {
               </div>
             )}
           </div>
-
           <div className={cx("button-group")}>
             <button type="submit" className={cx("save-btn")}>Lưu</button>
             <button type="button" onClick={onClose} className={cx("cancel-btn")}>Đóng</button>
