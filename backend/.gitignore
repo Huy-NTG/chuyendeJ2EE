@@ -1,5 +1,7 @@
 .idea/
 
-
+# Ignore application config
+backend/src/main/resources/application.yml
+backend/src/main/resources/travel-booking-476007-7dfe3687affe.json
 target/
 build/
