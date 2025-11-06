@@ -62,4 +62,11 @@ public class TourService {
                 .map(toursMapper::toResponse)
                 .collect(Collectors.toList());
     }
+
+    // Lấy tours theo địa điểm (ignore case)
+    public List<TourResponse> getToursByLocation(String location) {
+        return toursRepository.findByLocationContainingIgnoreCase(location).stream()
+                .map(toursMapper::toResponse)
+                .collect(Collectors.toList());
+    }
 }

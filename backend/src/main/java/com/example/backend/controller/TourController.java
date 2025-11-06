@@ -60,4 +60,11 @@ public class TourController {
         List<TourResponse> tours = tourService.searchToursByName(name);
         return ResponseEntity.ok(tours);
     }
+
+    // Lấy tours theo địa điểm
+    @GetMapping("/location")
+    public ResponseEntity<List<TourResponse>> getToursByLocation(@RequestParam String location) {
+        List<TourResponse> tours = tourService.getToursByLocation(location);
+        return ResponseEntity.ok(tours);
+    }
 }

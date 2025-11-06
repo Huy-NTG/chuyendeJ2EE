@@ -1,6 +1,6 @@
-import React from "react";
-import { travelData, inforData } from "../assets/data";
+import { travelData, inforData } from "../../assets/data/Tour";
 import { Link } from "react-router-dom";
+import { slugify } from "../../utils/stringUtils";
 
 export default function Footer(){
     return (
@@ -17,14 +17,12 @@ export default function Footer(){
                                     </div>
                                     <div className="region grid grid-cols-2 grid-rows-8 gap-2.5">
                                         {travel.region.map((region, i) => (
-                                            // <Link to={`/tour/search/${region}`}>
-                                                <a 
+                                            <Link to={`/tours/location/${slugify(region)}`}
                                                     className="relative group inline-block w-fit font-medium"
                                                     key={i}
                                                     title={region}>{region}
                                                     <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-                                                </a>
-                                            // </Link>
+                                            </Link>
                                         ))}
                                     </div>
                                 </div>

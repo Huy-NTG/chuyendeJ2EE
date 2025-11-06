@@ -1,6 +1,6 @@
 import React, { useRef,useState } from "react";
-import "../styles/style.css";
-import { login } from "../services/authService";
+import "../../styles/style.css";
+import { login } from "../../services/authService";
 
 export default function LoginForm({onSwitch, onClose}) {
     const [formData, setFormData] = useState({username: "", password: ""});

@@ -1,0 +1,757 @@
+import caobang from "../images/mienbac/caobang.jpg";
+import quangninh from "../images/mienbac/quangninh.jpg";
+import hagiang from "../images/mienbac/hagiang.jpg";
+import hanoi from "../images/mienbac/hanoi.jpg";
+import laocai from "../images/mienbac/laocai.jpg";
+import ninhbinh from "../images/mienbac/ninhbinh.jpg";
+import sonla from "../images/mienbac/sonla.jpg";
+import yenbai from "../images/mienbac/yenbai.jpg";
+import haiphong from "../images/mienbac/haiphong.jpg";
+import danang from "../images/mientrung/danang.jpg";
+import hoian from "../images/mientrung/hoian.jpg";
+import hue from "../images/mientrung/hue.jpg";
+import lamdong from "../images/mientrung/lamdong.jpg";
+import nhatrang from "../images/mientrung/nhatrang.jpg";
+import phanthiet from "../images/mientrung/phanthiet.jpg";
+import phuyen from "../images/mientrung/phuyen.jpg";
+import quangbinh from "../images/mientrung/quangbinh.jpg";
+import quynhon from "../images/mientrung/quynhon.jpg";
+import vungtau from "../images/miendongnambo/vungtau.jpg";
+import binhphuoc from "../images/miendongnambo/binhphuoc.jpg";
+import condao from "../images/miendongnambo/condao.jpg";
+import phuochai from "../images/miendongnambo/phuochai.jpg";
+import dongnai from "../images/miendongnambo/dongnai.jpg";
+import tayninh from "../images/miendongnambo/tayninh.jpg";
+import tphcm from "../images/miendongnambo/tphcm.jpg";
+import phuquoc from "../images/mientaynambo/phuquoc.jpg";
+import cantho from "../images/mientaynambo/cantho.jpg";
+import camau from "../images/mientaynambo/camau.jpg";
+import baclieu from "../images/mientaynambo/baclieu.jpg";
+import tiengiang from "../images/mientaynambo/tiengiang.jpg";
+import bentre from "../images/mientaynambo/bentre.jpg";
+import angiang from "../images/mientaynambo/angiang.jpg";
+import dongthap from "../images/mientaynambo/dongthap.jpg";
+import kiengiang from "../images/mientaynambo/kiengiang.jpg";
+import thailan from "../images/chaua/thailan.jpg";
+import singapore from "../images/chaua/singapore.jpg";
+import malaysia from "../images/chaua/malaysia.jpg";
+import indonesia from "../images/chaua/indonesia.jpg";
+import trungquoc from "../images/chaua/trungquoc.jpg";
+import dailoan from "../images/chaua/dailoan.jpg";
+import nhatban from "../images/chaua/nhatban.jpg";
+import hanquoc from "../images/chaua/hanquoc.jpg";
+import ando from "../images/chaua/ando.jpg";
+import phap from "../images/chauau/phap.jpg";
+import y from "../images/chauau/y.jpg";
+import taybannha from "../images/chauau/taybannha.jpg";
+import thuysi from "../images/chauau/thuysi.jpg";
+import halan from "../images/chauau/halan.jpg";
+import duc from "../images/chauau/duc.jpg";
+import anh from "../images/chauau/anh.jpg";
+import thonhiky from "../images/chauau/thonhiky.jpg";
+import nauy from "../images/chauau/nauy.jpg";
+import chicago from "../images/chaumy/chicago.jpg";
+import my from "../images/chaumy/my.jpg";
+import argentina from "../images/chaumy/argentina.jpg";
+import peru from "../images/chaumy/peru.jpg";
+import cuba from "../images/chaumy/cuba.jpg";
+import canada from "../images/chaumy/canada.jpg";
+import brazil from "../images/chaumy/brazil.jpg";
+import chile from "../images/chaumy/chile.jpg";
+import mexico from "../images/chaumy/mexico.jpg";
+import newzealand from "../images/chauuc/newzealand.jpg";
+import sydney from "../images/chauuc/sydney.jpg";
+import perth from "../images/chauuc/perth.jpg";
+import melbourne from "../images/chauuc/melbourne.jpg";
+import tasmania from "../images/chauuc/tasmania.jpg";
+import adelaide from "../images/chauuc/adelaide.jpg";
+import goldcoast from "../images/chauuc/goldcoast.jpg";
+import canberra from "../images/chauuc/canberra.jpg";
+import uc from "../images/chauuc/uc.jpg";
+import aicap from "../images/chauphi/aicap.jpg";
+import namphi from "../images/chauphi/namphi.jpg";
+import maruitius from "../images/chauphi/maruitius.jpg";
+import kenya from "../images/chauphi/kenya.jpg";
+import madagascar from "../images/chauphi/madagascar.jpg";
+import morocco from "../images/chauphi/morocco.jpg";
+import pretoria from "../images/chauphi/pretoria.jpg";
+import chefchaouen from "../images/chauphi/chefchaouen.jpg";
+import zimbabwe from "../images/chauphi/zimbabwe.jpg";
+
+
+export const placeData = [
+  {
+    type: "Quốc tế",
+    data: [
+      {
+        title: "Châu Á",
+        places: ["Thái Lan", "Singapore", "Trung Quốc", "Hàn Quốc", "Nhật Bản"],
+      },
+      {
+        title: "Châu Âu",
+        places: ["Pháp", "Đức", "Ý", "Anh", "Tây Ban Nha"],
+      },
+      {
+        title: "Châu Mỹ",
+        places: ["Mỹ", "Canada", "Brazil", "Mexico", "Argentina"],
+      },
+      {
+        title: "Châu Úc",
+        places: ["Úc", "New Zealand", "Sydney", "Perth", "Melbourne"],
+      },
+      {
+        title: "Châu Phi",
+        places: ["Ai Cập", "Nam Phi", "Maroc", "Nigeria", "Kenya"],
+      },
+    ],
+  },
+  {
+    type: "Trong nước",
+    data: [
+      {
+        title: "Miền Bắc",
+        places: ["Hà Giang", "Quảng Ninh", "Lào Cai", "Ninh Bình", "Yên Bái"],
+      },
+      {
+        title: "Miền Trung",
+        places: ["Đà Nẵng", "Huế", "Quảng Bình", "Quy Nhơn", "Phú Yên"],
+      },
+      {
+        title: "Miền Đông Nam Bộ",
+        places: ["Tây Ninh", "TP. Hồ Chí Minh", "Đồng Nai", "Bà Rịa-Vũng Tàu", "Côn Đảo"],
+      },
+      {
+        title: "Miền Tây Nam Bộ",
+        places: ["Phú Quốc", "Cần Thơ", "Cà Mau", "Bạc Liêu", "Tiền Giang"],
+      },
+    ],
+  },
+];
+
+export const travelData = [
+  {
+    title: "Du lịch trong nước",
+    region: [
+      "Hà Nội",
+      "Huế",
+      "Hạ Long",
+      "Quảng Bình",
+      "Đà Nẵng",
+      "Quảng Nam",
+      "Nha Trang",
+      "Đà Lạt",
+      "Phan Thiết",
+      "Bà Rịa - Vũng Tàu",
+      "Phú Quốc",
+      "Cần Thơ",
+      "Bắc Kạn",
+      "Hà Giang",
+      "Quy Nhơn",
+      "Côn Đảo"
+    ]
+  },
+  {
+    title: "Du lịch nước ngoài",
+    region: [
+      "Trung Quốc",
+      "Thái Lan",
+      "Malaysia",
+      "Singapore",
+      "Hàn Quốc",
+      "Úc",
+      "Mỹ",
+      "Nhật Bản",
+      "Ấn Độ",
+      "Nga",
+      "Đài Loan",
+      "Maldives",
+      "Na Uy",
+      "Tây Ban Nha",
+      "Hà Lan",
+      "Đức"
+    ]
+  }
+];
+
+export const inforData = [
+    "Khảo sát tỷ lệ đạt Visa",
+    "Tạp chí du lịch",
+    "Tin tức",
+    "Site map",
+    "Trợ giúp",
+    "Chính sách riêng tư",
+    "Thỏa thuận sử dụng",
+    "Chính sách bảo vệ dữ liệu cá nhân"
+];
+
+export const favouriteplace = [
+  {
+    title: "Miền Bắc",
+    data: [
+      {
+        img: quangninh,
+        name: "QUẢNG NINH",
+      },
+      {
+        img: hagiang,
+        name: "HÀ GIANG",
+      },
+      {
+        img: laocai,
+        name: "LÀO CAI",
+      },
+      {
+        img: ninhbinh,
+        name: "NINH BÌNH",
+      },
+      {
+        img: yenbai,
+        name: "YÊN BÁI",
+      },
+      {
+        img: sonla,
+        name: "SƠN LA",
+      },
+      {
+        img: caobang,
+        name: "CAO BẰNG",
+      },
+      {
+        img: haiphong,
+        name: "HẢI PHÒNG",
+      },
+      {
+        img: hanoi,
+        name: "HÀ NỘI",
+      },
+    ]
+  },
+  {
+    title: "Miền Trung",
+    data: [
+      {
+        img: danang,
+        name: "ĐÀ NẴNG",
+      },
+      {
+        img: nhatrang,
+        name: "NHA TRANG",
+      },
+      {
+        img: lamdong,
+        name: "LÂM ĐỒNG",
+      },
+      {
+        img: hoian,
+        name: "HỘI AN",
+      },
+      {
+        img: hue,
+        name: "HUẾ",
+      },
+      {
+        img: phuyen,
+        name: "PHÚ YÊN",
+      },
+      {
+        img: quynhon,
+        name: "QUY NHƠN",
+      },
+      {
+        img: phanthiet,
+        name: "PHAN THIẾT",
+      },
+      {
+        img: quangbinh,
+        name: "QUẢNG BÌNH",
+      },
+    ]
+  },
+  {
+    title: "Miền Đông Nam Bộ",
+    data: [
+      {
+        img: vungtau,
+        name: "BÀ RỊA-VŨNG TÀU",
+      },
+      {
+        img: tphcm,
+        name: "TP.HỒ CHÍ MINH",
+      },
+      {
+        img: tayninh,
+        name: "TÂY NINH",
+      },
+      {
+        img: dongnai,
+        name: "ĐỒNG NAI ",
+      },
+      {
+        img: condao,
+        name: "CÔN ĐẢO ",
+      },
+      {
+        img: phuochai,
+        name: "PHƯỚC HẢI",
+      },
+      {
+        img: binhphuoc,
+        name: "BÌNH PHƯỚC",
+      },
+      {
+        img: "",
+        name: " ",
+      },
+      {
+        img: "",
+        name: "",
+      },
+    ]
+  },
+  {
+    title: "Miền Tây Nam Bộ",
+    data: [
+      {
+        img: phuquoc,
+        name: "PHÚ QUỐC",
+      },
+      {
+        img: cantho,
+        name: "CẦN THƠ",
+      },
+      {
+        img: camau,
+        name: "CÀ MAU",
+      },
+      {
+        img: baclieu,
+        name: "BẠC LIÊU",
+      },
+      {
+        img: tiengiang,
+        name: "TIỀN GIANG",
+      },
+      {
+        img: bentre,
+        name: "BẾN TRE",
+      },
+      {
+        img: angiang,
+        name: "AN GIANG",
+      },
+      {
+        img: dongthap,
+        name: "ĐỒNG THÁP",
+      },
+      {
+        img: kiengiang,
+        name: "KIÊN GIANG",
+      },
+    ]
+  },
+  {
+    title: "Châu Á",
+    data: [
+      {
+        img: thailan,
+        name: "THÁI LAN",
+      },
+      {
+        img: singapore,
+        name: "SINGAPORE",
+      },
+      {
+        img: malaysia,
+        name: "MALAYSIA",
+      },
+      {
+        img: indonesia,
+        name: "INDONESIA",
+      },
+      {
+        img: trungquoc,
+        name: "TRUNG QUỐC",
+      },
+      {
+        img: dailoan,
+        name: "ĐÀI LOAN",
+      },
+      {
+        img: nhatban,
+        name: "NHẬT BẢN",
+      },
+      {
+        img: hanquoc,
+        name: "HÀN QUỐC",
+      },
+      {
+        img: ando,
+        name: "ẤN ĐỘ",
+      },
+    ]
+  },
+  {
+    title: "Châu Âu",
+    data: [
+      {
+        img: phap,
+        name: "PHÁP",
+      },
+      {
+        img: y,
+        name: "Ý",
+      },
+      {
+        img: taybannha,
+        name: "TÂY BAN NHA",
+      },
+      {
+        img: thuysi,
+        name: "THỤY SĨ",
+      },
+      {
+        img: halan,
+        name: "HÀ LAN",
+      },
+      {
+        img: duc,
+        name: "ĐỨC",
+      },
+      {
+        img: anh,
+        name: "ANH",
+      },
+      {
+        img: thonhiky,
+        name: "THỔ NHĨ KỲ",
+      },
+      {
+        img: nauy,
+        name: "NA UY",
+      },
+    ]
+  },
+  {
+    title: "Châu Mỹ",
+    data: [
+      {
+        img: chicago,
+        name: "CHICAGO",
+      },
+      {
+        img: my,
+        name: "MỸ",
+      },
+      {
+        img: argentina,
+        name: "ARGENTINA",
+      },
+      {
+        img: peru,
+        name: "PERU",
+      },
+      {
+        img: cuba,
+        name: "CUBA",
+      },
+      {
+        img: canada,
+        name: "CANADA",
+      },
+      {
+        img: brazil,
+        name: "BRAZIL",
+      },
+      {
+        img: chile,
+        name: "CHILE",
+      },
+      {
+        img: mexico,
+        name: "MEXICO",
+      },
+    ]
+  },
+  {
+    title: "Châu Úc",
+    data: [
+      {
+        img: newzealand,
+        name: "NEW ZEALAND",
+      },
+      {
+        img: sydney,
+        name: "SYDNEY",
+      },
+      {
+        img: perth,
+        name: "PERTH",
+      },
+      {
+        img: melbourne,
+        name: "MELBOURNE",
+      },
+      {
+        img: tasmania,
+        name: "TASMANIA",
+      },
+      {
+        img: adelaide,
+        name: "ADELAIDE",
+      },
+      {
+        img: goldcoast,
+        name: "GOLD COAST",
+      },
+      {
+        img: canberra,
+        name: "CANBERRA",
+      },
+      {
+        img: uc,
+        name: "ÚC",
+      },
+    ]
+  },
+  {
+    title: "Châu Phi",
+    data: [
+      {
+        img: aicap,
+        name: "AI CẬP",
+      },
+      {
+        img: namphi,
+        name: "NAM PHI",
+      },
+      {
+        img: maruitius,
+        name: "MARUITIUS",
+      },
+      {
+        img: kenya,
+        name: "KENYA",
+      },
+      {
+        img: madagascar,
+        name: "MADAGASCAR",
+      },
+      {
+        img: morocco,
+        name: "MOROCCO",
+      },
+      {
+        img: pretoria,
+        name: "PRETORIA",
+      },
+      {
+        img: chefchaouen,
+        name: "CHEFCHAOUEN",
+      },
+      {
+        img: zimbabwe,
+        name: "ZIMBABWE",
+      },
+    ]
+  },
+];
+
+export const placeSlug = 
+  {
+  "thai-lan": "Thái Lan",
+  "singapore": "Singapore",
+  "trung-quoc": "Trung Quốc",
+  "han-quoc": "Hàn Quốc",
+  "nhat-ban": "Nhật Bản",
+  "phap": "Pháp",
+  "duc": "Đức",
+  "y": "Ý",
+  "anh": "Anh",
+  "tay-ban-nha": "Tây Ban Nha",
+  "my": "Mỹ",
+  "canada": "Canada",
+  "brazil": "Brazil",
+  "mexico": "Mexico",
+  "argentina": "Argentina",
+  "uc": "Úc",
+  "new-zealand": "New Zealand",
+  "sydney": "Sydney",
+  "perth": "Perth",
+  "melbourne": "Melbourne",
+  "ai-cap": "Ai Cập",
+  "nam-phi": "Nam Phi",
+  "maroc": "Maroc",
+  "nigeria": "Nigeria",
+  "kenya": "Kenya",
+  "ha-giang": "Hà Giang",
+  "quang-ninh": "Quảng Ninh",
+  "lao-cai": "Lào Cai",
+  "ninh-binh": "Ninh Bình",
+  "yen-bai": "Yên Bái",
+  "da-nang": "Đà Nẵng",
+  "hue": "Huế",
+  "quang-binh": "Quảng Bình",
+  "quy-nhon": "Quy Nhơn",
+  "phu-yen": "Phú Yên",
+  "tay-ninh": "Tây Ninh",
+  "tp-ho-chi-minh": "TP. Hồ Chí Minh",
+  "dong-nai": "Đồng Nai",
+  "ba-ria-vung-tau": "Bà Rịa-Vũng Tàu",
+  "con-dao": "Côn Đảo",
+  "phu-quoc": "Phú Quốc",
+  "can-tho": "Cần Thơ",
+  "ca-mau": "Cà Mau",
+  "bac-lieu": "Bạc Liêu",
+  "tien-giang": "Tiền Giang",
+  "ha-noi": "Hà Nội",
+  "ha-long": "Hạ Long",
+  "phan-thiet": "Phan Thiết",
+  "bac-kan": "Bắc Kạn",
+  "da-lat": "Đà Lạt",
+  "quang-nam": "Quảng Nam",
+  "ha-lan": "Hà Lan",
+  "dai-loan": "Đài Loan",
+  "an-do": "Ấn Độ",
+};
+
+export const note = [
+  {
+    title: "Giá tour bao gồm",
+    content: `
+      - Vé máy bay khứ hồi theo hành trình.
+      - Thuế và các khoản phụ thu của hàng không.
+      - Hướng dẫn viên chuyên nghiệp, tận tình.
+      - Các bữa ăn được liệt kê theo chương trình.
+      - Tham quan theo chương trình.
+      - Trưởng đoàn Vietravel đi suốt tuyến.
+      - Xe máy lạnh sử dụng theo chương trình.
+      - Bảo hiểm du lịch quốc tế.
+      - 2 chai nước 0,5 lít/khách/ngày
+    `,
+  },
+  {
+    title: "Giá tour không bao gồm",
+    content: `
+      - Chi phí cá nhân: ăn uống ngoài chương trình, giặt ủi, chi phí hủy đổi hành trình và nâng hạng chuyến bay, hành lý quá cước, phụ thu phòng đơn,…
+      - Chi phí tham quan ngoài chương trình.
+      - Chi phí dời ngày, đổi chặng, nâng hạng vé máy bay.
+      - Các chi phí không liệt kê trong phần Bao Gồm.
+      - Tiền bồi dưỡng cho HDV và LX (không bắt buộc).
+    `,
+  },
+  {
+    title: "Lưu ý giá trẻ em",
+    content: `
+      - Trẻ em dưới 5 tuổi: Không thu phí dịch vụ, bố mẹ tự lo cho bé và thanh toán các chi phí phát sinh (đối với các dịch vụ tính phí theo chiều cao…). Hai người lớn chỉ được kèm 1 trẻ em dưới 5 tuổi, trẻ em thứ 2 sẽ đóng phí theo qui định dành cho độ tuổi từ 5 đến dưới 12 tuổi và phụ thu phòng đơn. Vé máy bay, tàu hỏa, phương tiện vận chuyển công cộng mua vé theo qui định của các đơn vị vận chuyển
+      - Trẻ em từ 5 - dưới 12 tuổi: 50% giá tour người lớn (không có chế độ giường riêng). Hai người lớn chỉ được kèm 1 trẻ em từ 5 - dưới 12 tuổi, em thứ hai trở lên phải mua 1 suất giường đơn.
+      - Trẻ em 12 tuổi trở lên: 100% chi phí như người lớn.
+    `,
+  },
+  {
+    title: "Điều kiện thanh toán",
+    content: `
+      - Khi đăng ký yêu cầu đặt cọc 50% số tiền tour.
+      - Số tiền còn lại thanh toán hết trước ngày khởi hành 7-10 ngày (áp dụng tour ngày thường), trước ngày khởi hành 20-25 ngày (áp dụng tour Lễ Tết)
+    `,
+  },
+  {
+    title: "Điều kiện đăng ký",
+    content: `
+      - Quý khách từ 70 tuổi trở lên yêu cầu phải có giấy xác nhận đầy đủ sức khoẻ để đi du lịch nước ngoài do bác sĩ cấp và + giấy cam kết sức khỏe với Công ty. Yêu cầu phải có người thân dưới 60 tuổi (đầy đủ sức khoẻ) đi theo. Ngoài ra, khách trên 75 tuổi khuyến khích đóng thêm phí bảo hiểm cao cấp (phí thay đổi tùy theo tour). Không nhận khách từ 80 tuổi trở lên.
+      - Quý khách mang thai xin vui lòng báo cho nhân viên bán tour ngay tại thời điểm đăng ký để được tư vấn thêm thông tin. Không nhận khách mang thai từ 5 tháng trở lên vì lí do an toàn cho khách.
+      - Nếu yêu cầu ở phòng đơn, Quý khách vui lòng thanh toán phí phụ thu.
+      - Khi đăng ký tour du lịch, Quý khách vui lòng đọc kỹ chương trình, giá tour, các khoản bao gồm cũng như không bao gồm trong chương trình, các điều kiện hủy tour trên biên nhận đóng tiền. Trong trường hợp Quý khách không trực tiếp đến đăng ký tour mà do người khác đến đăng ký thì Quý khách vui lòng tìm hiểu kỹ chương trình từ người đăng ký cho mình.
+      - Do các chuyến bay phụ thuộc vào các hãng Hàng Không nên trong một số trường hợp giờ bay có thể thay đổi mà không được báo trước.
+      - Tùy vào tình hình thực tế, thứ tự các điểm tham quan trong chương trình có thể thay đổi nhưng vẫn đảm bảo đầy đủ các điểm tham quan như lúc đầu.
+      - Chúng tôi sẽ không chịu trách nhiệm bảo đảm các điểm tham quan trong trường hợp:
+        + Xảy ra thiên tai: bão lụt, hạn hán, động đất…
+        + Sự cố về an ninh: khủng bố, biểu tình
+        + Sự cố về hàng không: trục trặc kỹ thuật, an ninh, dời, hủy, hoãn chuyến bay.
+      - Nếu những trường hợp trên xảy ra, chúng tôi sẽ xem xét để hoàn trả chi phí không tham quan cho khách trong điều kiện có thể (sau khi đã trừ lại các dịch vụ đã thực hiện như phí làm visa….và không chịu trách nhiệm bồi thường thêm bất kỳ chi phí nào khác).
+    `
+  },
+  {
+    title: "Lưu ý về chuyển hoặc hủy tour",
+    content: `
+      - Sau khi đóng tiền, nếu Quý khách muốn chuyển/huỷ tour xin vui lòng mang Vé Du Lịch đến văn phòng đăng ký tour để làm thủ tục chuyển/huỷ tour và chịu Chi phí huỷ tour là theo quy định. Không giải quyết các trường hợp liên hệ chuyển/huỷ tour qua điện thoại.
+      - Đối với những tour còn thời hạn hủy nhưng đã làm visa, Quý khách vui lòng thanh toán phí visa.
+      - Thời gian hủy chuyến du lịch được tính cho ngày làm việc, không tính thứ 7, Chủ Nhật và các ngày Lễ, Tết.
+    `
+  },
+  {
+    title: "Các điều kiện hủy tour đối với ngày thường",
+    content: `
+      - Được chuyển sang các tuyến du lịch khác trước ngày khởi hành 20 ngày: Không mất chi phí.
+      - Nếu hủy hoặc chuyển sang các chuyến du lịch khác ngay sau khi đăng ký từ 15-19 ngày trước ngày khởi hành: Chi phí hủy tour: 50% tiền cọc tour.
+      - Nếu hủy hoặc chuyển sang các chuyến du lịch khác từ 12-14 ngày trước ngày khởi hành: Chi phí hủy tour: 100% tiền cọc tour.
+      - Nếu hủy chuyến du lịch trong vòng từ 08-11 ngày trước ngày khởi hành: Chi phí hủy tour: 50% trên giá tour du lịch.
+      - Nếu hủy chuyến du lịch trong vòng từ 05-07 ngày trước ngày khởi hành: Chi phí hủy tour: 70% trên giá tour du lịch.
+      - Nếu hủy chuyến du lịch trong vòng từ 02-04 ngày trước ngày khởi hành: Chi phí hủy tour: 90% trên giá vé du lịch.
+      - Nếu hủy chuyến du lịch trong vòng 1 ngày trước ngày khởi hành: Chi phí hủy tour: 100% trên giá vé du lịch.
+    `,
+  },
+  {
+    title: "Các điều kiện hủy tour đối với ngày Lễ, Tết",
+    content: `
+      - Nếu hủy hoặc chuyển sang các tuyến du lịch khác trước ngày khởi hành 45 ngày : Không mất chi phí.
+      - Nếu hủy hoặc chuyển sang các chuyến du lịch khác từ 34-44 ngày trước ngày khởi hành : Chi phí chuyển/huỷ tour là 50% tiền cọc tour.
+      - Nếu hủy hoặc chuyển sang các chuyến du lịch khác từ 25-33 ngày trước ngày khởi hành : Chi phí chuyển/huỷ tour là 100% tiền cọc tour.
+      - Nếu hủy chuyến du lịch ngay sau khi Đại Sứ Quán, Lãnh Sự Quán đã cấp visa (đối với các nước cần visa) : Chi phí huỷ tour là 100% tiền cọc tour.
+      - Nếu hủy chuyến du lịch trong vòng 20-24 ngày trước ngày khởi hành : Chi phí huỷ tour là 50% trên giá tour du lịch.
+      - Nếu hủy chuyến du lịch trong vòng từ 11-19 ngày trước ngày khởi hành : Chi phí huỷ tour là 70% trên giá tour du lịch.
+      - Nếu hủy chuyến du lịch trong vòng từ 02-10 ngày trước ngày khởi hành : Chi phí huỷ tour là 90% trên giá vé du lịch.
+      - Nếu hủy chuyến du lịch trong vòng 01 ngày trước ngày khởi hành : Chi phí huỷ tour là 100% trên giá vé du lịch.
+    `
+  },
+  {
+    title: "Trường hợp bất khả kháng",
+    content: `
+    Nếu chương trình du lịch bị hủy bỏ hoặc thay đổi bởi một trong hai bên vì lý do bất khả kháng (hỏa hoạn, thời tiết, tai nạn, thiên tai, chiến tranh, dịch bệnh, hoãn, dời, và hủy chuyến hoặc thay đổi khác của các phương tiện vận chuyển công cộng hoặc các sự việc bất khả kháng khác theo quy định pháp luật…), thì hai bên sẽ không chịu bất kỳ nghĩa vụ bồi hoàn các tổn thất đã xảy ra và không chịu bất kỳ trách nhiệm pháp lý nào. Tuy nhiên mỗi bên có trách nhiệm cố gắng tối đa để giúp đỡ bên bị thiệt hại nhằm giảm thiểu các tổn thất gây ra vì lý do bất khả kháng.
+    `
+  },
+  {
+    title: "Liên hệ",
+    content: `
+    Tổng đài Vietravel 1800-646-888 (08:00 - 23:00)
+    Trụ sở Vietravel 190 Pasteur, Phường Xuân Hoà, Tp Hồ Chí Minh
+    `,
+  },
+  {
+    title: "Thông tin xin VISA",
+    content: `
+    ĐIỀU KIỆN ĐỂ LÀM VISA:
+
+Quý khách vui lòng chuẩn bị 01 bộ hồ sơ trước ngày khởi hành ít nhất 1,5 tháng. Lưu ý danh mục hồ sơ dưới đây Quý khách cần nộp trước bản scan hoặc bản photo rõ đẹp trên giấy khổ A4 không cắt gọn (không sử dụng bản chụp) và cầm theo tất cả bản gốc khi đi lăn tay nộp hồ sơ (Hồ sơ gốc LSQ sẽ lưu giữ trong quá trình cấp xét visa). Các giấy tờ do Ngân hàng cung cấp (Sao kê tài khoản, Giấy xác nhận số dư…) Lãnh sự quán yêu cầu in trước ngày lăn tay không quá 3 ngày nên Quý khách không cần nộp trước. Nhân viên tư vấn Vietravel sẽ nhắc Quý khách liên hệ ngân hàng để chuẩn bị hồ sơ này trước ngày lăn tay.
+
+1. Hồ sơ cá nhân:
+
+Bản gốc hộ chiếu còn thời hạn trên 6 tháng so với ngày kết thúc tour (hộ chiếu có bị chú nơi sinh, đầy đủ ngày tháng năm sinh và nên đi được một số nước) có ký và ghi rõ họ tên người mang hộ chiếu ở trang số 3. Các hộ chiếu gốc cũ (nếu có)
+2 tấm hình 3.5cm × 4.5cm nền trắng (hình mới chụp trong vòng 6 tháng trở lại, không trùng với hình của visa nào, khuôn mặt phải chiếm 80% hình, không đeo băng đô – hoa tai, không đeo mắt kính, không cười hở răng, không che trán, không che hai tai - trường hợp mái ngang có thể dùng kẹp tăm màu đen)
+Căn cước công dân
+Bản gốc CT07 hoặc CT08.
+Giấy chứng nhận kết hôn + căn cước công dân của chồng/ vợ (dù không tham gia tour), quyết định ly hôn hoặc nộp kèm giấy chứng tử tùy theo tình trạng hôn nhân hiện tại. Nếu vợ/ chồng đang sinh sống tại châu Âu cần nộp thêm Giấy cư trú của vợ/ chồng.
+Giấy khai sinh của tất cả các con ruột, kèm theo căn cước công dân của con nếu con từ 14 tuổi trở lên (dù không tham gia tour). Nếu con đang học nước ngoài cung cấp mặt hộ chiếu + visa du học + thẻ sinh viên. Nếu con đang sinh sống tại châu Âu cần nộp thêm Giấy cư trú của con.
+Giấy khai sinh cá nhân trong trường hợp cần chứng minh mối quan hệ anh chị em ruột.
+Trường hợp trẻ em dưới 18 tuổi đi cùng bố hoặc mẹ thì người còn lại phải nộp căn cước công dân photo + bản gốc giấy đồng ý cho bé đi cùng bố/ mẹ có xác nhận của địa phương. Đến ngày nộp hồ sơ cả ba và mẹ đều phải đến ký form xin visa cho con trước mặt nhân viên lãnh sự.
+Form thông tin xin visa (Vietravel cung cấp)
+2. Các điều kiện cần có:
+
+- Công việc:
+
+Nếu Quý khách đang đi làm (CB-CNV) cần có: Hợp đồng lao động nêu rõ vị trí / chức vụ, thời gian làm việc + Đơn xin nghỉ phép đi du lịch châu Âu (ghi rõ nghỉ không lương hay nghỉ có lương) + Sổ Bảo hiểm xã hội + Hình chụp màn hình ứng dụng VssID thể hiện thông tin khách và quá trình tham gia Bảo Hiểm Xã Hội (Quý khách chuyển sang ngôn ngữ tiếng Anh trước khi chụp màn hình) + Sao kê tài khoản nhận lương 3 tháng gần nhất đến sát ngày lăn tay (nếu nhận lương qua ngân hàng). Hoặc bảng trích lục lương 3 tháng gần nhất có mộc đỏ công ty (nếu nhận lương bằng tiền mặt) kèm theo sao kê tài khoản cá nhân 3 tháng gần nhất đóng mộc ngân hàng đến sát ngày lăn tay.
+Nếu Quý khách là chủ doanh nghiệp cần có: Giấy phép Đăng Ký Kinh Doanh + Biên lai thuế 3 tháng gần nhất + Sao kê tài khoản cá nhân 3 tháng gần nhất đóng mộc ngân hàng.
+Nếu Quý khách đã nghỉ hưu cần có: Quyết định nghỉ hưu / Thẻ hưu trí + Sao kê nhận lương hưu 3 tháng đến sát ngày lăn tay (nếu nhận lương hưu qua ngân hàng) hoặc Sổ nhận lương hưu (nếu nhận bằng tiền mặt) + bản gốc sao kê tài khoản cá nhân 3 tháng gần nhất
+Nếu Quý khách lớn tuổi không có hưu trí, không có công việc: bổ sung hồ sơ hộ chiếu, khai sinh sao y công chứng, hồ sơ công việc + tài chính + thư bảo lãnh của con.
+Trường hợp là học sinh / sinh viên cần có: Giấy xác nhận học sinh / sinh viên của trường + thẻ học sinh / sinh viên + bản gốc đơn xin nghỉ phép đi du lịch
+- Bằng chứng về tài sản: Chủ quyền Nhà, Đất kèm theo Hợp đồng cho thuê nếu có.
+
+- Bằng chứng về tài chính: Sổ tiết kiệm hoặc bản gốc Giấy xác nhận số dư (được in trước ngày lăn tay 3 ngày) tối thiểu là 150 triệu/ khách (ưu tiên lấy sổ có giá trị tiền gửi cao và đã mở lâu). Nếu gia đình chung tài chính photo ra mỗi người 1 bản (sao kê + XNSD)`
+  }
+];
+
+export const descriptionLocation = [
+  {
+    title: "",
+    content: "",
+  }
+];

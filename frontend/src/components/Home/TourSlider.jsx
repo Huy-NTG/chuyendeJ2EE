@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import TourCard from "./TourCard";
-import { getAllTours } from '../services/tourService';
+import TourCard from "../Tour/TourCard";
+import { getAllTours } from '../../services/tourService';
 
 export default function TourSlider() {
     const sliderRef = useRef(null);
@@ -34,12 +34,7 @@ export default function TourSlider() {
     return (
         <div className="relative w-10/12 my-6">
             <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold">Tour nổi bật</h2>
-                <Link
-                    to="/tours"
-                    className="text-blue-600 hover:underline hover:text-blue-800">
-                        Xem tất cả
-                </Link>
+                <h2 className="text-2xl font-bold text-blue-800">Tour nổi bật</h2>
             </div>
             <button
                 onClick={scrollLeft}

@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Header from '../components/Global/Header';
+import Footer from '../components/Global/Footer';
 import { getTourById } from '../services/tourService';
-
-// Hàm format tiền tệ
-const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('vi-VN', { 
-        style: 'currency', currency: 'VND' 
-    }).format(amount).replace('₫', ' ₫');
-};
+import Note from '../components/Tour/Note';
+import { note } from '../assets/data/Tour';
+import { formatCurrency } from '../utils/formatCurrency';
 
 export default function TourDetailPage(){
     const { id } = useParams();
@@ -35,30 +31,61 @@ export default function TourDetailPage(){
             <div className='main flex justify-center'>
                 <div className="main--wrapper w-10/12">
                     <div className="main__content">
-                        <div className="main__content--wrapper flex mb-2.5 justify-between ">
+                        <div className="main__content--wrapper flex mb-2.5 justify-between gap-5">
                             <div className="content-left">
-                                <div className="title mb-2.5">
+                                <div className="title my-5 h-[80px]">
                                     <h2 className="font-bold text-3xl mt-2.5">{tour.name}</h2>
                                 </div>
-                                <div className="img mt-2.5 w-[800px] h-[460px]">
-                                    <img className='w-full h-full object-cover shadow-lg' src={tour.imageUrl}></img>
-                                </div>
-                                <div className="img mt-2.5 w-[800px] h-[460px]">
-                                    <img className='w-full h-full object-cover shadow-lg' src={tour.imageUrl}></img>
-                                </div>
-                                <div className="img mt-2.5 w-[800px] h-[460px]">
-                                    <img className='w-full h-full object-cover shadow-lg' src={tour.imageUrl}></img>
-                                </div>
-                                <div className="img mt-2.5 w-[800px] h-[460px]">
+                                <div className="img my-5 w-[800px] h-[460px]">
                                     <img className='w-full h-full object-cover shadow-lg' src={tour.imageUrl}></img>
                                 </div>
                                 <div className="special"></div>
-                                <div className="more-infor">
-                                    <p>{tour.description}</p>
+                                <div className="more-infor my-5">
+                                    <h2 className='flex justify-center font-bold text-3xl mb-5'>THÔNG TIN THÊM VỀ CHUYẾN ĐI</h2>
+                                    <div className='more-infor__content mt-5 grid grid-cols-3 grid-rows-2 gap-2 gap-y-10 text-[18px] leading-6 px-4'>
+                                        <div className="sightseeing">
+                                            <i className='fa-solid fa-map text-blue-800 text-3xl'></i>
+                                            <h2 className='font-bold m-1'>Điểm tham quan</h2>
+                                            <p>{tour.description}</p>
+                                        </div>
+                                        <div className="food">
+                                            <i className='fa-solid fa-utensils text-blue-800 text-3xl'></i>
+                                            <h2 className='font-bold m-1'>Ẩm thực</h2>
+                                            <p>Theo thực đơn</p>
+                                        </div>
+                                        <div className="suitable-object">
+                                            <i className='fa-solid fa-people-group text-blue-800 text-3xl'></i>
+                                            <h2 className='font-bold m-1'>Đối tượng thích hợp</h2>
+                                            <p>Người lớn tuổi, trẻ nhỏ, gia đình nhiều thế hệ</p>
+                                        </div>
+                                        <div className="ideal-time">
+                                            <i className='fa-solid fa-alarm-clock text-blue-800 text-3xl'></i>
+                                            <h2 className='font-bold m-1'>Thời gian lí tưởng</h2>
+                                            <p>Quanh năm</p>
+                                        </div>
+                                        <div className="vehicle">
+                                            <i className='fa-solid fa-truck-plane text-blue-800 text-3xl'></i>
+                                            <h2 className='font-bold m-1'>Phương tiện</h2>
+                                            <p>Xe du lịch, máy bay</p>
+                                        </div>
+                                        <div className="promotion">
+                                            <i className='fa-solid fa-tags text-blue-800 text-3xl'></i>
+                                            <h2 className='font-bold m-1'>Khuyến mãi</h2>
+                                            <p>Đã bao gồm ưu đãi trong giá tour</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="schedule"></div>
+                                <div className="note">
+                                    <h2 className='flex justify-center font-bold text-3xl mb-5'>NHỮNG THÔNG TIN CẦN LƯU Ý</h2>
+                                    <div className='note__content grid grid-cols-2 text-[18px] gap-x-2.5'>
+                                        {note.map((item, index) => (
+                                            <Note item={item} key={index}></Note>
+                                        ))
+                                        }
+                                    </div>
+                                </div>
                             </div> 
-                            <div className="content-right ">
+                            <div className="content-right">
                                 <div className="content-right--wrapper p-5 sticky top-10 right-10 shadow-lg w-[400px] rounded-2xl">
                                     <div className="price my-2">
                                         <p className='font-semibold text-2xl mb-2'>Giá:</p>

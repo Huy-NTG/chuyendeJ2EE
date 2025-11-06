@@ -1,11 +1,11 @@
 import React, { useState} from "react";
-import vietnamFlag from "../assets/images/vietnam-flag.png";
-import logo from "../assets/images/logo.jpg";
-import { placeData } from "../assets/data";
+import vietnamFlag from "../../assets/images/vietnam-flag.png";
+import logo from "../../assets/images/logo.jpg";
+import { placeData } from "../../assets/data/Tour";
 import { Link } from "react-router-dom";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
-import { slugify } from "../utils/stringUtils";
+import { slugify } from "../../utils/stringUtils";
 
 export default function Header(){
     const [showNavPlace, setShowNavPlace] = useState(false);
@@ -13,10 +13,8 @@ export default function Header(){
 
     const [showForm, setShowForm] = useState(false);
     const [isLogin, setIsLogin] = useState(true);
-
     const toggleNavPlace = (type) => {
     if (activeType === type) {
-      // Nếu click lại cùng loại thì ẩn
       setShowNavPlace(false);
       setActiveType(null);
     } else {
@@ -24,9 +22,7 @@ export default function Header(){
       setShowNavPlace(true);
     }
   };
-
     const selectedData = placeData.find((p) => p.type === activeType);
-
     return (
             <div className="header ">
                 <div className="header--wrapper flex justify-center items-center flex-col">
@@ -70,7 +66,9 @@ export default function Header(){
                                         className="hover:rounded-md hover:bg-gray-100 p-1.5 hover:cursor-pointer h-auto hover:text-blue-600">Trong nước</li>
                                     <li><i className="fa-solid fa-list font-thin p-1.5 hover:cursor-pointer h-auto hover:text-blue-600"></i></li>
                                 </ul>
-                                <div className={`navPlace absolute top-full left-[76.5px] w-10/12 bg-white shadow-[0_0_10px_rgba(0,0,0,0.15)] p-8 rounded-2xl transform transition-all duration-500 ease-out origin-top ${showNavPlace ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0 pointer-events-none'} z-50`}>
+                                <div className={`navPlace absolute top-full left-[76.5px] w-10/12 bg-white shadow-[0_0_10px_rgba(0,0,0,0.15)] 
+                                    p-8 rounded-2xl transform transition-all duration-500 ease-out origin-top 
+                                    ${showNavPlace ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0 pointer-events-none'} z-50`}>
                                 {selectedData && (
                                     <div className="navPlace--wrapper">
                                         <button 
@@ -87,16 +85,11 @@ export default function Header(){
                                                         <div className="list-view ">
                                                             <ul className="list-view--wrapper flex flex-col gap-2.5 h-12/12 ">
                                                                 {region.places.map((place, i) => (
-                                                                <Link to={`/tours/search/${place}`}
-                                                                    //to={{
-                                                                        //pathname: `/tour/search/${slugify(place)}`,
-                                                                        //state: { placeName: place } // <-- Gửi tên gốc có dấu
-                                                                    //}}
-                                                                    >
+                                                                <Link to={`/tours/location/${slugify(place)}`}>
                                                                     <li 
                                                                         key={i}
                                                                         className="list-view__item text-black font-medium relative group">
-                                                                        <a title={place} className="inline-block relative group">{place}
+                                                                        <a onClick={() => setShowNavPlace(false)} title={place} className="inline-block relative group">{place}
                                                                             <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
                                                                         </a>
                                                                     </li>
@@ -105,10 +98,12 @@ export default function Header(){
                                                             </ul>
                                                         </div> 
                                                     <div className="list-show-all text-black mt-2.5">
-                                                        <button>
-                                                            <a>Xem tất cả</a>
-                                                            <i className="fa-solid fa-arrow-right ml-1"></i>
-                                                        </button>
+                                                        <Link to={`/tours/location/${selectedData.data.title}`}>
+                                                            <button key={index}>
+                                                                <a>Xem tất cả</a>
+                                                                <i className="fa-solid fa-arrow-right ml-1"></i>
+                                                            </button>
+                                                        </Link>
                                                     </div>
                                                 </div>
                                             ))}  

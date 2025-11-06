@@ -1,14 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 export default function TourCard({tour}){
-    // Hàm format tiền tệ Việt Nam
-    const formatCurrency = (amount) => {
-        return new Intl.NumberFormat('vi-VN', { 
-            style: 'currency', 
-            currency: 'VND' 
-        }).format(amount).replace('₫', ' ₫'); // Thêm khoảng trắng
-    };
+
     return (
         <Link to={`/tours/${tour.id}`}>
             <div className="tour-card bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 border border-gray-100">

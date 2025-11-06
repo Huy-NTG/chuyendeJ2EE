@@ -26,7 +26,7 @@ public class AuthService {
 
     public UserResponse register(RegisterRequest request) {
         if (userRepository.existsByUsername(request.getUsername())) {
-        throw new RuntimeException("Username already taken");
+            throw new RuntimeException("Username already taken");
         }
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new RuntimeException("Email already registered");

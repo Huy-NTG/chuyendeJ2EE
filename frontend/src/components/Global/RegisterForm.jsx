@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { register } from "../services/authService";
+import { register } from "../../services/authService";
 
 export default function RegisterForm({ onSwitch, onClose}) {
     const [formData, setFormData] = useState({username: "", email: "", 
@@ -44,34 +44,24 @@ export default function RegisterForm({ onSwitch, onClose}) {
             newErrors.confirm = "Mật khẩu xác nhận không khớp";
         return newErrors;
     };
-    // Giả định: 
-// 1. Bạn đã import { register } from './authApi.js';
-// 2. onSwitch là hàm chuyển đổi form (ví dụ: từ Register sang Login)
-// 3. setSuccessMessage/setErrorMessage là hàm cập nhật UI
-const handleSubmit = async (e) => { // 🔑 Phải là async
-    e.preventDefault();
-    const validationErrors = validateForm();
-    if (Object.keys(validationErrors).length > 0) {
-        setErrors(validationErrors);
-    } else {
-        setErrors({});
-        try {
-            // 🔑 GỌI HÀM API REGISTER ĐÃ SỬA
-            const userData = await register(formData); 
-            // Xử lý thành công: userData chứa user info và token đã được lưu vào sessionStorage
-            console.log("Đăng ký thành công:", userData.username);
-            // Thông báo thành công và chuyển sang form Login (hoặc chuyển sang trang chính)
-            // Tùy chọn: setSuccessMessage(`Đăng ký thành công! Chào mừng ${userData.username}`);
-            onSwitch(); 
-        } catch (error) {
-            // Xử lý lỗi từ backend (ví dụ: Username already taken)
-            console.error("Đăng ký thất bại", error);
-            // Tùy chọn: setErrorMessage(error.message);
-            // Nếu lỗi là do username/email đã tồn tại, bạn có thể setErrors cho field cụ thể
-            setErrors({ general: error.message }); 
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const validationErrors = validateForm();
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+        } else {
+            setErrors({});
+            try {
+                const userData = await register(formData); 
+                console.log("Đăng ký thành công:", userData.username);
+                onSwitch(); 
+            } catch (error) {
+                console.error("Đăng ký thất bại", error);
+                setErrors({ general: error.message }); 
+            }
         }
-    }
-};
+    };
 
     return (
         <div className="register flex justify-center bg-white rounded-xl">

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import TourCard from './TourCard'; // Import TourCard đã code
-import { getAllTours} from '../services/tourService';
+import { getAllTours} from '../../services/tourService';
 
-export default function TourList({tours}) {
+export default function TourList({location}) {
   const [allTours, setAllTours] = useState([]);
   const [loading, setLoading] = useState(true);
   
@@ -20,18 +20,22 @@ export default function TourList({tours}) {
     };
     fetchTours();
   }, []);
-
-  let toursToDisPlay = [];
-  toursToDisPlay = allTours
-  if (tours.length > 0)
-    toursToDisPlay = tours;
+  let toursToDisplay = [];
+  console.log(location);
+  if(location){
+    toursToDisplay = allTours.filter(tour => 
+        String(tour.location).toLowerCase() === String(location).toLowerCase());
+    console.log(toursToDisplay);
+    }
+  else 
+    toursToDisplay = allTours;
   if (loading)
     return <div className="text-center text-gray-500 py-10">Đang tải tour...</div>;
   return (
         <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {toursToDisPlay.map(tour => (
-                    <TourCard key={tour.id} tour={tour} />
+                {toursToDisplay.map(tour => ( 
+                    <TourCard key={tour.id} tour={tour} location={location}/>
                 ))}
             </div>
         </div>
