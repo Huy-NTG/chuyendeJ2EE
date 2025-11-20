@@ -70,7 +70,6 @@ public class HotelService {
     }
     // Đếm tổng số tour
     public long countHotels() {
-
         return hotelRepository.count();
     }
 }

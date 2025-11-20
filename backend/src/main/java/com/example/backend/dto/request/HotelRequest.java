@@ -14,5 +14,6 @@ public class HotelRequest {
     private String description;
     private BigDecimal pricePerNight;
     private Integer availableRooms;
+    private String address;
 }
 

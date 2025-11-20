@@ -40,7 +40,7 @@ public class SecurityConfig {
                                 "/api/users/count",
                                 "/api/flights/count",
                                 "/api/bookings/count").permitAll()
-                                .requestMatchers("/api/tours/**", "/api/hotels/**", "/api/flights/**", "/api/locations").permitAll() // tạm thời bật cho các api quan trọng không cần token để dễ test api bên admin
+                                .requestMatchers("/api/tours/**", "/api/hotels/**", "/api/flights/**", "/api/locations/**", "/api/rooms/**", "/api/toursimages/**").permitAll() // tạm thời bật cho các api quan trọng không cần token để dễ test api bên admin
                         // ✅ ADMIN quyền cao
 //                        .requestMatchers(HttpMethod.POST, "/api/tours/**", "/api/hotels/**").hasRole("ADMIN") // cho admin thêm
 //                        .requestMatchers(HttpMethod.PUT, "/api/tours/**", "/api/hotels/**").hasRole("ADMIN") // cho admin cập nhật
