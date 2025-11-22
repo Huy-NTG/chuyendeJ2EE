@@ -31,6 +31,9 @@ public class Hotel {
     @Column(name = "available_rooms", nullable = false)
     private Integer availableRooms;
 
+    @Column(name = "img_url")
+    private String imgUrl;
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 }

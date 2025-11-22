@@ -32,6 +32,8 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.PUT, "/api/tours/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.DELETE, "/api/tours/**").hasRole("ADMIN")
 
+                            // Hotel: cho phép xem và tìm kiếm không cần token
+                            .requestMatchers(HttpMethod.GET, "/api/hotels", "/api/hotels/*", "/api/hotels/search/**").permitAll()
                 // Admin API
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
 

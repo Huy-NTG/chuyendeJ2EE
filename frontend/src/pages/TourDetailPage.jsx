@@ -37,7 +37,7 @@ export default function TourDetailPage(){
                                     <h2 className="font-bold text-3xl mt-2.5">{tour.name}</h2>
                                 </div>
                                 <div className="img my-5 w-[800px] h-[460px]">
-                                    <img className='w-full h-full object-cover shadow-lg' src={tour.imageUrl}></img>
+                                    <img className="w-full h-full object-cover shadow-lg" src={tour.imageUrl}></img>
                                 </div>
                                 <div className="special"></div>
                                 <div className="more-infor my-5">

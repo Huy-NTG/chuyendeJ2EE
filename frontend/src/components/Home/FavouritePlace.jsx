@@ -68,7 +68,7 @@ export default function FavouritePlace(){
                                         <div className="image__name absolute flex flex-col justify-center items-center text-white font-semibold inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                                             <label className="text-xl mb-3 drop-shadow-md">{activeData[0].name}</label>
                                             <br/>
-                                            <Link to={`/tours/search/${slugify(activeData[0].name)}`}>
+                                            <Link to={`/tours/location/${slugify(activeData[0].name)}`}>
                                                 <button className="bg-blue-600 p-2.5 rounded-xl border-white border-2 hover:border-blue-600 hover:text-white transition">Khám phá</button>
                                             </Link>
                                         </div>
@@ -80,7 +80,7 @@ export default function FavouritePlace(){
                                         <div className="image__name absolute flex flex-col justify-center items-center text-white font-semibold inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                                             <label className="text-xl mb-3 drop-shadow-md">{activeData[1].name}</label>
                                             <br/>
-                                            <Link to={`/tours/search/${slugify(activeData[1].name)}`}>
+                                            <Link to={`/tours/location/${slugify(activeData[1].name)}`}>
                                                 <button className="bg-blue-600 p-2.5 rounded-xl border-white border-2 hover:border-blue-600 hover:text-white transition">Khám phá</button>
                                             </Link>
                                         </div>
@@ -92,7 +92,7 @@ export default function FavouritePlace(){
                                         <div className="image__name absolute flex flex-col justify-center items-center text-white font-semibold inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                                             <label className="text-xl mb-3 drop-shadow-md">{activeData[2].name}</label>
                                             <br/>
-                                            <Link to={`/tours/search/${slugify(activeData[2].name)}`}>
+                                            <Link to={`/tours/location/${slugify(activeData[2].name)}`}>
                                                 <button className="bg-blue-600 p-2.5 rounded-xl border-white border-2 hover:border-blue-600 hover:text-white transition">Khám phá</button>
                                             </Link>
                                         </div>
@@ -104,7 +104,7 @@ export default function FavouritePlace(){
                                         <div className="image__name absolute flex flex-col justify-center items-center text-white font-semibold inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                                             <label className="text-xl mb-3 drop-shadow-md">{activeData[3].name}</label>
                                             <br/>
-                                            <Link to={`/tours/search/${slugify(activeData[3].name)}`}>
+                                            <Link to={`/tours/location/${slugify(activeData[3].name)}`}>
                                                 <button className="bg-blue-600 p-2.5 rounded-xl border-white border-2 hover:border-blue-600 hover:text-white transition">Khám phá</button>
                                             </Link>
                                         </div>
@@ -116,7 +116,7 @@ export default function FavouritePlace(){
                                         <div className="image__name absolute flex flex-col justify-center items-center text-white font-semibold inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                                             <label className="text-xl mb-3 drop-shadow-md">{activeData[4].name}</label>
                                             <br/>
-                                            <Link to={`/tours/search/${slugify(activeData[4].name)}`}>
+                                            <Link to={`/tours/location/${slugify(activeData[4].name)}`}>
                                                 <button className="bg-blue-600 p-2.5 rounded-xl border-white border-2 hover:border-blue-600 hover:text-white transition">Khám phá</button>
                                             </Link>
                                         </div>
@@ -128,7 +128,7 @@ export default function FavouritePlace(){
                                         <div className="image__name absolute flex flex-col justify-center items-center text-white font-semibold inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                                             <label className="text-xl mb-3 drop-shadow-md">{activeData[5].name}</label>
                                             <br/>
-                                            <Link to={`/tours/search/${slugify(activeData[5].name)}`}>
+                                            <Link to={`/tours/location/${slugify(activeData[5].name)}`}>
                                                 <button className="bg-blue-600 p-2.5 rounded-xl border-white border-2 hover:border-blue-600 hover:text-white transition">Khám phá</button>
                                             </Link>
                                         </div>
@@ -140,7 +140,7 @@ export default function FavouritePlace(){
                                         <div className="image__name absolute flex flex-col justify-center items-center text-white font-semibold inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                                             <label className="text-xl mb-3 drop-shadow-md">{activeData[6].name}</label>
                                             <br/>
-                                            <Link to={`/tours/search/${slugify(activeData[6].name)}`}>
+                                            <Link to={`/tours/location/${slugify(activeData[6].name)}`}>
                                                 <button className="bg-blue-600 p-2.5 rounded-xl border-white border-2 hover:border-blue-600 hover:text-white transition">Khám phá</button>
                                             </Link>
                                         </div>
@@ -152,7 +152,7 @@ export default function FavouritePlace(){
                                         <div className="image__name absolute flex flex-col justify-center items-center text-white font-semibold inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                                             <label className="text-xl mb-3 drop-shadow-md">{activeData[7].name}</label>
                                             <br/>
-                                            <Link to={`/tours/search/${slugify(activeData[7].name)}`}>
+                                            <Link to={`/tours/location/${slugify(activeData[7].name)}`}>
                                                 <button className="bg-blue-600 p-2.5 rounded-xl border-white border-2 hover:border-blue-600 hover:text-white transition">Khám phá</button>
                                             </Link>
                                         </div>
@@ -164,7 +164,7 @@ export default function FavouritePlace(){
                                         <div className="image__name absolute flex flex-col justify-center items-center text-white font-semibold inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                                             <label className="text-xl mb-3 drop-shadow-md">{activeData[8].name}</label>
                                             <br/>
-                                            <Link to={`/tours/search/${slugify(activeData[8].name)}`}>
+                                            <Link to={`/tours/location/${slugify(activeData[8].name)}`}>
                                                 <button className="bg-blue-600 p-2.5 rounded-xl border-white border-2 hover:border-blue-600 hover:text-white transition">Khám phá</button>
                                             </Link>
                                         </div>

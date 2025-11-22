@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { formatCurrency } from "../../utils/formatCurrency";
 
 export default function TourCard({tour}){
-
     return (
         <Link to={`/tours/${tour.id}`}>
             <div className="tour-card bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 border border-gray-100">

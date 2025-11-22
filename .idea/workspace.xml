@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a1fbc366-56a9-43c5-a4cd-79606fdc1545" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/uploads/19e45992-452c-419b-830b-118439ea8718_hinh-nen-may-tinh-mua-thu-19.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/uploads/20a7755c-2194-44a3-a484-dc5db151acd9_HoangHon4.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/uploads/429d0e21-7b7a-45c5-b56d-2dad3a918ca8_muathutrongrung.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/uploads/9480ac99-477e-48f4-8342-764cb75bc1d4_HoangHon1.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/uploads/9693cb90-0013-4356-925d-0bdc52322b8f_buildings-1869425_1920.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/uploads/ce3338ee-abe0-4950-a5cf-eda0bb898818_Hinh-anh-cong-vien-Central-park-vao-mua-thu.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/GlobalStyles/GlobalStyles.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/GlobalStyles/GlobalStyles.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/StatCard/StatCard.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/StatCard/StatCard.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Tours/SearchBarTour/SearchBarTour.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Tours/SearchBarTour/SearchBarTour.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Tours/ToursAddForm/AddTourForm.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Tours/ToursAddForm/AddTourForm.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Tours/ToursItem/ToursItem.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Tours/ToursItem/ToursItem.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Tours/ToursList/ToursList.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Tours/ToursList/ToursList.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Tours/ToursUpdateForm/ToursUpdateForm.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Tours/ToursUpdateForm/ToursUpdateForm.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/sidebar/Sidebar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/sidebar/Sidebar.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Adminpage/AdminBookings/AdminBookings.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Adminpage/AdminBookings/AdminBookings.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Adminpage/AdminDashboard/AdminDashboard.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Adminpage/AdminDashboard/AdminDashboard.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Adminpage/AdminFlights/AdminFlights.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Adminpage/AdminFlights/AdminFlights.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Adminpage/AdminHotels/AdminHotels.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Adminpage/AdminHotels/AdminHotels.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Adminpage/AdminPage.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Adminpage/AdminPage.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Adminpage/AdminTours/AdminTours.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Adminpage/AdminTours/AdminTours.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Adminpage/AdminUsers/AdminUsers.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Adminpage/AdminUsers/AdminUsers.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/DefaultPage/DefaultPage.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/DefaultPage/DefaultPage.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/BackendApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/BackendApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/config/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/config/CorsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/controller/BookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/controller/BookingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/controller/FlightController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/controller/FlightController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/controller/HotelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/controller/HotelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/controller/TourController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/controller/TourController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/dto/LoginRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/dto/RegisterRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/dto/TourDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/dto/UserResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/dto/request/TourRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/dto/request/TourRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/dto/request/UserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/dto/request/UserRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/service/BookingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/service/BookingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/service/FlightService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/service/FlightService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/service/HotelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/service/HotelService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/service/TourService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/service/TourService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/uploads/HaNoi.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/assets/react.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Tour/TourCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Tour/TourCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Tour/TourItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Tour/TourItem.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/TourDetailPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/TourDetailPage.jsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
+  <component name="ProjectId" id="35640MSvmDhbSCS9RsetfbFs6MT" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "Merging nuki",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/chuyendeJ2EE"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a1fbc366-56a9-43c5-a4cd-79606fdc1545" name="Changes" comment="" />
+      <created>1762416964117</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1762416964117</updated>
+    </task>
+    <servers />
+  </component>
+</project>

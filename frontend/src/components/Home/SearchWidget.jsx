@@ -1,7 +1,7 @@
 // src/components/SearchWidget.jsx
 import React, { useState } from 'react';
 
-const SearchWidget = () => {
+export default function SearchWidget(){
     // State quản lý tab đang hoạt động: 'Tour', 'Khách sạn', 'Vé máy bay', 'Combo'
     const [activeTab, setActiveTab] = useState('Tour');
     
@@ -228,6 +228,7 @@ const SearchWidget = () => {
     };
 
     return (
+        <div className="container mx-auto p-4 sm:p-6 lg:px-8 -mt-20 z-10 relative"> 
         <div className='flex justify-center'>
             <form onSubmit={handleSearch} className=' w-10/12'>
                 <div className="flex bg-gray-100 rounded-t-lg p-2 shadow-md">
@@ -249,6 +250,6 @@ const SearchWidget = () => {
                 {renderSearchFields()}
             </form>
         </div>
+        </div>
     );
 };
-export default SearchWidget;

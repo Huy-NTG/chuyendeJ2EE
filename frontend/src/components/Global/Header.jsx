@@ -85,13 +85,12 @@ export default function Header(){
                                                         <div className="list-view ">
                                                             <ul className="list-view--wrapper flex flex-col gap-2.5 h-12/12 ">
                                                                 {region.places.map((place, i) => (
-                                                                <Link to={`/tours/location/${slugify(place)}`}>
+                                                                <Link key={i} to={`/tours/location/${slugify(place)}`} >
                                                                     <li 
-                                                                        key={i}
                                                                         className="list-view__item text-black font-medium relative group">
-                                                                        <a onClick={() => setShowNavPlace(false)} title={place} className="inline-block relative group">{place}
+                                                                        <p onClick={() => setShowNavPlace(false)} title={place} className="inline-block relative group hover:text-blue-600">{place}
                                                                             <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-                                                                        </a>
+                                                                        </p>
                                                                     </li>
                                                                 </Link>
                                                                 ))}
@@ -99,8 +98,8 @@ export default function Header(){
                                                         </div> 
                                                     <div className="list-show-all text-black mt-2.5">
                                                         <Link to={`/tours/location/${selectedData.data.title}`}>
-                                                            <button key={index}>
-                                                                <a>Xem tất cả</a>
+                                                            <button onClick={() => setShowNavPlace(false)} key={index} className="flex items-center">
+                                                                <p>Xem tất cả</p>
                                                                 <i className="fa-solid fa-arrow-right ml-1"></i>
                                                             </button>
                                                         </Link>

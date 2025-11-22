@@ -16,5 +16,6 @@ public class HotelResponse {
     private String description;
     private BigDecimal pricePerNight;
     private Integer availableRooms;
+    private String imgUrl;
     private LocalDateTime createdAt;
 }
