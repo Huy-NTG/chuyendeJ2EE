@@ -68,4 +68,8 @@ public class HotelService {
     			.map(hotelMapper::toResponse)
     			.collect(Collectors.toList());
     }
+    // Đếm tổng số tour
+    public long countHotels() {
+        return hotelRepository.count();
+    }
 }

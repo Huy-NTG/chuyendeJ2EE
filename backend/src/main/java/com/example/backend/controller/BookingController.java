@@ -54,9 +54,9 @@ public class BookingController {
         return ResponseEntity.noContent().build();
     }
     // API đếm tổng số booking
-    // @GetMapping("/count")
-    // public ResponseEntity<Long> countTours() {
-    //     long count = bookingService.countBooking();
-    //     return ResponseEntity.ok(count);
-    // }
+    @GetMapping("/count")
+    public ResponseEntity<Long> countTours() {
+        long count = bookingService.countBooking();
+        return ResponseEntity.ok(count);
+    }
 }
