@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.backend.dto.request.LoginRequest;
-import com.example.backend.dto.request.RegisterRequest;
-import com.example.backend.dto.response.UserResponse;
+import com.example.backend.dto.LoginRequest;
+import com.example.backend.dto.RegisterRequest;
+import com.example.backend.dto.UserResponse;
 import com.example.backend.service.AuthService;
 @RestController
 @RequestMapping("/api/auth")

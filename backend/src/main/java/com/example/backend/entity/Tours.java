@@ -25,7 +25,7 @@ public class Tours {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(name = "image_url", length = 255)
+    @Column(name = "image_url", length = 255) // 👈 thêm thuộc tính ảnh
     private String imageUrl;
     
     private BigDecimal price;

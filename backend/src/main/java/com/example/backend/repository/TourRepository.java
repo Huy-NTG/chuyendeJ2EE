@@ -9,6 +9,4 @@ import com.example.backend.entity.Tours;
 @Repository
 public interface  TourRepository extends JpaRepository<Tours, Long>{
     List<Tours> findByNameContainingIgnoreCase(String name);
-    List<Tours> findByLocationContainingIgnoreCase(String location);
-
 }

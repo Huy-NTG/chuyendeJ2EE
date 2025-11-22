@@ -6,7 +6,7 @@ import lombok.*;
 
 @Entity
 
-@Table(name = "users")
+@Table(name = "users") // 👈 ép JPA map sang bảng "users"
 @Getter
 @Setter
 @NoArgsConstructor
@@ -29,7 +29,7 @@ public class User {
     private String phone;
 
     @Column(nullable = false)
-    private String role = "USER";
+    private String role = "USER"; // mặc định USER
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();

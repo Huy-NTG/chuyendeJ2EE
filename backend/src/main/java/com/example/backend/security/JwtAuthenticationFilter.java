@@ -21,15 +21,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
         this.jwtUtils = jwtUtils;
     }
 
-    // 🔑 CHỈNH SỬA QUAN TRỌNG: Loại trừ đường dẫn Auth
-    @Override
-    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        // Trả về TRUE nếu filter KHÔNG nên chạy
-        // Đường dẫn đăng nhập/đăng ký không cần token
-        String path = request.getServletPath();
-        return path.startsWith("/api/auth/");
-    }
-
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
@@ -58,40 +49,4 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
         }
         filterChain.doFilter(request, response);
     }
-//@Override
-//protected void doFilterInternal(HttpServletRequest request,
-//                                HttpServletResponse response,
-//                                FilterChain filterChain)
-//        throws ServletException, IOException {
-//
-//    String header = request.getHeader("Authorization");
-//
-//    // Nếu không có header hoặc không phải Bearer token, tiếp tục chuỗi filter
-//    if (header == null || !header.startsWith("Bearer ")) {
-//        filterChain.doFilter(request, response);
-//        return;
-//    }
-//
-//    String token = header.substring(7);
-//
-//    try {
-//        String username = jwtUtils.getUsername(token);
-//        String role = jwtUtils.getRole(token);
-//
-//        // Tạo Authentication object
-//        UsernamePasswordAuthenticationToken authentication =
-//                new UsernamePasswordAuthenticationToken(username, null,
-//                        List.of(new SimpleGrantedAuthority("ROLE_" + role)));
-//
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
-//
-//    } catch (Exception e) {
-//        // Token không hợp lệ: xóa ngữ cảnh bảo mật và cho request tiếp tục.
-//        // Các bộ lọc bảo mật sau đó sẽ chặn request nếu nó không phải là public.
-//        SecurityContextHolder.clearContext();
-//    }
-
-    // Tiếp tục chuỗi filter
-//    filterChain.doFilter(request, response);
-
 }

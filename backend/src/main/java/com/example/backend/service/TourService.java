@@ -1,72 +1,45 @@
 package com.example.backend.service;
 
-import com.example.backend.dto.request.TourRequest;
-import com.example.backend.dto.response.TourResponse;
 import com.example.backend.entity.Tours;
-import com.example.backend.mapper.TourMapper;
 import com.example.backend.repository.TourRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.stream.Collectors;
-
+import org.springframework.stereotype.Service;
 @Service
-@RequiredArgsConstructor
 public class TourService {
+    private final TourRepository tourRepository;
 
-    private final TourRepository toursRepository;
-    private final TourMapper toursMapper;
-
-    // Tạo tour mới
-    public TourResponse createTour(TourRequest request) {
-        Tours tour = toursMapper.toEntity(request);
-        tour = toursRepository.save(tour);
-        return toursMapper.toResponse(tour);
+    public TourService(TourRepository tourRepository) {
+        this.tourRepository = tourRepository;
     }
 
-    // Cập nhật tour
-    public TourResponse updateTour(Long id, TourRequest request) {
-        Tours tour = toursRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Tour not found"));
-        toursMapper.updateEntity(tour, request);
-        tour = toursRepository.save(tour);
-        return toursMapper.toResponse(tour);
+    public List<Tours> getAllTours() {
+        return tourRepository.findAll();
     }
 
-    // Lấy tour theo ID
-    public TourResponse getTourById(Long id) {
-        Tours tour = toursRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Tour not found"));
-        return toursMapper.toResponse(tour);
+    public Tours getTourById(Long id) {
+        return tourRepository.findById(id).orElseThrow(() -> new RuntimeException("Tour not found"));
     }
 
-    // Lấy tất cả tour
-    public List<TourResponse> getAllTours() {
-        return toursRepository.findAll().stream()
-                .map(toursMapper::toResponse)
-                .collect(Collectors.toList());
+    public Tours createTour(Tours tour) {
+        return tourRepository.save(tour);
     }
 
-    // Xóa tour
+    public Tours updateTour(Long id, Tours updatedTour) {
+        Tours tour = getTourById(id);
+        tour.setName(updatedTour.getName());
+        tour.setLocation(updatedTour.getLocation());
+        tour.setDescription(updatedTour.getDescription());
+        tour.setPrice(updatedTour.getPrice());
+        tour.setStartDate(updatedTour.getStartDate());
+        tour.setEndDate(updatedTour.getEndDate());
+        tour.setSeats(updatedTour.getSeats());
+        return tourRepository.save(tour);
+    }
+
     public void deleteTour(Long id) {
-        if (!toursRepository.existsById(id)) {
-            throw new RuntimeException("Tour not found");
-        }
-        toursRepository.deleteById(id);
+        tourRepository.deleteById(id);
     }
-
-    // Tìm kiếm tour theo tên (ignore case)
-    public List<TourResponse> searchToursByName(String name) {
-        return toursRepository.findByNameContainingIgnoreCase(name).stream()
-                .map(toursMapper::toResponse)
-                .collect(Collectors.toList());
-    }
-
-    // Lấy tours theo địa điểm (ignore case)
-    public List<TourResponse> getToursByLocation(String location) {
-        return toursRepository.findByLocationContainingIgnoreCase(location).stream()
-                .map(toursMapper::toResponse)
-                .collect(Collectors.toList());
+    public List<Tours> searchToursByName(String name) {
+        return tourRepository.findByNameContainingIgnoreCase(name);
     }
 }
