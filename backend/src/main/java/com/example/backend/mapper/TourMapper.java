@@ -16,6 +16,7 @@ public interface TourMapper {
 
     // Entity -> Response
     @Mapping(source = "location.id", target = "locationId")
+    @Mapping(source = "locationText", target = "locationText")  // 👈 THÊM DÒNG NÀY
     TourResponse toResponse(Tours tours);
 
     // Update entity từ Request

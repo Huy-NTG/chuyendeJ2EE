@@ -13,7 +13,10 @@ import java.time.LocalDateTime;
 public class TourResponse {
     private Long id;
     private String name;
+
+    private String locationText;
     private Long locationId;
+
     private String description;
     private String imageUrl;
     private BigDecimal price;
