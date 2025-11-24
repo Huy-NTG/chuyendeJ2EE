@@ -97,7 +97,7 @@ export default function Header(){
                                                             </ul>
                                                         </div> 
                                                     <div className="list-show-all text-black mt-2.5">
-                                                        <Link to={`/tours/location/${selectedData.data.title}`}>
+                                                        <Link to={`/tours/location/${slugify(region.title)}`}>
                                                             <button onClick={() => setShowNavPlace(false)} key={index} className="flex items-center">
                                                                 <p>Xem tất cả</p>
                                                                 <i className="fa-solid fa-arrow-right ml-1"></i>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import TourItem from "./TourItem";
 import { getAllTours } from "../../services/tourService";
 
-export default function TourListItem({location,price,date}){
+export default function TourListItem({location,price,date,onCountChange,sort}){
   const [allTours, setAllTours] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filteredTours, setFilteredTours] = useState([]);
@@ -23,12 +23,13 @@ export default function TourListItem({location,price,date}){
 
   useEffect(() => {
     let toursToDisplay = [...allTours];
-    
+    const today = new Date();
+    toursToDisplay = toursToDisplay.filter(tour => new Date(tour.startDate) >= today);
     if(location)
     toursToDisplay = toursToDisplay.filter(tour => 
         String(tour.location).toLowerCase() === String(location).toLowerCase());
-  if (price) 
-    switch (price) {
+    if (price) 
+      switch (price) {
         case "under_5m":
             toursToDisplay = toursToDisplay.filter(tour => tour.price < 5000000);
             break;
@@ -56,8 +57,16 @@ export default function TourListItem({location,price,date}){
       return tourDate === selectedDate;
     });
   }
+  if (sort === "date")
+    toursToDisplay.sort((a,b) => Date(a.startDate) - new Date(b.startDate));
+  else if (sort === "price-asc")
+    toursToDisplay.sort((a,b) => a.price - b.price);
+  else if (sort === "pirce-desc")
+    toursToDisplay.sort((a,b) => b.price - a.price);
   setFilteredTours(toursToDisplay);
-  }, [allTours,location,price,date]);
+  onCountChange(toursToDisplay.length);
+  }, [allTours,location,price,date,sort]);
+
   if (loading)
     return <div className="text-center text-gray-500 py-10">Đang tải tour...</div>;
   if (filteredTours.length === 0) {

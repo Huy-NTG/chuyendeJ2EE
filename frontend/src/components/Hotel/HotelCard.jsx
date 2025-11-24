@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { formatCurrency } from "../../utils/formatCurrency";
 
 export default function HotelCard({hotel}){
     return (
@@ -25,24 +24,13 @@ export default function HotelCard({hotel}){
                             <span className="font-semibold">Địa điểm:</span> {hotel.location}
                         </p>
                         <p>
-                            <span className="font-semibold text-red-600">Còn:</span> {hotel.seats} chỗ
+                            <span className="font-semibold text-red-600">Còn:</span> {hotel.availableRooms} phòng
                         </p>
                     </div>
                 </div>
-                <div className="p-4 bg-gray-50 border-t flex items-center justify-between">
-                    <div>
-                        {hotel.pricePerNight && (
-                            <p className="text-sm text-gray-500 line-through">
-                                {formatCurrency(hotel.price)}
-                            </p>
-                        )}
-                        {/* Giá chính thức */}
-                        <p className="text-xl font-extrabold text-orange-600">
-                            {formatCurrency(hotel.pricePerNight || hotel.pricePerNight)}
-                        </p>
-                    </div>
+                <div className="p-4 bg-gray-50 border-t">
                     <button 
-                        className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-red-600 transition"
+                        className="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-red-600 transition"
                         onClick={() => console.log('Đặt tour', hotel.id)} // Logic đặt tour
                     >
                         Đặt ngay

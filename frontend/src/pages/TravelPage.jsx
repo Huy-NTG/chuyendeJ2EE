@@ -4,7 +4,7 @@ import Footer from "../components/Global/Footer";
 import { placeSlug } from "../assets/data/Tour";
 import TourListItem from "../components/Tour/TourListItem";
 import { useEffect, useState } from "react";
-import { getAllTours } from "../services/tourService";
+import { countTours, getAllTours } from "../services/tourService";
 import { slugify } from "../utils/stringUtils";
 
 export default function TravelPage(){
@@ -14,6 +14,8 @@ export default function TravelPage(){
     const [allTours, setAllTours] = useState([]);
     const [selectedLocation, setSelectedLocation] = useState('');
     const [selectedDate, setSelectedDate] = useState('');
+    const [count, setCount] = useState(0);
+    const [sortOption, setSortOption] = useState('date');
     const price = [
         { label: 'Dưới 5 triệu', value: 'under_5m' },
         { label: 'Từ 5 - 10 triệu', value: '5-10m' },
@@ -44,6 +46,18 @@ export default function TravelPage(){
                 setAllTours(response.data);
             } catch (error) {
                 console.error("Lỗi khi tải danh sách tour: ",error);
+            }
+        };
+        fetchTours();
+    },[]);
+
+    useEffect(() => {
+        const fetchTours = async () => {
+            try {
+                const response = await countTours();
+                setCount(response.data)
+            } catch (error) {
+                console.log("Lỗi khi tải số lượng tour: ",error);
             }
         };
         fetchTours();
@@ -142,17 +156,17 @@ export default function TravelPage(){
                             </div>
                             <div className="content-left flex-1 min-w-0">
                                 <div className="content-left--wrapper flex justify-between">
-                                    <h2 className="font-semibold text-xl">Chúng tôi tìm thấy <span className="text-blue-600 text-3xl">22</span> chương trình tour cho quý khách</h2>
+                                    <h2 className="font-semibold text-xl">Chúng tôi tìm thấy <span className="text-blue-600 text-3xl">{count}</span> chương trình tour cho quý khách</h2>
                                     <div className="flex items-center">
                                         <h2 className="font-semibold text-xl mr-2">Sắp xếp theo</h2>
-                                        <select name="sapxep" className="block p-2 border border-gray-300 rounded-md ">
-                                            <option value="" disabled>Ngày khởi hành gần nhất</option>
-                                            <option value="">Giá từ thấp đến cao</option>
-                                            <option value="">Giá từ cao đến thấp</option>
+                                        <select onChange={(e) => setSortOption(e.target.value)} name="sort" className="block p-2 border border-gray-300 rounded-md ">
+                                            <option value="date" defaultValue>Ngày khởi hành gần nhất</option>
+                                            <option value="price-asc">Giá từ thấp đến cao</option>
+                                            <option value="price-desc">Giá từ cao đến thấp</option>
                                         </select>
                                     </div>
                                 </div>
-                                <TourListItem location={displayLocation} price={selectedPrice} date={selectedDate}/>
+                                <TourListItem sort={sortOption} onCountChange={setCount} location={displayLocation} price={selectedPrice} date={selectedDate}/>
                             </div>
                         </div>
                     </div>

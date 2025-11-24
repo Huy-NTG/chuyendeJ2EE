@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:8081/api/users",
+  baseURL: "http://localhost:8080/api/users",
 });
 
 export const getAllUsers = () => API.get("/");

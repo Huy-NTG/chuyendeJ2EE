@@ -3,16 +3,16 @@ import Footer from "../components/Global/Footer";
 import Header from "../components/Global/Header";
 import { useEffect, useState } from "react";
 import { getHotelById } from "../services/hotelService";
-import HotelListItem from "../components/Hotel/HotelListItem";
+import RoomList from "../components/Hotel/RoomList";
 
 export default function HotelDetailPage(){
     const [selectedFilters, setSelectedFilters] = useState([]);
-    const { id } = useParams();
+    const { id_hotel } = useParams();
     const [ hotel, setHotel] = useState(null);
     useEffect(() => {
         const fetchHotel = async () => {
             try {
-                const response = await getHotelById(id);
+                const response = await getHotelById(id_hotel);
                 console.log(response.data)
                 setHotel(response.data);
             } catch (error) {
@@ -20,7 +20,7 @@ export default function HotelDetailPage(){
             }
         };
         fetchHotel()
-    },[id]);
+    },[id_hotel]);
     const handleFilterClick = (filtername) => {
         if (selectedFilters.includes(filtername))
             setSelectedFilters(selectedFilters.filter(filter => filter !== filtername));
@@ -39,8 +39,11 @@ export default function HotelDetailPage(){
                         <div className="header--wrapper">
                             <h2 className="font-bold text-3xl mt-2.5">{hotel.name}</h2>
                         </div>
-                        <div className="img my-5 w-[800px] h-[460px]">
-                            <img className="w-full h-full object-cover shadow-lg" src={hotel.imgUrl}></img>
+                        <div className="img my-5 ">
+                            {hotel.images.map((img,index) => (
+
+                            <img key={index} className="w-[800px] h-[460px] object-cover shadow-lg" src={img.imgUrl}></img>
+                            ))}
                         </div>
                     </div>
                     <div className="navbar">
@@ -96,7 +99,7 @@ export default function HotelDetailPage(){
                                 
                             </div>
                             <div className="list-room">
-                                <HotelListItem></HotelListItem>
+                                <RoomList></RoomList>
                             </div>
                         </div>
                     </div>

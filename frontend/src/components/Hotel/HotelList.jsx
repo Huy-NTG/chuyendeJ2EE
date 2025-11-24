@@ -7,7 +7,7 @@ export default function HotelList({location}) {
   const [loading, setLoading] = useState(true);
   
   useEffect(() => {
-    const fetchTours = async () => {
+    const fetchHotels = async () => {
       try {
         const response = await getAllHotels(); // gọi API
         console.log(response.data);
@@ -18,7 +18,7 @@ export default function HotelList({location}) {
         setLoading(false);
       }
     };
-    fetchTours();
+    fetchHotels();
   }, []);
   let toursToDisplay = allTours;
   console.log(location);

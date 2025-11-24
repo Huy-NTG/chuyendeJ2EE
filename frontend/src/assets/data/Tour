@@ -612,6 +612,15 @@ export const placeSlug =
   "ha-lan": "Hà Lan",
   "dai-loan": "Đài Loan",
   "an-do": "Ấn Độ",
+  "chau-my": "Châu Mỹ",
+  "chau-a": "Châu Á",
+  "chau-au": "Châu Âu",
+  "chau-uc": "Châu Úc",
+  "chau-phi": "Châu Phi",
+  "mien-bac": "Miền Bắc",
+  "mien-trung": "Miền Trung",
+  "mien-dong-nam-bo": "Miền Đông Nam Bộ",
+  "mien-tay-nam-bo": "Miền Tây Nam Bộ",
 };
 
 export const note = [
@@ -749,9 +758,3 @@ Trường hợp là học sinh / sinh viên cần có: Giấy xác nhận học 
   }
 ];
 
-export const descriptionLocation = [
-  {
-    title: "",
-    content: "",
-  }
-];
