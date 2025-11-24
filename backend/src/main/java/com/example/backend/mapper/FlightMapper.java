@@ -14,6 +14,7 @@ public interface FlightMapper {
     Flight toEntity(FlightRequest request);
 
     // Entity -> Response
+    @Mapping(target = "status", expression = "java(flight.getStatus().name())")
     FlightResponse toResponse(Flight flight);
 
     // Update Entity từ Request

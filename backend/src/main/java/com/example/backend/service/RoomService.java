@@ -23,6 +23,7 @@ public class RoomService {
                 .price(room.getPrice())
                 .capacity(room.getCapacity())
                 .available(room.getAvailable())
+                .imageUrl(room.getImageUrl())
                 .build();
     }
 
@@ -36,6 +37,7 @@ public class RoomService {
                 .capacity(request.getCapacity())
                 .available(request.getAvailable())
                 .hotel(hotel)
+                .imageUrl(request.getImageUrl()) // ⭐ BẮT BUỘC
                 .build();
 
         roomRepository.save(room);
@@ -50,7 +52,7 @@ public class RoomService {
         room.setPrice(request.getPrice());
         room.setCapacity(request.getCapacity());
         room.setAvailable(request.getAvailable());
-
+        room.setImageUrl(request.getImageUrl()); // ⭐ phải có
         roomRepository.save(room);
         return mapToResponse(room);
     }

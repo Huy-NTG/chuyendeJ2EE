@@ -20,7 +20,9 @@ public class Tours {
 
     private String name;
 
-    private String location;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_location", nullable = false)
+    private Locations location;
 
     @Column(columnDefinition = "TEXT")
     private String description;

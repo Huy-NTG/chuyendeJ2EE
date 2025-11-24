@@ -1,6 +1,9 @@
 package com.example.backend.entity;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
+
 @Entity
 @Table(name = "locations")
 @Getter
@@ -18,4 +21,6 @@ public class Locations {
 
     @Column(columnDefinition = "TEXT")
     private String description;
+//    @OneToMany(mappedBy = "location")
+//    private List<Tours> tours;
 }

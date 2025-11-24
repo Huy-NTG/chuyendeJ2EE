@@ -37,4 +37,8 @@ public class LocationController {
         locationService.delete(id);
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/search")
+    public ResponseEntity<List<Locations>> search(@RequestParam String keyword) {
+        return ResponseEntity.ok(locationService.searchByName(keyword));
+    }
 }

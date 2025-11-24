@@ -13,4 +13,5 @@ public class RoomRequest {
     private Integer capacity;
     private Boolean available;
     private Long hotelId;   // liên kết hotel
+    private String imageUrl;
 }

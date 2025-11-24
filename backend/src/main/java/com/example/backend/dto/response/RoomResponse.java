@@ -13,4 +13,5 @@ public class RoomResponse {
     private BigDecimal price;
     private Integer capacity;
     private Boolean available;
+    private String imageUrl;
 }
