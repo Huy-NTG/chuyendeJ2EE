@@ -13,12 +13,11 @@ import java.time.LocalDate;
 @Builder
 public class TourRequest {
     private String name;
-    private String location;
+    private Long locationId; // 🔥 Sửa lại field này
     private String description;
     private BigDecimal price;
     private LocalDate startDate;
     private LocalDate endDate;
     private Integer seats;
-
     private MultipartFile image; // ✅ Thêm dòng này
 }

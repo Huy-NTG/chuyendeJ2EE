@@ -19,4 +19,5 @@ public class FlightResponse {
     private BigDecimal price;
     private Integer seats;
     private LocalDateTime createdAt;
+    private String status; // ⭐ THÊM TRƯỜNG NÀY
 }

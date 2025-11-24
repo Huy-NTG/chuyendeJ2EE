@@ -49,6 +49,12 @@ public class FlightController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("/{id}/cancel")
+    public ResponseEntity<Void> cancelFlight(@PathVariable Long id) {
+        flightService.cancelFlight(id);
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/search")
     public ResponseEntity<List<FlightResponse>> searchFlights(@RequestParam String airline) {
         List<FlightResponse> flights = flightService.searchFlightsByAirline(airline);

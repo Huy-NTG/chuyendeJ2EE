@@ -25,28 +25,37 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // ✅ Tắt CSRF vì dùng JWT
-                .cors(cors -> cors.configurationSource(corsConfigurationSource)) // ✅ Gọi cấu hình CORS
+                .csrf(csrf -> csrf.disable())
+                .cors(cors -> cors.configurationSource(corsConfigurationSource))
+
                 .authorizeHttpRequests(auth -> auth
-                        // ✅ Cho phép public các ảnh
+                        // Public static files
                         .requestMatchers("/uploads/**").permitAll()
-                        // ✅ Auth APIs - không cần token
+
+                        // Auth APIs
                         .requestMatchers("/api/auth/**").permitAll()
 
-                        // ✅ Cho phép GET dữ liệu public
+                        // ⭐ CHO PHÉP TẤT CẢ FLIGHT API (fix 403 search)
+                        .requestMatchers("/api/flights/**").permitAll()
+
+                        // ⭐ Các API public GET
                         .requestMatchers(HttpMethod.GET,
                                 "/api/tours/**",
                                 "/api/hotels/**",
                                 "/api/users/count",
-                                "/api/flights/count",
-                                "/api/bookings/count").permitAll()
-                                .requestMatchers("/api/tours/**", "/api/hotels/**", "/api/flights/**", "/api/locations/**", "/api/rooms/**", "/api/toursimages/**").permitAll() // tạm thời bật cho các api quan trọng không cần token để dễ test api bên admin
-                        // ✅ ADMIN quyền cao
-//                        .requestMatchers(HttpMethod.POST, "/api/tours/**", "/api/hotels/**").hasRole("ADMIN") // cho admin thêm
-//                        .requestMatchers(HttpMethod.PUT, "/api/tours/**", "/api/hotels/**").hasRole("ADMIN") // cho admin cập nhật
-//                        .requestMatchers(HttpMethod.DELETE, "/api/tours/**", "/api/hotels/**").hasRole("ADMIN") // cho admin xóa
+                                "/api/bookings/count"
+                        ).permitAll()
 
-                        // ✅ Các endpoint khác cần đăng nhập
+                        // ⭐ Cho phép thêm các API khác bạn đang dùng
+                        .requestMatchers(
+                                "/api/tours/**",
+                                "/api/hotels/**",
+                                "/api/locations/**",
+                                "/api/rooms/**",
+                                "/api/toursimages/**"
+                        ).permitAll()
+
+                        // Các API còn lại yêu cầu đăng nhập
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

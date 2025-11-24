@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+//@Builder
 public class Flight {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,4 +29,13 @@ public class Flight {
     private Integer seats;
     @Column(name = "created_at")
     private LocalDateTime createdAt;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private FlightStatus status = FlightStatus.ACTIVE;
+    public enum FlightStatus {
+        ACTIVE,   // đang mở bán
+        CANCELLED, // đã hủy chuyến – không xóa khỏi DB
+        FINISHED  // đã bay xong
+    }
+
 }

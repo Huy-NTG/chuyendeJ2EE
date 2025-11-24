@@ -27,8 +27,8 @@ public class Hotel {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(name = "price_per_night", nullable = false)
-    private BigDecimal pricePerNight;
+//    @Column(name = "price_per_night", nullable = false)
+//    private BigDecimal pricePerNight;
 
     @Column(name = "available_rooms", nullable = false)
     private Integer availableRooms;

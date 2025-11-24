@@ -79,4 +79,44 @@
       font-style: italic;
     }
   }
+    /* Button Group */
+  .btn-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+
+    button {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    /* Nút xem chi tiết */
+    .detail-btn {
+      background-color: #1976d2;
+      color: white;
+
+      &:hover {
+        background-color: #1565c0;
+        transform: translateY(-2px);
+      }
+    }
+
+    /* Nút xoá */
+    .delete-btn {
+      background-color: #e53935;
+      color: white;
+
+      &:hover {
+        background-color: #c62828;
+        transform: translateY(-2px);
+      }
+    }
+  }
+
 }

@@ -55,6 +55,22 @@ public class FlightService {
         }
         flightRepository.deleteById(id);
     }
+    public void cancelFlight(Long id) {
+        Flight flight = flightRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Flight not found"));
+
+        if (flight.getStatus() == Flight.FlightStatus.CANCELLED) {
+            throw new RuntimeException("Flight already cancelled");
+        }
+
+        if (flight.getStatus() == Flight.FlightStatus.FINISHED) {
+            throw new RuntimeException("Cannot cancel a finished flight");
+        }
+
+        flight.setStatus(Flight.FlightStatus.CANCELLED);
+
+        flightRepository.save(flight); // cập nhật DB
+    }
 
     // Tìm kiếm flight theo airline (ignore case)
     public List<FlightResponse> searchFlightsByAirline(String airline) {
