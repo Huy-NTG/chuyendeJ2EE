@@ -40,4 +40,7 @@ public class Tours {
 
     @Column(name = "created_at", updatable = false, insertable = false)
     private LocalDateTime createdAt;
+
+    @Column(name = "location")
+    private String locationText;
 }
