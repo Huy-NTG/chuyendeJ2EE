@@ -64,6 +64,8 @@ export default function TravelPage(){
     },[]);
 
     const arrayLocations = allTours.filter(tour => tour.location).map(tour => tour.location);
+    console.log(allTours);
+    console.log(arrayLocations);
     // tạo Set từ mảng để loại bỏ sự trùng lập
     const uniqueSet = new Set(arrayLocations);
     // chuyển Set lại thành mảng 
