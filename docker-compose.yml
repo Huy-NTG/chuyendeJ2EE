@@ -15,6 +15,7 @@ services:
     image: phpmyadmin/phpmyadmin
     container_name: travel-phpmyadmin
     restart: always
+    env_file: ./.env
     environment:
       PMA_HOST: db  
       PMA_USER: root
