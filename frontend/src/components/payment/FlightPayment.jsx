@@ -47,23 +47,23 @@ export default function FlightPayment() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-            const userJson = sessionStorage.getItem('user');
-            if (userJson) {
-                const fetchUser = async () => {
-                    try {
-                        const userObject = JSON.parse(userJson);
-                        const response = await getUserById(userObject.id);
-                        setCurrrentUser(response.data);
-                        setCustomerName(response.data.name || ''); 
-                        setCustomerEmail(response.data.email || ''); 
-                        setCustomerPhone(response.data.phone || '');
-                    } catch (e) {
-                        console.error("Lỗi khi phân tích cú pháp user data:", e);
-                    }
-                };
-                fetchUser();
-            }
-        }, []); 
+        const userJson = localStorage.getItem('user');
+        if (userJson) {
+            const fetchUser = async () => {
+                try {
+                    const userObject = JSON.parse(userJson);
+                    const response = await getUserById(userObject.id);
+                    setCurrrentUser(response.data);
+                    setCustomerName(response.data.name || ''); 
+                    setCustomerEmail(response.data.email || ''); 
+                    setCustomerPhone(response.data.phone || '');
+                } catch (e) {
+                    console.error("Lỗi khi phân tích cú pháp user data:", e);
+                }
+            };
+            fetchUser();
+        }
+    }, []); 
     
     
     useEffect(() => {

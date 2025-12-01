@@ -17,7 +17,7 @@ export default function TourPayment() {
     const [children, setChildren] = useState(0);
 
     useEffect(() => {
-        const userJson = sessionStorage.getItem('user');
+        const userJson = localStorage.getItem('user');
         if (userJson) {
             const fetchUser = async () => {
                 try {
