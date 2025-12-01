@@ -31,10 +31,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // Public static files
                         .requestMatchers("/uploads/**").permitAll()
-
                         // Auth APIs
                         .requestMatchers("/api/auth/**").permitAll()
-
                         // ⭐ CHO PHÉP TẤT CẢ FLIGHT API (fix 403 search)
                         .requestMatchers("/api/flights/**").permitAll()
 
@@ -45,19 +43,22 @@ public class SecurityConfig {
                                 "/api/users/count",
                                 "/api/bookings/count"
                         ).permitAll()
-
+                        // ⭐️ Cho phép UPDATE ảnh cho hotel
+                        .requestMatchers(HttpMethod.PUT, "/api/hotels/images/**").permitAll()
                         // ⭐ Cho phép thêm các API khác bạn đang dùng
                         .requestMatchers(
                                 "/api/tours/**",
                                 "/api/hotels/**",
                                 "/api/locations/**",
                                 "/api/rooms/**",
-                                "/api/toursimages/**"
+                                "/api/toursimages/**",
+                                "/api/hotels/images/**"
                         ).permitAll()
 
                         // Các API còn lại yêu cầu đăng nhập
                         .anyRequest().authenticated()
                 )
+
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

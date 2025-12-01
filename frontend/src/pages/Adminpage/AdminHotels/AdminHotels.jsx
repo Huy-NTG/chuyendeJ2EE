@@ -31,13 +31,22 @@ const AdminHotels = () => {
     useEffect(() => {
         fetchHotels();
     }, [keyword]);
+
+    
+    const handleToggleStatus = async (id) => {
+      try {
+        await axios.put(`http://localhost:8080/api/hotels/${id}/toggle-status`);
+        fetchHotels();
+      } catch (error) {
+        console.error("Lỗi đổi trạng thái:", error);
+      }
+    };
   return (
     <div className={cx("admin-hotels-container")}>
       <h2 className={cx("title")}>Quản lý khách sạn</h2>
 
       <SearchBarHotel onSearch={setKeyword} />
-
-      <HotelList hotels={hotels} loading={loading} />
+      <HotelList hotels={hotels} loading={loading} reload={fetchHotels} onToggleStatus={handleToggleStatus} />
     </div>
   )
 }

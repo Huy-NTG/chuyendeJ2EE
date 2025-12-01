@@ -55,6 +55,26 @@ public class HotelService {
         }
         hotelRepository.deleteById(id);
     }
+    // chuyển trạng thái
+    public void toggleHotelStatus(Long id) {
+        Hotel hotel = hotelRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Hotel not found"));
+
+        if (hotel.getStatus() == Hotel.HotelStatus.CLOSED) {
+            throw new RuntimeException("Cannot modify a CLOSED hotel");
+        }
+
+        Hotel.HotelStatus newStatus =
+                hotel.getStatus() == Hotel.HotelStatus.ACTIVE
+                        ? Hotel.HotelStatus.INACTIVE
+                        : Hotel.HotelStatus.ACTIVE;
+
+        hotel.setStatus(newStatus);
+
+        hotelRepository.save(hotel);
+    }
+
+
 
     // Tìm kiếm hotel theo tên (ignore case)
     public List<HotelResponse> searchHotelsByName(String name) {

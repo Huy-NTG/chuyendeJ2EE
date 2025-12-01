@@ -37,6 +37,15 @@ public class Hotel {
     private LocalDateTime createdAt;
     @Column(name = "address")
     private String address;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private HotelStatus status = HotelStatus.ACTIVE;
+
+    public enum HotelStatus {
+        ACTIVE,
+        INACTIVE,
+        CLOSED
+    }
     // ➕ Hotel có nhiều Room
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Room> rooms = new ArrayList<>();

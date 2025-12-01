@@ -4,6 +4,7 @@ import com.example.backend.dto.request.HotelRequest;
 import com.example.backend.dto.response.HotelResponse;
 import com.example.backend.entity.Hotel;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
@@ -13,6 +14,7 @@ public interface HotelMapper {
     Hotel toEntity(HotelRequest request);
 
     // Entity -> Response
+    @Mapping(target = "status", source = "status")
     HotelResponse toResponse(Hotel hotel);
 
     // Update Entity từ Request
