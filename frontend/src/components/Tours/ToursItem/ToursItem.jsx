@@ -9,12 +9,7 @@ const ToursItem = ({ tour, onViewDetail, onDelete }) => {
       {/* Ảnh tour */}
       <div className={cx("image-wrapper")}>
         <img
-<<<<<<< HEAD
-          src={tour.imageUrl}
-          // src={`http://localhost:8080/uploads/${tour.imageUrl}`}
-=======
           src={`http://localhost:8080/uploads/${tour.imageUrl}`}
->>>>>>> origin/master
           alt={tour.name}
           className={cx("tour-image")}
         />

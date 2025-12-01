@@ -52,7 +52,8 @@ public class SecurityConfig {
                                 "/api/locations/**",
                                 "/api/rooms/**",
                                 "/api/toursimages/**",
-                                "/api/hotels/images/**"
+                                "/api/hotels/images/**",
+                                "/api/users/**"
                         ).permitAll()
 
                         // Các API còn lại yêu cầu đăng nhập

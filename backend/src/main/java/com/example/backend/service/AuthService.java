@@ -44,8 +44,8 @@ public class AuthService {
         User saved = userRepository.save(user);
         String token = jwtUtils.generateToken(saved.getUsername(), saved.getRole());
 
-        return new UserResponse(saved.getId(),saved.getName(), saved.getUsername(),
-                saved.getEmail(), saved.getRole(), token);
+        return new UserResponse(saved.getId(), saved.getName(), saved.getUsername(),
+                saved.getEmail(), saved.getRole(),saved.getPhone(), token);
     }
     // hàm mã hóa mật khẩu đã bị xóa
     public UserResponse login(LoginRequest request) {

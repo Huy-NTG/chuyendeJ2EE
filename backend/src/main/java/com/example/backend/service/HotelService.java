@@ -55,8 +55,6 @@ public class HotelService {
         }
         hotelRepository.deleteById(id);
     }
-<<<<<<< HEAD
-=======
     // chuyển trạng thái
     public void toggleHotelStatus(Long id) {
         Hotel hotel = hotelRepository.findById(id)
@@ -75,9 +73,6 @@ public class HotelService {
 
         hotelRepository.save(hotel);
     }
-
-
->>>>>>> origin/master
 
     // Tìm kiếm hotel theo tên (ignore case)
     public List<HotelResponse> searchHotelsByName(String name) {

@@ -3,25 +3,15 @@ import styles from "./HotelItem.module.scss";
 import classNames from "classnames/bind";
 
 const cx = classNames.bind(styles);
-<<<<<<< HEAD
-const HotelItem = ({ hotel }) => {
-  const firstImage = hotel.images?.length > 0 ? hotel.images[0].imageUrl : null;
-
-=======
 const HotelItem = ({ hotel, onEdit = () => {}, onToggleStatus = () => {} }) => {
   const firstImage = hotel.images?.length > 0 ? hotel.images[0].imgUrl : null;
   const isActive = hotel.status === "ACTIVE"; // ✔ FIX
->>>>>>> origin/master
   return (
     <div className={cx("hotel-card")}>
       <img
         src={
           firstImage
-<<<<<<< HEAD
-            ? `http://localhost:8080/uploads/hotels/${firstImage}`
-=======
             ? `http://localhost:8080/uploads/${firstImage}`
->>>>>>> origin/master
             : "/no-image.png"  
         }
         alt={hotel.name}
@@ -32,8 +22,6 @@ const HotelItem = ({ hotel, onEdit = () => {}, onToggleStatus = () => {} }) => {
         <h3>{hotel.name}</h3>
         <p className={cx("location")}>{hotel.location}</p>
         <p className={cx("description")}>{hotel.description}</p>
-<<<<<<< HEAD
-=======
         <p>
           Trạng thái:{" "}
           <strong style={{ color: isActive ? "green" : "orange" }}>
@@ -55,15 +43,8 @@ const HotelItem = ({ hotel, onEdit = () => {}, onToggleStatus = () => {} }) => {
             {isActive ? "Ẩn khách sạn" : "Hiện khách sạn"}
           </button>
         </div>
->>>>>>> origin/master
       </div>
     </div>
   );
 };
-<<<<<<< HEAD
-
-
 export default HotelItem
-=======
-export default HotelItem
->>>>>>> origin/master
