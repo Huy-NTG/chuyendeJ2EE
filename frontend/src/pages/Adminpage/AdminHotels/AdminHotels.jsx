@@ -31,8 +31,6 @@ const AdminHotels = () => {
     useEffect(() => {
         fetchHotels();
     }, [keyword]);
-<<<<<<< HEAD
-=======
 
     
     const handleToggleStatus = async (id) => {
@@ -43,18 +41,12 @@ const AdminHotels = () => {
         console.error("Lỗi đổi trạng thái:", error);
       }
     };
->>>>>>> origin/master
   return (
     <div className={cx("admin-hotels-container")}>
       <h2 className={cx("title")}>Quản lý khách sạn</h2>
 
       <SearchBarHotel onSearch={setKeyword} />
-<<<<<<< HEAD
-
-      <HotelList hotels={hotels} loading={loading} />
-=======
       <HotelList hotels={hotels} loading={loading} reload={fetchHotels} onToggleStatus={handleToggleStatus} />
->>>>>>> origin/master
     </div>
   )
 }
