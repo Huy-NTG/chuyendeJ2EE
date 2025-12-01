@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Header from '../components/Global/Header';
 import Footer from '../components/Global/Footer';
 import { getTourById } from '../services/tourService';
@@ -110,7 +110,9 @@ export default function TourDetailPage(){
                                         </p>
                                     </div>
                                     <div className="button mt-7">
-                                        <button className='text-white bg-red-600 w-full font-bold text-2xl p-2 rounded-2xl hover:bg-red-900'>Đặt ngay</button>
+                                        <Link to={`/payment/tour?tourId=${id}`} state={{ tourId: tour.id, tourData: tour }}>
+                                            <button className='text-white bg-red-600 w-full font-bold text-2xl p-2 rounded-2xl hover:bg-red-900'>Đặt ngay</button>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>

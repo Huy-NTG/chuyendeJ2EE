@@ -43,4 +43,11 @@ public class LocationService {
     public List<Locations> searchByName(String keyword) {
         return locationRepository.findByNameContainingIgnoreCase(keyword);
     }
+    public Locations getByName(String name) {
+        return locationRepository.findByNameIgnoreCase(name)
+                .orElseThrow(() -> new RuntimeException(
+                        "Không tìm thấy địa điểm có tên: " + name
+                ));
+    }
+
 }

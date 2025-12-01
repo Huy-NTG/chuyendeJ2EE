@@ -21,5 +21,6 @@ public class HotelResponse {
     private LocalDateTime createdAt;
     private String address;
     private List<HotelImageResponse> images;
+    private String imgUrl;
 }
     

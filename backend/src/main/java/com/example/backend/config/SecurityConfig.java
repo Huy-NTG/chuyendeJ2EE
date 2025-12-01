@@ -52,6 +52,7 @@ public class SecurityConfig {
                                 "/api/hotels/**",
                                 "/api/locations/**",
                                 "/api/rooms/**",
+                                "/api/users/**",
                                 "/api/toursimages/**"
                         ).permitAll()
 

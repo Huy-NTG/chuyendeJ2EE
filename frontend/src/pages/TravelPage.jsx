@@ -1,44 +1,81 @@
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate, useSearchParams } from "react-router-dom";
 import Header from "../components/Global/Header";
 import Footer from "../components/Global/Footer";
 import { placeSlug } from "../assets/data/Tour";
 import TourListItem from "../components/Tour/TourListItem";
 import { useEffect, useState } from "react";
-import { countTours, getAllTours } from "../services/tourService";
+import { getAllTours } from "../services/tourService";
+import { getLocationByName } from "../services/locationService";
 import { slugify } from "../utils/stringUtils";
+
 
 export default function TravelPage(){
     const navigate = useNavigate();
     const { location : slug } = useParams(); 
-    const [selectedPrice,setSelectedPrice] = useState(null);
+    const [searchParams] = useSearchParams(); // 👈 LẤY SEARCH PARAMS
+    
+    // Khởi tạo state với giá trị từ Query String (Nếu có)
+    const initialPrice = searchParams.get('budget'); // Lấy 'budget' từ URL
+    const initialDate = searchParams.get('startDate'); // Lấy 'startDate' từ URL
+    
+    // Cập nhật state để phản ánh giá trị từ URL
+    const [selectedPrice,setSelectedPrice] = useState(initialPrice || null); // Dùng initialPrice
+    const [selectedDate, setSelectedDate] = useState(initialDate || ''); // Dùng initialDate
     const [allTours, setAllTours] = useState([]);
     const [selectedLocation, setSelectedLocation] = useState('');
-    const [selectedDate, setSelectedDate] = useState('');
     const [count, setCount] = useState(0);
     const [sortOption, setSortOption] = useState('date');
+    const [region, setRegion] = useState('');
+    
     const price = [
         { label: 'Dưới 5 triệu', value: 'under_5m' },
         { label: 'Từ 5 - 10 triệu', value: '5-10m' },
         { label: 'Từ 10 - 20 triệu', value: '10-20m' },
         { label: 'Trên 20 triệu', value: 'over_20m' },
     ];
+    // Hàm chung để cập nhật URL Query String
+    const updateUrlAndNavigate = (key, value) => {
+        const newSearchParams = new URLSearchParams(searchParams);
+        if (value)
+            newSearchParams.set(key, value);
+        else 
+            newSearchParams.delete(key);
+        navigate(`/tours/location/${slug}?${newSearchParams.toString()}`, { replace: true });
+    };
     const handlePriceClick = (value) => {
         setSelectedPrice(value);
+        updateUrlAndNavigate('budget', value); // 👈 TỰ ĐỘNG ÁP DỤNG
     };    
     const handleClearPrice = () => {
         setSelectedPrice(null);
+        updateUrlAndNavigate('budget', null); // 👈 TỰ ĐỘNG ÁP DỤNG (Xóa)
     };
-    const handleChangeSelectedLocation = (event) =>{
+    const handleChangeSelectedLocation = (event) => {
         const newValue = event.target.value;
         setSelectedLocation(newValue);
-        if (newValue)
-            navigate(`/tours/location/${slugify(newValue)}`);
+        if (newValue){
+             const newSearchParams = new URLSearchParams(searchParams);
+             navigate(`/tours/location/${slugify(newValue)}?${newSearchParams.toString()}`);
+        }
     };
     const handleChangeSelectedDate = (event) => {
         const newValue = event.target.value;
         setSelectedDate(newValue);
-        console.log(`"Ngày khởi hành:",${newValue}`);
+        updateUrlAndNavigate('startDate', newValue); // 👈 TỰ ĐỘNG ÁP DỤNG
     };
+    useEffect(() => {
+        const fetchTours = async () => {
+          try {
+            const response = await getLocationByName(displayLocation); // gọi API
+            console.log(displayLocation);
+            setRegion(response.data); // gán dữ liệu vào state
+          } catch (error) {
+            console.error("Lỗi khi tải danh sách tour:", error);
+          }
+        };
+        fetchTours();
+      }, [slug]);
+    
     useEffect(() => {
         const fetchTours = async () => {
             try {
@@ -51,25 +88,10 @@ export default function TravelPage(){
         fetchTours();
     },[]);
 
-    useEffect(() => {
-        const fetchTours = async () => {
-            try {
-                const response = await countTours();
-                setCount(response.data)
-            } catch (error) {
-                console.log("Lỗi khi tải số lượng tour: ",error);
-            }
-        };
-        fetchTours();
-    },[]);
-
-    const arrayLocations = allTours.filter(tour => tour.location).map(tour => tour.location);
-    console.log(allTours);
-    console.log(arrayLocations);
-    // tạo Set từ mảng để loại bỏ sự trùng lập
+    const arrayLocations = allTours.filter(tour => tour.locationText).map(tour => tour.locationText);
     const uniqueSet = new Set(arrayLocations);
-    // chuyển Set lại thành mảng 
     const arraySelectedLocations = [...uniqueSet];
+
     const isPriceFilterActive = selectedPrice !== null;
     let displayLocation = "";
     if(!selectedLocation)
@@ -115,9 +137,10 @@ export default function TravelPage(){
                                             <div className="price__btn grid grid-cols-2 grid-rows-2 p-1 gap-x-6 gap-y-2">
                                                 {price.map((data) => (
                                                     <button 
+                                                        value={data.value}
                                                         key={data.value} 
                                                         onClick={() => handlePriceClick(data.value)}
-                                                        className={` rounded-md h-[40px] 
+                                                        className={` rounded-md h-10 
                                                             ${selectedPrice === data.value 
                                                             ? 'bg-blue-600 text-white border-blue-600 font-semibold shadow-md' 
                                                             : 'bg-white border-2 border-gray-200 hover:border-blue-400 hover:bg-blue-200 hover:text-blue-800'}`}>
@@ -150,9 +173,9 @@ export default function TravelPage(){
                                                     className="w-full h-[45px] border-2 border-gray-300 rounded-md" type="date"></input>
                                             </div>
                                         </div>
-                                        <div className="mt-2.5">
+                                        {/* <div className="mt-2.5">
                                             <button className="rounded-xl h-[35px] bg-blue-800 text-white w-full hover:bg-blue-900">Áp dụng</button>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                             </div>
@@ -168,7 +191,13 @@ export default function TravelPage(){
                                         </select>
                                     </div>
                                 </div>
-                                <TourListItem sort={sortOption} onCountChange={setCount} location={displayLocation} price={selectedPrice} date={selectedDate}/>
+                                <TourListItem 
+                                    sort={sortOption} 
+                                    onCountChange={setCount} 
+                                    location={displayLocation} 
+                                    price={selectedPrice} 
+                                    region={region}
+                                    date={selectedDate}/>
                             </div>
                         </div>
                     </div>

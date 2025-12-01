@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import TourItem from "./TourItem";
 import { getAllTours } from "../../services/tourService";
 
-export default function TourListItem({location,price,date,onCountChange,sort}){
+export default function TourListItem({location,price,date,onCountChange,sort,region}){
   const [allTours, setAllTours] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filteredTours, setFilteredTours] = useState([]);
-  
   useEffect(() => {
     const fetchTours = async () => {
       try {
@@ -21,13 +20,16 @@ export default function TourListItem({location,price,date,onCountChange,sort}){
     fetchTours();
   }, []);
 
+  
   useEffect(() => {
     let toursToDisplay = [...allTours];
     const today = new Date();
     toursToDisplay = toursToDisplay.filter(tour => new Date(tour.startDate) >= today);
-    if(location)
-    toursToDisplay = toursToDisplay.filter(tour => 
-        String(tour.location).toLowerCase() === String(location).toLowerCase());
+    if(region && region.id)
+      toursToDisplay = toursToDisplay.filter(tour => tour.locationId === region.id);
+    else if(location)
+      toursToDisplay = toursToDisplay.filter(tour => 
+        String(tour.locationText).toLowerCase() === String(location).toLowerCase());
     if (price) 
       switch (price) {
         case "under_5m":
@@ -50,22 +52,22 @@ export default function TourListItem({location,price,date,onCountChange,sort}){
             break;
     }
   
-  if(date){
-    const selectedDate = new Date(date).setHours();
+  if (date) {
+    const selectedTimestamp = new Date(date).setHours(0, 0, 0, 0); 
     toursToDisplay = toursToDisplay.filter((tour) => {
-      const tourDate = new Date(tour.startDate);
-      return tourDate === selectedDate;
+        const tourTimestamp = new Date(tour.startDate).setHours(0, 0, 0, 0);
+        return tourTimestamp === selectedTimestamp;
     });
   }
   if (sort === "date")
     toursToDisplay.sort((a,b) => Date(a.startDate) - new Date(b.startDate));
   else if (sort === "price-asc")
     toursToDisplay.sort((a,b) => a.price - b.price);
-  else if (sort === "pirce-desc")
+  else if (sort === "price-desc")
     toursToDisplay.sort((a,b) => b.price - a.price);
   setFilteredTours(toursToDisplay);
   onCountChange(toursToDisplay.length);
-  }, [allTours,location,price,date,sort]);
+  }, [allTours,location,price,date,sort,region]);
 
   if (loading)
     return <div className="text-center text-gray-500 py-10">Đang tải tour...</div>;

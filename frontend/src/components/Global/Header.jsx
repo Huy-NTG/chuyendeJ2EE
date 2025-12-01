@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState, useEffect} from "react";
 import vietnamFlag from "../../assets/images/vietnam-flag.png";
 import logo from "../../assets/images/logo.jpg";
 import { placeData } from "../../assets/data/Tour";
@@ -6,23 +6,44 @@ import { Link } from "react-router-dom";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import { slugify } from "../../utils/stringUtils";
+import { getUserById  } from "../../services/userService";
 
 export default function Header(){
     const [showNavPlace, setShowNavPlace] = useState(false);
     const [activeType, setActiveType] = useState(null);
+    const [currentUser, setCurrrentUser] = useState(null);
 
     const [showForm, setShowForm] = useState(false);
     const [isLogin, setIsLogin] = useState(true);
     const toggleNavPlace = (type) => {
-    if (activeType === type) {
-      setShowNavPlace(false);
-      setActiveType(null);
-    } else {
-      setActiveType(type);
-      setShowNavPlace(true);
-    }
-  };
+        if (activeType === type) {
+        setShowNavPlace(false);
+        setActiveType(null);
+        } else {
+        setActiveType(type);
+        setShowNavPlace(true);
+        }
+    };
     const selectedData = placeData.find((p) => p.type === activeType);
+    useEffect(() => {
+        const userJson = sessionStorage.getItem('user');
+        if (userJson) {
+            const fetchUser = async () => {
+                try {
+                    const userObject = JSON.parse(userJson);
+                    const response = await getUserById(userObject.id);
+                    setCurrrentUser(response.data);
+                } catch (e) {
+                    console.error("Lỗi khi phân tích cú pháp user data:", e);
+                }
+            };
+            fetchUser();
+        }
+    }, []); 
+
+    console.log(currentUser); 
+    const isAuthenticated = !!currentUser && !!currentUser.id;
+    const currentUserId = currentUser ? currentUser.id : null;
     return (
             <div className="header ">
                 <div className="header--wrapper flex justify-center items-center flex-col">
@@ -41,10 +62,18 @@ export default function Header(){
                                     <span className="text-black"> VND </span>
                                 </div>
                                 <div
-                                    title="Đăng nhập / Đăng ký"
-                                    onClick={() => setShowForm(true)} 
-                                    className=" navProfile hover:cursor-pointer hover:bg-white hover: ">
-                                    <i className="fa-solid fa-user text-black"></i>
+                                    title={isAuthenticated ? "Xem hồ sơ cá nhân" : "Đăng nhập / Đăng ký"}
+                                    className="navProfile hover:cursor-pointer hover:bg-white" 
+                                >
+                                    {isAuthenticated ? (
+                                        <Link to={`/profile/user/${currentUserId}`}>
+                                            <i className="fa-solid fa-user text-black"></i>
+                                        </Link>
+                                    ) : (
+                                        <div onClick={() => setShowForm(true)} className="flex items-center justify-center h-full w-full">
+                                            <i className="fa-solid fa-user text-black"></i>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -52,7 +81,7 @@ export default function Header(){
                     <div className="main_header w-12/12 flex items-center flex-row justify-center">
                         <div className="main__header--wrapper flex justify-between w-10/12 relative">
                             <div className="main__header-left p-1">
-                                <Link to="/"> {/* Khi click logo sẽ quay về trang chủ */}
+                                <Link to="/"> 
                                     <img src={logo} className="h-16 w-48 cursor-pointer" alt="logo" />
                                 </Link>
                             </div>
