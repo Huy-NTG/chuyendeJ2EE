@@ -3,8 +3,9 @@ services:
     image: mysql:8.0
     container_name: travel-mysql
     restart: always
+    env_file: ./.env
     environment:
-      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD} 
       MYSQL_DATABASE: travel_booking
     ports:
       - "3306:3306"
@@ -17,7 +18,7 @@ services:
     environment:
       PMA_HOST: db  
       PMA_USER: root
-      PMA_PASSWORD: 123456
+      PMA_PASSWORD: ${DB_ROOT_PASSWORD}
     ports:
       - "8081:80"
 volumes:
@@ -30,7 +31,7 @@ volumes:
 #     container_name: travel-mysql
 #     restart: always
 #     environment:
-#       MYSQL_ROOT_PASSWORD: 123456
+#       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
 #       MYSQL_DATABASE: travel_booking
 #     ports:
 #       - "3306:3306"
@@ -45,7 +46,7 @@ volumes:
 #     environment:
 #       PMA_HOST: db
 #       PMA_USER: root
-#       PMA_PASSWORD: 123456
+#       PMA_PASSWORD: ${DB_ROOT_PASSWORD}
 #     ports:
 #       - "8081:80"
 #     depends_on:
@@ -64,7 +65,7 @@ volumes:
 #       # Cấu hình kết nối DB nội bộ, sử dụng tên service 'db'
 #       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/travel_booking?useSSL=false
 #       SPRING_DATASOURCE_USERNAME: root
-#       SPRING_DATASOURCE_PASSWORD: 123456
+#       SPRING_DATASOURCE_PASSWORD: ${DB_ROOT_PASSWORD}
 #       SPRING_JPA_HIBERNATE_DDL_AUTO: update
 #     depends_on:
 #       - db # Đảm bảo DB chạy trước khi ứng dụng Spring khởi động
@@ -86,7 +87,7 @@ volumes:
 #       # Nếu dịch vụ này cũng cần DB, nó sử dụng cùng cấu hình nội bộ
 #       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/travel_booking?useSSL=false
 #       SPRING_DATASOURCE_USERNAME: root
-#       SPRING_DATASOURCE_PASSWORD: 123456
+#       SPRING_DATASOURCE_PASSWORD: ${DB_ROOT_PASSWORD}
 #       # Đặt cổng nội bộ khác nếu cần, ví dụ: SERVER_PORT: 8080 (mặc định)
 #     depends_on:
 #       - db
