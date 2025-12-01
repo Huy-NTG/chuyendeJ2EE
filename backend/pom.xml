@@ -76,6 +76,7 @@
             <artifactId>lombok</artifactId>
             <version>1.18.32</version>
             <scope>provided</scope>
+<<<<<<< HEAD
         </dependency>
 
         <!-- MapStruct -->
@@ -83,6 +84,8 @@
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
             <version>${mapstruct.version}</version>
+=======
+>>>>>>> 866497078f6ee88746d077b80dbfb21ac30c2abd
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -183,8 +186,11 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
                 <configuration>
+<<<<<<< HEAD
                     <source>${java.version}</source>
                     <target>${java.version}</target>
+=======
+>>>>>>> 866497078f6ee88746d077b80dbfb21ac30c2abd
                     <release>21</release>
                     <source>21</source>
                     <target>21</target>
