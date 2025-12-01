@@ -16,7 +16,14 @@ import AdminFlights from './pages/Adminpage/AdminFlights/AdminFlights';
 import AdminHotels from './pages/Adminpage/AdminHotels/AdminHotels';
 import AdminTours from './pages/Adminpage/AdminTours/AdminTours';
 import AdminUsers from './pages/Adminpage/AdminUsers/AdminUsers';
+import { useCurrentUser } from './hooks/useCurrentUser.jsx';
+
+const AdminProtectedRoute = ({ isAdmin }) => {
+    return isAdmin ? <AdminPage /> : <Navigate to="/" replace />; 
+};
 export default function App() {
+  const { currentUser } = useCurrentUser() || {};
+  const isAdmin = !!currentUser && String(currentUser.role).toLocaleLowerCase() === "admin".toLocaleLowerCase();
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
@@ -29,16 +36,15 @@ export default function App() {
       <Route path='/payment/:type/' element={<PaymentPage/>}/>
       <Route path="/" element={<Navigate to="/default" />} />
       <Route path="/default" element={<DefaultPage />} />
-      <Route path="/admin" element={<AdminPage />}>
-          {/* Đây là các route con nằm trong layout AdminPage */}
-          <Route index element={<AdminDashboard />} /> {/* Khi vào /admin thì load Dashboard */}
-          <Route path="dashboard" element={<AdminDashboard />} />
-          <Route path="tours" element={<AdminTours />} />
-          <Route path="flights" element={<AdminFlights />} />
-          <Route path="hotels" element={<AdminHotels />} />
-          <Route path="users" element={<AdminUsers />} />
-          <Route path="bookings" element={<AdminBookings />} />
-        </Route>
+      <Route path="/admin" element={<AdminProtectedRoute isAdmin={isAdmin}/>}>
+        <Route index element={<AdminDashboard />} />
+        <Route path="dashboard" element={<AdminDashboard />} />
+        <Route path="tours" element={<AdminTours />} />
+        <Route path="flights" element={<AdminFlights />} />
+        <Route path="hotels" element={<AdminHotels />} />
+        <Route path="users" element={<AdminUsers />} />
+        <Route path="bookings" element={<AdminBookings />} />
+      </Route>
     </Routes>
   );
 }

@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { register } from "../../services/authService";
 
 export default function RegisterForm({ onSwitch, onClose}) {
-    const [formData, setFormData] = useState({username: "", email: "", 
+    const [formData, setFormData] = useState({name: "", username: "", email: "", 
                                                 phone: "", password: ""});
     const [confirm, setConfirm] = useState("");
     const [showPassword, setShowPassword] = useState(false);
@@ -24,10 +24,14 @@ export default function RegisterForm({ onSwitch, onClose}) {
 
     const validateForm = () => {
         const newErrors = {};
+        if(!formData.name.trim())
+            newErrors.name = "Họ tên không được để trống";
+        else if (formData.name.length < 6)
+            newErrors.name = "Họ tên phải có ít nhất 6 k tự";
         if(!formData.username.trim())
             newErrors.username = "Tên đăng nhập không được để trống";
         else if (formData.username.length < 6)
-            newErrors.username = "Tên đăng nhập phải có ít nhất 6 k tự"
+            newErrors.username = "Tên đăng nhập phải có ít nhất 6 k tự";
         if (!formData.email.trim()) 
             newErrors.email = "Email không được để trống";
         else if (!/\S+@\S+\.\S+/.test(formData.email)) 
@@ -71,6 +75,21 @@ export default function RegisterForm({ onSwitch, onClose}) {
                 </div>
                 <h2 className="register__title text-2xl flex justify-center font-bold mb-2">Đăng ký</h2>
                 <form onSubmit={handleSubmit}>
+                    <div className="register__field">
+                        <label name="label" className="register__label block px-8 text-left pl-0">Họ tên</label>
+                        <input 
+                        type="text" 
+                        name="name" 
+                        value={formData.name} 
+                        placeholder="Tên đăng nhập"
+                        onChange={handleChange}
+                        onClick={() => setErrors({})}
+                        className={`register__input w-full rounded p-3 ${errors.name ? "bg-red-300 border-red-800 border-2" : "bg-gray-200 focus:bg-white focus:text-black hover:bg-gray-400"}`}
+                        />
+                        {errors.name && (
+                            <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+                        )}
+                    </div>
                     <div className="register__field">
                         <label name="label" className="register__label block px-8 text-left pl-0">Tên đăng nhập</label>
                         <input 

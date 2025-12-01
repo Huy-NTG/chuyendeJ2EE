@@ -33,6 +33,7 @@ public class AuthService {
         }
 
         User user = new User();
+        user.setName(request.getName());
         user.setUsername(request.getUsername());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setEmail(request.getEmail());
@@ -43,7 +44,7 @@ public class AuthService {
         User saved = userRepository.save(user);
         String token = jwtUtils.generateToken(saved.getUsername(), saved.getRole());
 
-        return new UserResponse(saved.getId(), saved.getUsername(),
+        return new UserResponse(saved.getId(),saved.getName(), saved.getUsername(),
                 saved.getEmail(), saved.getRole(), token);
     }
     // hàm mã hóa mật khẩu đã bị xóa
@@ -56,7 +57,7 @@ public class AuthService {
         }
 
         String token = jwtUtils.generateToken(user.getUsername(), user.getRole());
-        return new UserResponse(user.getId(), user.getUsername(),
-                user.getEmail(), user.getRole(), token);
+        return new UserResponse(user.getId(),user.getName(), user.getUsername(),
+                user.getEmail(), user.getRole(), user.getPhone(), token);
     }
 }

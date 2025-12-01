@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { formatCurrency } from '../../utils/formatCurrency';
 import { getHotelById } from '../../services/hotelService';
 import { getRoomById } from '../../services/roomService';
-import { getUserById  } from "../../services/userService";
+import { useCurrentUser } from '../../hooks/useCurrentUser';
 
 const calculateNights = (checkInStr, checkOutStr) => {
     const checkIn = new Date(checkInStr);
@@ -16,7 +16,6 @@ const calculateNights = (checkInStr, checkOutStr) => {
 export default function HotelPayment() {
     const location = useLocation();
     const navigate = useNavigate();
-    const [currentUser, setCurrrentUser] = useState(null);
     
     const params = new URLSearchParams(location.search);
     const hotelId = params.get('hotelId');
@@ -39,24 +38,14 @@ export default function HotelPayment() {
     const [hotelLoaded, setHotelLoaded] = useState(false);
     const [roomLoaded, setRoomLoaded] = useState(false);
 
+    const { currentUser } = useCurrentUser() || {};
     useEffect(() => {
-        const userJson = sessionStorage.getItem('user');
-        if (userJson) {
-            const fetchUser = async () => {
-                try {
-                    const userObject = JSON.parse(userJson);
-                    const response = await getUserById(userObject.id);
-                    setCurrrentUser(response.data);
-                    setCustomerName(response.data.name || ''); 
-                    setCustomerEmail(response.data.email || ''); 
-                    setCustomerPhone(response.data.phone || '');
-                } catch (e) {
-                    console.error("Lỗi khi phân tích cú pháp user data:", e);
-                }
-            };
-            fetchUser();
+        if(currentUser) {
+            setCustomerName(currentUser.name); 
+            setCustomerEmail(currentUser.email); 
+            setCustomerPhone(currentUser.phone);
         }
-    }, []); 
+    },[currentUser]);
 
     useEffect(() => {
         const fetchHotel = async () => {
@@ -71,6 +60,7 @@ export default function HotelPayment() {
         };
         fetchHotel();
     },[hotelId]);
+
     useEffect(() => {
         const fetchRoom = async () => {
             try {

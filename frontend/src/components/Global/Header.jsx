@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState} from "react";
 import vietnamFlag from "../../assets/images/vietnam-flag.png";
 import logo from "../../assets/images/logo.jpg";
 import { placeData } from "../../assets/data/Tour";
@@ -6,12 +6,11 @@ import { Link } from "react-router-dom";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import { slugify } from "../../utils/stringUtils";
-import { getUserById  } from "../../services/userService";
+import { useCurrentUser } from "../../hooks/useCurrentUser";
 
 export default function Header(){
     const [showNavPlace, setShowNavPlace] = useState(false);
     const [activeType, setActiveType] = useState(null);
-    const [currentUser, setCurrrentUser] = useState(null);
 
     const [showForm, setShowForm] = useState(false);
     const [isLogin, setIsLogin] = useState(true);
@@ -25,23 +24,8 @@ export default function Header(){
         }
     };
     const selectedData = placeData.find((p) => p.type === activeType);
-    useEffect(() => {
-        const userJson = sessionStorage.getItem('user');
-        if (userJson) {
-            const fetchUser = async () => {
-                try {
-                    const userObject = JSON.parse(userJson);
-                    const response = await getUserById(userObject.id);
-                    setCurrrentUser(response.data);
-                } catch (e) {
-                    console.error("Lỗi khi phân tích cú pháp user data:", e);
-                }
-            };
-            fetchUser();
-        }
-    }, []); 
-
-    console.log(currentUser); 
+    const { currentUser } = useCurrentUser() || {};
+    console.log(currentUser);
     const isAuthenticated = !!currentUser && !!currentUser.id;
     const currentUserId = currentUser ? currentUser.id : null;
     return (

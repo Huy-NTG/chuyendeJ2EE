@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { formatCurrency } from '../../utils/formatCurrency';
-import { getUserById  } from "../../services/userService";
+import { useCurrentUser } from '../../hooks/useCurrentUser';
 
 
 export default function TourPayment() {
     const location = useLocation();
     const { tourData } = location.state || {}; 
-    const [currentUser, setCurrrentUser] = useState(null);
     
 
     const [customerName, setCustomerName] = useState('');
@@ -15,25 +14,15 @@ export default function TourPayment() {
     const [customerPhone, setCustomerPhone] = useState('');
     const [adults, setAdults] = useState(1);
     const [children, setChildren] = useState(0);
-
+    const { currentUser } = useCurrentUser() || {};
     useEffect(() => {
-        const userJson = localStorage.getItem('user');
-        if (userJson) {
-            const fetchUser = async () => {
-                try {
-                    const userObject = JSON.parse(userJson);
-                    const response = await getUserById(userObject.id);
-                    setCurrrentUser(response.data);
-                    setCustomerName(response.data.name || ''); 
-                    setCustomerEmail(response.data.email || ''); 
-                    setCustomerPhone(response.data.phone || '');
-                } catch (e) {
-                    console.error("Lỗi khi phân tích cú pháp user data:", e);
-                }
-            };
-            fetchUser();
+        if(currentUser) {
+            setCustomerName(currentUser.name); 
+            setCustomerEmail(currentUser.email); 
+            setCustomerPhone(currentUser.phone);
         }
-    }, []); 
+    },[currentUser]);
+
 
     if (!tourData) 
         return <div className="p-10 text-center text-red-500 font-bold">Không tìm thấy thông tin tour. Vui lòng quay lại trang chi tiết tour.</div>;

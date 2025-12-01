@@ -1,9 +1,10 @@
 import Header from "../components/Global/Header";
 import Footer from "../components/Global/Footer";
+import FlightPayment from "../components/Payment/FlightPayment";
+import TourPayment from "../components/Payment/TourPayment";
+import HotelPayment from "../components/Payment/HotelPayment";
+
 import { useParams } from "react-router-dom";
-import TourPayment from "../components/payment/TourPayment";
-import HotelPayment from "../components/payment/HotelPayment";
-import FlightPayment from "../components/payment/FlightPayment";
 import { useState,useEffect } from "react";
 
 export default function PaymentPage(){

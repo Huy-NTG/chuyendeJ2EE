@@ -1,7 +1,11 @@
 import Footer from "../components/Global/Footer";
 import Header from "../components/Global/Header";
+import PersonalInformation from "../components/Profile/PersonalInformation ";
+import { useCurrentUser } from "../hooks/useCurrentUser";
 
 export default function ProfilePage(){
+    const { currentUser } = useCurrentUser();
+        
     return (
         <div>
             <Header></Header>
@@ -15,7 +19,7 @@ export default function ProfilePage(){
                         </div>
                     </div>
                     <div className="content">
-                        
+                        <PersonalInformation user={currentUser}/>
                     </div>
                 </div>
             </div>

@@ -20,15 +20,10 @@ export default function LoginForm({onSwitch, onClose}) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // GỌI HÀM API ĐÃ ĐƯỢC CẬP NHẬT TRONG CANVAS
             const userData = await login(formData); 
-            // userData chứa user info, token đã được lưu vào sessionStorage
             alert(`Đăng nhập thành công! Chào mừng ${userData.username}`);
             onClose();
-            // Chuyển hướng người dùng sau khi đăng nhập thành công
-            // navigate('/home'); // Ví dụ
         } catch (error) {
-            // Axios/hàm login đã xử lý lỗi và ném ra thông báo dễ hiểu
             console.error("Lỗi đăng nhập:", error);
             alert(`Đăng nhập thất bại! Chi tiết: ${error.message}`);
         }

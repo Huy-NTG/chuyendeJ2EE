@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { formatCurrency } from '../../utils/formatCurrency';
 import { getFlightById } from '../../services/flightService';
-import { getUserById  } from "../../services/userService";
+import { useCurrentUser } from '../../hooks/useCurrentUser';
 
 const calculateDuration = (departureTime, arrivalTime) => {
     const departureDate = new Date(departureTime);
@@ -32,7 +32,6 @@ const isArrivalNextDay = (departureTime, arrivalTime) => {
 export default function FlightPayment() {
     const location = useLocation();
     const navigate = useNavigate();
-    const [currentUser, setCurrrentUser] = useState(null);
     
     
     const params = new URLSearchParams(location.search);
@@ -45,27 +44,15 @@ export default function FlightPayment() {
     const [customerPhone, setCustomerPhone] = useState('');
     const [flightData, setFlightData] = useState(null);
     const [loading, setLoading] = useState(true);
-
+    const { currentUser } = useCurrentUser() || {};
     useEffect(() => {
-        const userJson = localStorage.getItem('user');
-        if (userJson) {
-            const fetchUser = async () => {
-                try {
-                    const userObject = JSON.parse(userJson);
-                    const response = await getUserById(userObject.id);
-                    setCurrrentUser(response.data);
-                    setCustomerName(response.data.name || ''); 
-                    setCustomerEmail(response.data.email || ''); 
-                    setCustomerPhone(response.data.phone || '');
-                } catch (e) {
-                    console.error("Lỗi khi phân tích cú pháp user data:", e);
-                }
-            };
-            fetchUser();
+        if(currentUser) {
+            setCustomerName(currentUser.name); 
+            setCustomerEmail(currentUser.email); 
+            setCustomerPhone(currentUser.phone);
         }
-    }, []); 
-    
-    
+    },[currentUser]);
+
     useEffect(() => {
         const fetchFlightData = async () => {
             try {
