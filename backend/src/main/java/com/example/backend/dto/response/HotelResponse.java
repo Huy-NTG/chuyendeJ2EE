@@ -1,6 +1,7 @@
 package com.example.backend.dto.response;
 
 import com.example.backend.dto.request.HotelImageResponse;
+import com.example.backend.entity.Hotel;
 import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -22,5 +23,6 @@ public class HotelResponse {
     private String address;
     private List<HotelImageResponse> images;
     private String imgUrl;
+    private Hotel.HotelStatus status;
 }
     

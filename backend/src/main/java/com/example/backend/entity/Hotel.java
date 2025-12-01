@@ -37,7 +37,15 @@ public class Hotel {
     private LocalDateTime createdAt;
     @Column(name = "address")
     private String address;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private HotelStatus status = HotelStatus.ACTIVE;
 
+    public enum HotelStatus {
+        ACTIVE,
+        INACTIVE,
+        CLOSED
+    }
     @Column(name = "img_url")
     private String imgUrl;
     // ➕ Hotel có nhiều Room

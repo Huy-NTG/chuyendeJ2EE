@@ -76,4 +76,8 @@ const AdminFlights = () => {
   )
 }
 
+<<<<<<< HEAD
 export default AdminFlights
+=======
+export default AdminFlights
+>>>>>>> origin/master

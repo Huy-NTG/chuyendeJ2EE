@@ -43,6 +43,7 @@ public class LocationService {
     public List<Locations> searchByName(String keyword) {
         return locationRepository.findByNameContainingIgnoreCase(keyword);
     }
+<<<<<<< HEAD
     public Locations getByName(String name) {
         return locationRepository.findByNameIgnoreCase(name)
                 .orElseThrow(() -> new RuntimeException(
@@ -50,4 +51,6 @@ public class LocationService {
                 ));
     }
 
+=======
+>>>>>>> origin/master
 }

@@ -14,9 +14,15 @@ import java.util.List;
 @RequestMapping("/api/tours")
 @RequiredArgsConstructor
 public class TourController {
+<<<<<<< HEAD
 
     private final  TourService tourService;
 
+=======
+
+    private final TourService tourService;
+
+>>>>>>> origin/master
     // Tạo tour mới
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<TourResponse> createTour(@ModelAttribute TourRequest request) {

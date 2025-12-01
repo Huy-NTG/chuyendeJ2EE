@@ -11,7 +11,11 @@ const AddTourForm = ({ onClose, onSuccess }) => {
     description: "",
     price: "",
     startDate: "",
+<<<<<<< HEAD
     endDate: "",  
+=======
+    endDate: "",
+>>>>>>> origin/master
     seats: "",
   });
   const [imageFile, setImageFile] = useState(null); // Lưu file ảnh
@@ -59,7 +63,10 @@ const AddTourForm = ({ onClose, onSuccess }) => {
       const response = await axios.post("http://localhost:8080/api/tours", data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
+<<<<<<< HEAD
       console.log(response.data);
+=======
+>>>>>>> origin/master
 
       console.log("✅ Server response:", response.data);
       alert("✅ Thêm tour thành công!");
