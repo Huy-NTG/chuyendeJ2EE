@@ -14,20 +14,36 @@ spring:
     show-sql: true
     database-platform: org.hibernate.dialect.MySQL8Dialect
 
-  security:
-    oauth2:
+  ai:
+    vertex:
+      project-id: travel-booking-476007
+      location: us-central1
+      credentials:
+        json-file: classpath:vertex-key.json
+      embedding:
+        model: text-embedding-005
+        output-dimension: 768
+    qdrant:
       client:
-        registration:
-          google:
-            clientId: YOUR_GOOGLE_APP_CLIENT_ID
-            clientSecret: YOUR_GOOGLE_APP_SECRET_KEY
-            scope:  
-              - email
-              - profile
+        url: "https://730a3e1d-8478-412b-9cb9-b6b1fe24a52d.us-east4-0.gcp.cloud.qdrant.io"
+        key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.0ax2pviqhul30WyDLTMkuIQOR0wDwR85KguQoaXv5RE"
+        host: localhost
+        port: 6333
 
-          facebook:
-            clientId: YOUR_FACEBOOK_APP_CLIENT_ID
-            clientSecret: YOUR_FACEBOOK_APP_SECRET_KEY
-            scope:
-              - email
-              - public_profile
+  cloud:
+    gcp:
+      credentials:
+        location: classpath:vertex-key.json
+
+openrouter:
+  url: "https://openrouter.ai/api/v1/chat/completions"
+  key: "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"
+  localhost: "http://localhost:8080"
+
+momo:
+  endpoint: https://test-payment.momo.vn/v2/gateway/api/create
+  partnerCode: MOMO
+  accessKey: F8BBA842ECF85
+  secretKey: K951B6PE1waDMi640xX08PD3vg6EkVlz
+  returnUrl: http://localhost:5173/
+  notifyUrl: https://genny-subrhomboidal-zana.ngrok-free.dev/api/momo/callback

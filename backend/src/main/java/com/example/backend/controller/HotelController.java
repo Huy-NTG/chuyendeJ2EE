@@ -55,4 +55,10 @@ public class HotelController {
         List<HotelResponse> hotels = hotelService.searchHotelsByName(name);
         return ResponseEntity.ok(hotels);
     }
+    // API đếm tổng số hotels
+    @GetMapping("/count")
+    public ResponseEntity<Long> countTours() {
+        long count = hotelService.countHotels();
+        return ResponseEntity.ok(count);
+    }
 }

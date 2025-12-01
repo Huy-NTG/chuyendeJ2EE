@@ -36,7 +36,7 @@ public class BookingController {
     // Lấy booking theo ID
     @GetMapping("/{id}")
     public ResponseEntity<BookingResponse> getBookingById(@PathVariable Long id) {
-        BookingResponse response = bookingService.getBookingById(id);
+        BookingResponse response = bookingService.findById(id);
         return ResponseEntity.ok(response);
     }
 
@@ -52,5 +52,11 @@ public class BookingController {
     public ResponseEntity<Void> deleteBooking(@PathVariable Long id) {
         bookingService.deleteBooking(id);
         return ResponseEntity.noContent().build();
+    }
+    // API đếm tổng số booking
+    @GetMapping("/count")
+    public ResponseEntity<Long> countTours() {
+        long count = bookingService.countBooking();
+        return ResponseEntity.ok(count);
     }
 }
