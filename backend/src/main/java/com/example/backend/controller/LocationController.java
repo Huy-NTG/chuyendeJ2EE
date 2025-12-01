@@ -41,11 +41,8 @@ public class LocationController {
     public ResponseEntity<List<Locations>> search(@RequestParam String keyword) {
         return ResponseEntity.ok(locationService.searchByName(keyword));
     }
-<<<<<<< HEAD
     @GetMapping("/name")
     public ResponseEntity<Locations> getByName(@RequestParam String name) {
         return ResponseEntity.ok(locationService.getByName(name));
     }
-=======
->>>>>>> origin/master
 }

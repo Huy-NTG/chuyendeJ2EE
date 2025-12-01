@@ -9,8 +9,5 @@ public class UserRequest {
     private String email;
     private String phone;
     private String role;
-<<<<<<< HEAD
     private String name;
-=======
->>>>>>> origin/master
 }

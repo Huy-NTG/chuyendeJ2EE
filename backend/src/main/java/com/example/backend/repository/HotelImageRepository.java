@@ -4,11 +4,6 @@ import com.example.backend.entity.HotelImage;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-<<<<<<< HEAD
-
-public interface HotelImageRepository extends JpaRepository<HotelImage, Long> {
-    List<HotelImage> findByHotelId(Long hotelId);
-=======
 import java.util.Optional;
 
 public interface HotelImageRepository extends JpaRepository<HotelImage, Long> {
@@ -18,5 +13,4 @@ public interface HotelImageRepository extends JpaRepository<HotelImage, Long> {
 
     // Lấy ảnh đầu
     Optional<HotelImage> findFirstByHotelIdOrderByIdAsc(Long hotelId);
->>>>>>> origin/master
 }

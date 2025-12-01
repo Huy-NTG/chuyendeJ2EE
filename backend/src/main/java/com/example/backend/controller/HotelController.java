@@ -30,8 +30,6 @@ public class HotelController {
         HotelResponse response = hotelService.updateHotel(id, request);
         return ResponseEntity.ok(response);
     }
-<<<<<<< HEAD
-=======
     // ⭐⭐⭐ Controller toggle status
     @PutMapping("/{id}/toggle-status")
     public ResponseEntity<String> toggleStatus(@PathVariable Long id) {
@@ -40,7 +38,6 @@ public class HotelController {
 
         return ResponseEntity.ok("Hotel status updated successfully!");
     }
->>>>>>> origin/master
 
     @GetMapping("/{id}")
     public ResponseEntity<HotelResponse> getHotelById(@PathVariable Long id) {
