@@ -1,0 +1,90 @@
+import React, { useState, useEffect } from "react";
+import TourItem from "./TourItem";
+import { getAllTours } from "../../services/tourService";
+
+export default function TourListItem({location,price,date,onCountChange,sort,region}){
+  const [allTours, setAllTours] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [filteredTours, setFilteredTours] = useState([]);
+  useEffect(() => {
+    const fetchTours = async () => {
+      try {
+        const response = await getAllTours(); // gọi API
+        setAllTours(response.data); // gán dữ liệu vào state
+      } catch (error) {
+        console.error("Lỗi khi tải danh sách tour:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchTours();
+  }, []);
+
+  
+  useEffect(() => {
+    let toursToDisplay = [...allTours];
+    const today = new Date();
+    toursToDisplay = toursToDisplay.filter(tour => new Date(tour.startDate) >= today);
+    if(region && region.id)
+      toursToDisplay = toursToDisplay.filter(tour => tour.locationId === region.id);
+    else if(location)
+      toursToDisplay = toursToDisplay.filter(tour => 
+        String(tour.locationText).toLowerCase() === String(location).toLowerCase());
+    if (price) 
+      switch (price) {
+        case "under_5m":
+            toursToDisplay = toursToDisplay.filter(tour => tour.price < 5000000);
+            break;
+        case "5-10m":
+            toursToDisplay = toursToDisplay.filter(tour => 
+                tour.price >= 5000000 && tour.price <= 10000000
+            );
+            break;
+        case "10-20m":
+            toursToDisplay = toursToDisplay.filter(tour => 
+                tour.price > 10000000 && tour.price <= 20000000
+            );
+            break;
+        case "over_20m":
+            toursToDisplay = toursToDisplay.filter(tour => tour.price > 20000000);
+            break;
+        default:
+            break;
+    }
+  
+  if (date) {
+    const selectedTimestamp = new Date(date).setHours(0, 0, 0, 0); 
+    toursToDisplay = toursToDisplay.filter((tour) => {
+        const tourTimestamp = new Date(tour.startDate).setHours(0, 0, 0, 0);
+        return tourTimestamp === selectedTimestamp;
+    });
+  }
+  if (sort === "date")
+    toursToDisplay.sort((a,b) => Date(a.startDate) - new Date(b.startDate));
+  else if (sort === "price-asc")
+    toursToDisplay.sort((a,b) => a.price - b.price);
+  else if (sort === "price-desc")
+    toursToDisplay.sort((a,b) => b.price - a.price);
+  setFilteredTours(toursToDisplay);
+  onCountChange(toursToDisplay.length);
+  }, [allTours,location,price,date,sort,region]);
+
+  if (loading)
+    return <div className="text-center text-gray-500 py-10">Đang tải tour...</div>;
+  if (filteredTours.length === 0) {
+        return (
+            <div className="text-center text-red-500 py-10 text-xl font-semibold">
+                Không tìm thấy chương trình tour nào phù hợp với điều kiện lọc của quý khách. 😢
+            </div>
+        );
+    }
+       return (
+             <div className="container mx-auto px-4">
+                 <div className="w-full">
+                     {filteredTours.map(tour => (
+                         <TourItem key={tour.id} tour={tour} location={location}/>
+                     ))}
+                 </div>
+             </div>
+         );
+}

@@ -33,6 +33,7 @@ public class AuthService {
         }
 
         User user = new User();
+        user.setName(request.getName());
         user.setUsername(request.getUsername());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setEmail(request.getEmail());
@@ -43,8 +44,8 @@ public class AuthService {
         User saved = userRepository.save(user);
         String token = jwtUtils.generateToken(saved.getUsername(), saved.getRole());
 
-        return new UserResponse(saved.getId(), saved.getUsername(),
-                saved.getEmail(), saved.getRole(), token);
+        return new UserResponse(saved.getId(), saved.getName(), saved.getUsername(),
+                saved.getEmail(), saved.getRole(),saved.getPhone(), token);
     }
     // hàm mã hóa mật khẩu đã bị xóa
     public UserResponse login(LoginRequest request) {
@@ -56,7 +57,21 @@ public class AuthService {
         }
 
         String token = jwtUtils.generateToken(user.getUsername(), user.getRole());
-        return new UserResponse(user.getId(), user.getUsername(),
-                user.getEmail(), user.getRole(), token);
+        return new UserResponse(user.getId(),user.getName(), user.getUsername(),
+                user.getEmail(), user.getRole(), user.getPhone(), token);
     }
+    // hàm mã hóa mật khẩu đã bị xóa, thay bằng so sánh trực tiếp
+    // public UserResponse login(LoginRequest request) {
+    // User user = userRepository.findByUsername(request.getUsername())
+    //         .orElseThrow(() -> new RuntimeException("User not found"));
+
+    // // So sánh trực tiếp (không dùng BCrypt)
+    // if (!request.getPassword().equals(user.getPassword())) {
+    //     throw new RuntimeException("Invalid password");
+    // }
+
+    // String token = jwtUtils.generateToken(user.getUsername(), user.getRole());
+    // return new UserResponse(user.getId(), user.getUsername(),
+    //         user.getEmail(), user.getRole(), token);
+    // }
 }

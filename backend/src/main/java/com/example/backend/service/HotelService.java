@@ -74,8 +74,6 @@ public class HotelService {
         hotelRepository.save(hotel);
     }
 
-
-
     // Tìm kiếm hotel theo tên (ignore case)
     public List<HotelResponse> searchHotelsByName(String name) {
         return hotelRepository.findByNameContainingIgnoreCase(name).stream()

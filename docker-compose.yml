@@ -1,0 +1,98 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: travel-mysql
+    restart: always
+    env_file: ./.env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD} 
+      MYSQL_DATABASE: travel_booking
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: travel-phpmyadmin
+    restart: always
+    env_file: ./.env
+    environment:
+      PMA_HOST: db  
+      PMA_USER: root
+      PMA_PASSWORD: ${DB_ROOT_PASSWORD}
+    ports:
+      - "8081:80"
+volumes:
+  mysql_data:
+# version: '3.8'
+# services:
+#   # DỊCH VỤ 1: MYSQL DATABASE (CƠ SỞ DỮ LIỆU)
+#   db:
+#     image: mysql:8.0
+#     container_name: travel-mysql
+#     restart: always
+#     environment:
+#       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+#       MYSQL_DATABASE: travel_booking
+#     ports:
+#       - "3306:3306"
+#     volumes:
+#       - mysql_data:/var/lib/mysql
+
+#   # DỊCH VỤ 2: PHP MYADMIN (CÔNG CỤ QUẢN LÝ DB)
+#   phpmyadmin:
+#     image: phpmyadmin/phpmyadmin
+#     container_name: travel-phpmyadmin
+#     restart: always
+#     environment:
+#       PMA_HOST: db
+#       PMA_USER: root
+#       PMA_PASSWORD: ${DB_ROOT_PASSWORD}
+#     ports:
+#       - "8081:80"
+#     depends_on:
+#       - db
+
+#   # DỊCH VỤ 3: SPRING BOOT WEB APP (BACKEND API CHÍNH)
+#   backend-api:
+#     build:
+#       context: ./backend # Giả định Dockerfile cho ứng dụng này nằm trong thư mục 'backend'
+#       dockerfile: Dockerfile
+#     container_name: travel-backend-api
+#     restart: always
+#     ports:
+#       - "8080:8080" # Cổng truy cập API chính
+#     environment:
+#       # Cấu hình kết nối DB nội bộ, sử dụng tên service 'db'
+#       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/travel_booking?useSSL=false
+#       SPRING_DATASOURCE_USERNAME: root
+#       SPRING_DATASOURCE_PASSWORD: ${DB_ROOT_PASSWORD}
+#       SPRING_JPA_HIBERNATE_DDL_AUTO: update
+#     depends_on:
+#       - db # Đảm bảo DB chạy trước khi ứng dụng Spring khởi động
+#     # Giới hạn bộ nhớ/CPU (tùy chọn)
+#     mem_limit: 512m 
+
+#   # ----------------------------------------------------
+#   # DỊCH VỤ 4: SPRING REST SERVICE (DỊCH VỤ PHỤ)
+#   # ----------------------------------------------------
+#   rest-service:
+#     build:
+#       context: ./rest-service # Giả định Dockerfile cho ứng dụng này nằm trong thư mục 'rest-service'
+#       dockerfile: Dockerfile
+#     container_name: travel-rest-service
+#     restart: always
+#     ports:
+#       - "8082:8080" # Mapping cổng 8080 nội bộ sang 8082 bên ngoài
+#     environment:
+#       # Nếu dịch vụ này cũng cần DB, nó sử dụng cùng cấu hình nội bộ
+#       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/travel_booking?useSSL=false
+#       SPRING_DATASOURCE_USERNAME: root
+#       SPRING_DATASOURCE_PASSWORD: ${DB_ROOT_PASSWORD}
+#       # Đặt cổng nội bộ khác nếu cần, ví dụ: SERVER_PORT: 8080 (mặc định)
+#     depends_on:
+#       - db
+#     mem_limit: 256m
+
+# volumes:
+#   mysql_data:

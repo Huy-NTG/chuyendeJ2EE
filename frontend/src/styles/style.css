@@ -1,0 +1,12 @@
+
+.login, .register, .error, .success{     
+    box-shadow: 0 5px 5px 5px #545151;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+

@@ -39,8 +39,17 @@ public class LocationService {
         Locations location = getById(id);
         locationRepository.delete(location);
     }
+
     // ⭐ HÀM TÌM KIẾM THEO TÊN
     public List<Locations> searchByName(String keyword) {
         return locationRepository.findByNameContainingIgnoreCase(keyword);
     }
+
+    public Locations getByName(String name) {
+        return locationRepository.findByNameIgnoreCase(name)
+                .orElseThrow(() -> new RuntimeException(
+                        "Không tìm thấy địa điểm có tên: " + name
+                ));
+    }
 }
+

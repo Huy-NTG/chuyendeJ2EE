@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+Configuration Secrets
+
+NGĂN CHẶN ĐẨY CÁC FILE CHỨA BIẾN MÔI TRƯỜNG VÀ MẬT KHẨU
+
+.env

@@ -21,7 +21,8 @@ public class HotelResponse {
     private Integer availableRooms;
     private LocalDateTime createdAt;
     private String address;
-    private Hotel.HotelStatus status;
     private List<HotelImageResponse> images;
+    private String imgUrl;
+    private Hotel.HotelStatus status;
 }
     

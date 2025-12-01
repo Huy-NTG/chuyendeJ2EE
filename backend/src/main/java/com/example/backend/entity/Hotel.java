@@ -46,6 +46,8 @@ public class Hotel {
         INACTIVE,
         CLOSED
     }
+    @Column(name = "img_url")
+    private String imgUrl;
     // ➕ Hotel có nhiều Room
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Room> rooms = new ArrayList<>();
