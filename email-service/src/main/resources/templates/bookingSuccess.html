@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hóa đơn thanh toán</title>
+    <style>
+        /* Reset cơ bản */
+        body, p, div {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f6f6f6;
+            padding: 20px;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #4CAF50;
+        }
+        .info {
+            margin-top: 15px;
+            padding: 15px;
+            border-left: 4px solid #4CAF50;
+            background-color: #f1fff1;
+        }
+        .footer {
+            margin-top: 30px;
+            color: gray;
+            font-size: 14px;
+            text-align: center;
+        }
+        /* Responsive */
+        @media screen and (max-width: 620px) {
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>🎉 Thanh toán thành công!</h2>
+    <p>Chào <b th:text="${username}">Tên khách</b>,</p>
+    <p>Cảm ơn bạn đã đặt tour tại hệ thống của chúng tôi.</p>
+    <div class="info">
+        <p><b>Mã booking:</b> <span th:text="${bookingId}">B123456</span></p>
+        <p><b>Dịch vụ:</b> <span th:text="${serviceName}">Tên dịch vụ</span></p>
+        <p><b>Ngày đặt:</b> <span th:text="${bookingDate}">01/12/2025</span></p>
+        <p><b>Tổng tiền:</b> <span th:text="${totalPrice}">2,500,000 VND</span></p>
+        <p><b>Trạng thái:</b> PAID</p>
+    </div>
+    <p>Chúng tôi sẽ sớm liên hệ để xác nhận thông tin chi tiết.</p>
+    <div class="footer">
+        © 2025 Travel Booking — Cảm ơn bạn đã sử dụng dịch vụ.
+    </div>
+</div>
+</body>
+</html>

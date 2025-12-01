@@ -1,36 +1,58 @@
-import './App.css'
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import AdminPage from './pages/Adminpage/AdminPage';
-import DefaultPage from './pages/DefaultPage/DefaultPage';
-import AdminDashboard from './pages/Adminpage/AdminDashboard/AdminDashboard';
-import AdminBookings from './pages/Adminpage/AdminBookings/AdminBookings';
-import AdminFlights from './pages/Adminpage/AdminFlights/AdminFlights';
-import AdminHotels from './pages/Adminpage/AdminHotels/AdminHotels';
-import AdminTours from './pages/Adminpage/AdminTours/AdminTours';
-import AdminUsers from './pages/Adminpage/AdminUsers/AdminUsers';
+// import { Route, Routes } from "react-router-dom";
+// import './App.css';
+// import HomePage from './pages/Home.jsx';
+// import HoteDetaillPage from './pages/HotelDetailPage.jsx';
+// import TourDetailPage from './pages/TourDetailPage.jsx';
+// import TravelPage from './pages/TravelPage.jsx';
+// 3
+// function App() {
+//   return (
+//     <Routes>
+//       <Route path="/" element={<HomePage />} />
+//       <Route path="/tours/:id" element={<TourDetailPage />} />
+//       <Route path="/tours/location/:location" element={<TravelPage />} />
+//       <Route path='/hotels/:id_hotel' element={<HoteDetaillPage />} />
+//     </Routes>
+//   );
+// }
+// export default App
+import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import ChatBot from "./components/ChatBot.jsx";
+import Header from "./components/Global/Header";
+import HomePage from "./pages/Home.jsx";
+import HoteDetaillPage from "./pages/HotelDetailPage.jsx";
+import TourDetailPage from "./pages/TourDetailPage.jsx";
+import TravelPage from "./pages/TravelPage.jsx";
 
 function App() {
+  const [user, setUser] = useState(() => {
+    // Lấy user từ localStorage khi load trang
+    return JSON.parse(localStorage.getItem("user")) || null;
+  });
+
+  // Đồng bộ localStorage khi user thay đổi
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("authToken", user.token);
+    } else {
+      localStorage.removeItem("user");
+      localStorage.removeItem("authToken");
+    }
+  }, [user]);
+
   return (
-    <Router>
+    <>
+      <ChatBot />
+      <Header user={user} setUser={setUser} />
       <Routes>
-        {/* Trang mặc định */}
-        <Route path="/" element={<Navigate to="/default" />} />
-        <Route path="/default" element={<DefaultPage />} />
-
-        {/* Trang quản trị - có sidebar cố định */}
-        <Route path="/admin" element={<AdminPage />}>
-          {/* Đây là các route con nằm trong layout AdminPage */}
-          <Route index element={<AdminDashboard />} /> {/* Khi vào /admin thì load Dashboard */}
-          <Route path="dashboard" element={<AdminDashboard />} />
-          <Route path="tours" element={<AdminTours />} />
-          <Route path="flights" element={<AdminFlights />} />
-          <Route path="hotels" element={<AdminHotels />} />
-          <Route path="users" element={<AdminUsers />} />
-          <Route path="bookings" element={<AdminBookings />} />
-        </Route>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/tours/:id" element={<TourDetailPage user={user} />} />
+        <Route path="/tours/location/:location" element={<TravelPage />} />
+        <Route path="/hotels/:id_hotel" element={<HoteDetaillPage />} />
       </Routes>
-    </Router>
-  )
+    </>
+  );
 }
-
 export default App;

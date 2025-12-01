@@ -1,0 +1,63 @@
+/* reset.css */
+
+/* Xóa margin, padding, border mặc định */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Đặt font và cỡ chữ mặc định */
+html, body {
+  height: 100%;
+  font-size: 16px;
+  line-height: 1.5;
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Xóa style mặc định của danh sách */
+ul, ol {
+  list-style: none;
+}
+
+/* Xóa style mặc định của thẻ a */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Xóa style mặc định của các thẻ button, input */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+/* Đặt display block cho các thẻ HTML5 */
+article, aside, footer, header, nav, section, main {
+  display: block;
+}
+
+/* Ảnh, video không vượt quá kích thước cha */
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Đặt cursor pointer cho button */
+button {
+  cursor: pointer;
+}
+
+/* Reset bảng */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
