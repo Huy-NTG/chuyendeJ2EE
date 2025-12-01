@@ -1,0 +1,122 @@
+.flight-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  }
+
+  /* Header */
+  .flight-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1976d2;
+      margin: 0;
+    }
+
+    .price {
+      font-weight: 700;
+      color: #2e7d32;
+      background-color: #e8f5e9;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.95rem;
+    }
+  }
+
+  /* Body */
+  .flight-body {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 10px 14px;
+
+    .locations {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: #333;
+      margin-bottom: 6px;
+
+      span {
+        color: #1976d2;
+      }
+    }
+
+    .times {
+      p {
+        margin: 4px 0;
+        font-size: 0.9rem;
+        color: #555;
+
+        strong {
+          color: #222;
+        }
+      }
+    }
+  }
+
+  /* Footer */
+  .flight-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: #666;
+
+    .created {
+      font-style: italic;
+    }
+  }
+    /* Button Group */
+  .btn-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+
+    button {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    /* Nút xem chi tiết */
+    .detail-btn {
+      background-color: #1976d2;
+      color: white;
+
+      &:hover {
+        background-color: #1565c0;
+        transform: translateY(-2px);
+      }
+    }
+
+    /* Nút xoá */
+    .delete-btn {
+      background-color: #e53935;
+      color: white;
+
+      &:hover {
+        background-color: #c62828;
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+}

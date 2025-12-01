@@ -1,0 +1,73 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.form-container {
+  width: 480px;
+  background: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  animation: fadeIn 0.25s ease;
+  max-height: 90vh;
+  overflow-y: auto; 
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    transition: 0.25s;
+
+    &:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 3px #007bff;
+    }
+  }
+}
+
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.save-btn {
+  background: #28a745;
+  border: none;
+  padding: 10px 18px;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.close-btn {
+  background: #dc3545;
+  border: none;
+  padding: 10px 18px;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.loading {
+  color: white;
+}

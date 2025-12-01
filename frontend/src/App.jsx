@@ -8,7 +8,15 @@ import HotelPage from './pages/HotelPage.jsx';
 import FlightPage from './pages/FlightPage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
 import PaymentPage from './pages/PaymentPage.jsx';
-function App() {
+import AdminPage from './pages/Adminpage/AdminPage';
+import DefaultPage from './pages/DefaultPage/DefaultPage';
+import AdminDashboard from './pages/Adminpage/AdminDashboard/AdminDashboard';
+import AdminBookings from './pages/Adminpage/AdminBookings/AdminBookings';
+import AdminFlights from './pages/Adminpage/AdminFlights/AdminFlights';
+import AdminHotels from './pages/Adminpage/AdminHotels/AdminHotels';
+import AdminTours from './pages/Adminpage/AdminTours/AdminTours';
+import AdminUsers from './pages/Adminpage/AdminUsers/AdminUsers';
+export default function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
@@ -19,8 +27,19 @@ function App() {
       <Route path='/flights/location/:departure/:arrival' element={<FlightPage/>}/>
       <Route path='/profile/user/:id_user' element={<ProfilePage/>}/>
       <Route path='/payment/:type/' element={<PaymentPage/>}/>
-
+      <Route path="/" element={<Navigate to="/default" />} />
+      <Route path="/default" element={<DefaultPage />} />
+      <Route path="/admin" element={<AdminPage />}>
+          {/* Đây là các route con nằm trong layout AdminPage */}
+          <Route index element={<AdminDashboard />} /> {/* Khi vào /admin thì load Dashboard */}
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="tours" element={<AdminTours />} />
+          <Route path="flights" element={<AdminFlights />} />
+          <Route path="hotels" element={<AdminHotels />} />
+          <Route path="users" element={<AdminUsers />} />
+          <Route path="bookings" element={<AdminBookings />} />
+        </Route>
     </Routes>
   );
 }
-export default App
+
