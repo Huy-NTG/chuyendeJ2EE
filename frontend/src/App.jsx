@@ -2,7 +2,7 @@ import './App.css'
 import { Outlet } from 'react-router-dom';
 import TravelPage from './pages/TravelPage.jsx';
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import HomePage from './pages/Home.jsx';3
+import HomePage from './pages/Home.jsx';
 import TourDetailPage from './pages/TourDetailPage.jsx';
 import HoteDetaillPage from './pages/HotelDetailPage.jsx';
 import HotelPage from './pages/HotelPage.jsx';
