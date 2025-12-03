@@ -1,8 +1,13 @@
 import React, { useRef,useState } from "react";
 import "../../styles/style.css";
 import { login } from "../../services/authService";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 
 export default function LoginForm({onSwitch, onClose}) {
+    const { setCurrentUser } = useContext(UserContext);
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({username: "", password: ""});
     const [showPassword, setShowPassword] = useState(false);
     const inputRef = useRef(null);
@@ -21,13 +26,21 @@ export default function LoginForm({onSwitch, onClose}) {
         e.preventDefault();
         try {
             const userData = await login(formData); 
-            alert(`Đăng nhập thành công! Chào mừng ${userData.username}`);
+            // alert(`Đăng nhập thành công! Chào mừng ${userData.username}`);
+            setCurrentUser({ ...userData });
+            if (userData.role.toLowerCase() === "admin") {
+                navigate("/admin", { replace: true });
+            } else {
+                navigate("/", { replace: true });
             onClose();
+
+            }
         } catch (error) {
             console.error("Lỗi đăng nhập:", error);
             alert(`Đăng nhập thất bại! Chi tiết: ${error.message}`);
         }
     };
+    
 
     return (
         <div className="login flex justify-center bg-white rounded-xl">

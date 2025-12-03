@@ -9,7 +9,7 @@ export const register = async (data) => {
     const res = await API.post("/register", data); 
     const userResponse = res.data; 
     if (userResponse && userResponse.token) {
-        localStorage.setItem("authToken", userResponse.token); 
+        sessionStorage.setItem("authToken", userResponse.token); 
         console.log("Đăng ký thành công và đã lưu token vào localStorage.");
     } else {
          console.warn("Đăng ký thành công nhưng không nhận được token.");
@@ -26,11 +26,14 @@ export const login = async (data) => {
   try {
     const res = await API.post("/login", data);
     const userResponse = res.data; 
+
     if (userResponse && userResponse.token) {
-      localStorage.setItem("authToken", userResponse.token); 
+      sessionStorage.setItem("authToken", userResponse.token); 
+      // localStorage.setItem("authToken", userResponse.token); 
       const userWithoutToken = { ...userResponse };
       delete userWithoutToken.token;
-      localStorage.setItem("user", JSON.stringify(userWithoutToken));
+      sessionStorage.setItem("user", JSON.stringify(userWithoutToken));
+      // localStorage.setItem("user", JSON.stringify(userWithoutToken));
       console.log("Đăng nhập thành công và đã lưu token vào localStorage.");
     } else {
       console.warn("Đăng nhập thành công nhưng không nhận được token.");

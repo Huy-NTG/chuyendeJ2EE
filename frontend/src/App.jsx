@@ -1,4 +1,5 @@
 import './App.css'
+import { Outlet } from 'react-router-dom';
 import TravelPage from './pages/TravelPage.jsx';
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import HomePage from './pages/Home.jsx';3
@@ -9,24 +10,35 @@ import FlightPage from './pages/FlightPage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
 import PaymentPage from './pages/PaymentPage.jsx';
 import AdminPage from './pages/Adminpage/AdminPage';
-import DefaultPage from './pages/DefaultPage/DefaultPage';
 import AdminDashboard from './pages/Adminpage/AdminDashboard/AdminDashboard';
 import AdminBookings from './pages/Adminpage/AdminBookings/AdminBookings';
 import AdminFlights from './pages/Adminpage/AdminFlights/AdminFlights';
 import AdminHotels from './pages/Adminpage/AdminHotels/AdminHotels';
 import AdminTours from './pages/Adminpage/AdminTours/AdminTours';
 import AdminUsers from './pages/Adminpage/AdminUsers/AdminUsers';
-import { useCurrentUser } from './hooks/useCurrentUser.jsx';
+import { useContext } from "react";
+import { UserContext } from "./context/UserContext";
 
 const AdminProtectedRoute = ({ isAdmin }) => {
-    return isAdmin ? <AdminPage /> : <Navigate to="/" replace />; 
+  return isAdmin ? <Outlet /> : <Navigate to="/" replace />;
 };
 export default function App() {
-  const { currentUser } = useCurrentUser() || {};
+  const { currentUser, isLoading } = useContext(UserContext);
+  if (isLoading) return null;
+  console.log("user:",currentUser);
   const isAdmin = !!currentUser && String(currentUser.role).toLocaleLowerCase() === "admin".toLocaleLowerCase();
+  console.log(isAdmin);
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route
+  path="/"
+  element={
+    currentUser && String(currentUser.role).toLowerCase() === "admin"
+      ? <Navigate to="/admin" replace />
+      : <HomePage />
+  }
+/>
+      {/* <Route path="/" element={<HomePage />} /> */}
       <Route path="/tours/:id" element={<TourDetailPage />} />
       <Route path="/tours/location/:location" element={<TravelPage/>}/>
       <Route path='/hotels/:id_hotel' element={<HoteDetaillPage/>}/>
@@ -34,16 +46,20 @@ export default function App() {
       <Route path='/flights/location/:departure/:arrival' element={<FlightPage/>}/>
       <Route path='/profile/user/:id_user' element={<ProfilePage/>}/>
       <Route path='/payment/:type/' element={<PaymentPage/>}/>
-      <Route path="/" element={<Navigate to="/default" />} />
-      <Route path="/default" element={<DefaultPage />} />
-      <Route path="/admin" element={<AdminProtectedRoute isAdmin={isAdmin}/>}>
-        <Route index element={<AdminDashboard />} />
-        <Route path="dashboard" element={<AdminDashboard />} />
-        <Route path="tours" element={<AdminTours />} />
-        <Route path="flights" element={<AdminFlights />} />
-        <Route path="hotels" element={<AdminHotels />} />
-        <Route path="users" element={<AdminUsers />} />
-        <Route path="bookings" element={<AdminBookings />} />
+
+      {/* <Route path="/" element={<Navigate to="/default" />} /> */}
+      {/* <Route path="/default" element={<DefaultPage />} /> */}
+      
+      <Route path="/admin" element={<AdminProtectedRoute isAdmin={isAdmin} />}>
+        <Route element={<AdminPage />}>
+          <Route index element={<AdminDashboard />} />
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="tours" element={<AdminTours />} />
+          <Route path="flights" element={<AdminFlights />} />
+          <Route path="hotels" element={<AdminHotels />} />
+          <Route path="users" element={<AdminUsers />} />
+          <Route path="bookings" element={<AdminBookings />} />
+        </Route>
       </Route>
     </Routes>
   );
