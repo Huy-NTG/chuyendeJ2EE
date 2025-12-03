@@ -58,7 +58,7 @@ public class AuthService {
 
         String token = jwtUtils.generateToken(user.getUsername(), user.getRole());
         return new UserResponse(user.getId(),user.getName(), user.getUsername(),
-                user.getEmail(), user.getRole(), user.getPhone(), token);
+                user.getEmail(), user.getRole(), token, user.getPhone());
     }
     // hàm mã hóa mật khẩu đã bị xóa, thay bằng so sánh trực tiếp
     // public UserResponse login(LoginRequest request) {

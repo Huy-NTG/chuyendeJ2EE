@@ -41,8 +41,8 @@ public class SecurityConfig {
                         // ✅ Cho phép GET dữ liệu public
                         // ⭐ CHO PHÉP TẤT CẢ FLIGHT API (fix 403 search)
                         .requestMatchers("/api/flights/**").permitAll()
-
-                        // ⭐ Các API public GET
+                        .requestMatchers("/api/bookings/**").permitAll()
+                                // ⭐ Các API public GET
                         .requestMatchers(HttpMethod.GET,
                                 "/api/tours/**",
                                 "/api/hotels/**",
@@ -56,9 +56,8 @@ public class SecurityConfig {
 //                        .requestMatchers(HttpMethod.PUT, "/api/tours/**", "/api/hotels/**").hasRole("ADMIN")
 //                        .requestMatchers(HttpMethod.DELETE, "/api/tours/**", "/api/hotels/**").hasRole("ADMIN")
                         // Booking
-                        .requestMatchers(HttpMethod.POST,"/api/bookings").hasRole("USER")
                         // ✅ Các endpoint khác cần đăng nhập
-                        .anyRequest().authenticated()
+//                        .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
