@@ -29,10 +29,16 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource))
 
                 .authorizeHttpRequests(auth -> auth
-                        // Public static files
+                        // ✅ Cho phép public các ảnh
                         .requestMatchers("/uploads/**").permitAll()
-                        // Auth APIs
+                        // ✅ Auth APIs - không cần token
                         .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/momo/callback/**").permitAll()
+                        .requestMatchers("/api/momo/create/**").permitAll()
+                        .requestMatchers("/api/email/send").permitAll()
+                        .requestMatchers("/api/ai/**").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/embedding/**").permitAll()
+                        // ✅ Cho phép GET dữ liệu public
                         // ⭐ CHO PHÉP TẤT CẢ FLIGHT API (fix 403 search)
                         .requestMatchers("/api/flights/**").permitAll()
 
@@ -41,25 +47,19 @@ public class SecurityConfig {
                                 "/api/tours/**",
                                 "/api/hotels/**",
                                 "/api/users/count",
-                                "/api/bookings/count"
-                        ).permitAll()
-                        // ⭐️ Cho phép UPDATE ảnh cho hotel
-                        .requestMatchers(HttpMethod.PUT, "/api/hotels/images/**").permitAll()
-                        // ⭐ Cho phép thêm các API khác bạn đang dùng
-                        .requestMatchers(
-                                "/api/tours/**",
-                                "/api/hotels/**",
-                                "/api/locations/**",
-                                "/api/rooms/**",
-                                "/api/toursimages/**",
-                                "/api/hotels/images/**",
-                                "/api/users/**"
-                        ).permitAll()
-
-                        // Các API còn lại yêu cầu đăng nhập
+                                "/api/flights/count",
+                                "/api/users/**",
+                                "/api/bookings/count").permitAll()
+                                .requestMatchers("/api/tours/**").permitAll()
+                        // ✅ ADMIN quyền cao
+//                        .requestMatchers(HttpMethod.POST, "/api/tours/**", "/api/hotels/**").hasRole("ADMIN")
+//                        .requestMatchers(HttpMethod.PUT, "/api/tours/**", "/api/hotels/**").hasRole("ADMIN")
+//                        .requestMatchers(HttpMethod.DELETE, "/api/tours/**", "/api/hotels/**").hasRole("ADMIN")
+                        // Booking
+                        .requestMatchers(HttpMethod.POST,"/api/bookings").hasRole("USER")
+                        // ✅ Các endpoint khác cần đăng nhập
                         .anyRequest().authenticated()
                 )
-
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

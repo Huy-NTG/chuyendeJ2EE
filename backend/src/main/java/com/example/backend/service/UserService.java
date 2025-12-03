@@ -36,6 +36,11 @@ public class UserService {
         user = userRepository.save(user);
         return userMapper.toResponse(user);
     }
+    public UserResponse findUserByEmail(String email){
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy user"));
+        return userMapper.toResponse(user);
+    }
 
     // ✅ Lấy user theo ID
     public UserResponse getUserById(Long id) {

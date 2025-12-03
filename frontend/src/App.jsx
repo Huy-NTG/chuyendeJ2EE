@@ -18,6 +18,8 @@ import AdminTours from './pages/Adminpage/AdminTours/AdminTours';
 import AdminUsers from './pages/Adminpage/AdminUsers/AdminUsers';
 import { useContext } from "react";
 import { UserContext } from "./context/UserContext";
+import ChatBot from "./components/ChatBot.jsx";
+import Header from "./components/Global/Header";
 
 const AdminProtectedRoute = ({ isAdmin }) => {
   return isAdmin ? <Outlet /> : <Navigate to="/" replace />;
@@ -29,6 +31,8 @@ export default function App() {
   const isAdmin = !!currentUser && String(currentUser.role).toLocaleLowerCase() === "admin".toLocaleLowerCase();
   console.log(isAdmin);
   return (
+    <>
+    <ChatBot />
     <Routes>
       <Route
   path="/"
@@ -62,6 +66,8 @@ export default function App() {
         </Route>
       </Route>
     </Routes>
+    </>
   );
 }
+
 

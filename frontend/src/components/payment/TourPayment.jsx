@@ -2,12 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { formatCurrency } from '../../utils/formatCurrency';
 import { useCurrentUser } from '../../hooks/useCurrentUser';
+import { createMoMoPayment } from '../../services/bookingService';
+import { bookTour } from '../../services/bookingService';
+import axios from 'axios';
+import Modal from 'react-modal';
 
+Modal.setAppElement('#root'); // accessibility
 
 export default function TourPayment() {
     const location = useLocation();
     const { tourData } = location.state || {}; 
-    
+    const [loading, setLoading] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [qrUrl, setQrUrl] = useState('');
+    const [bookingId, setBookingId] = useState(null);
+    const [user, setUser] = useState(null);
 
     const [customerName, setCustomerName] = useState('');
     const [customerEmail, setCustomerEmail] = useState('');
@@ -23,6 +32,47 @@ export default function TourPayment() {
         }
     },[currentUser]);
 
+    useEffect(() => {
+        const storedUser = JSON.parse(sessionStorage.getItem("user"));
+        const token = sessionStorage.getItem("authToken");
+
+        if (storedUser && token) {
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+            setUser(storedUser);
+        } else {
+            setUser(null);
+        }
+    }, []);
+
+    const handleBooking = async () => {
+        setLoading(true);
+        try {
+            if (!user) throw new Error("Vui lòng đăng nhập để đặt tour.");
+            const bookingData = {
+                userId: user.id,
+                serviceType: "TOUR",
+                serviceId: tourData.id,
+                bookingDate: new Date(),
+                totalPrice: tourData.price,
+                status: "PENDING"
+            };
+            // Tạo booking trước
+            const bookingRes = await bookTour(bookingData);
+            setBookingId(bookingRes.id);
+            // Gọi backend tạo payment MoMo
+            const momoRes = await createMoMoPayment(bookingRes.id);
+            // Lấy payUrl từ response
+            const payUrl = momoRes.payUrl;
+            if (!payUrl) throw new Error("Không lấy được link thanh toán MoMo.");
+            // Chuyển trình duyệt sang trang MoMo
+            window.location.href = payUrl;
+        } catch (error) {
+            console.error("Lỗi đặt tour:", error);
+            alert(error.message || "Đặt tour thất bại. Vui lòng thử lại.");
+        } finally {
+            setLoading(false);
+        }
+    };
 
     if (!tourData) 
         return <div className="p-10 text-center text-red-500 font-bold">Không tìm thấy thông tin tour. Vui lòng quay lại trang chi tiết tour.</div>;
@@ -165,8 +215,8 @@ export default function TourPayment() {
                         </label>
                     </div>
                     <button
-                        onClick={handleSubmit}
-                        disabled={!customerName || !customerEmail || !customerPhone || adults === 0}
+                        onClick={handleBooking}
+                        disabled={loading}
                         className='text-white bg-green-600 w-full font-bold text-2xl p-3 rounded-xl hover:bg-green-700 disabled:bg-gray-400 transition duration-300'
                     >
                         HOÀN TẤT ĐẶT TOUR

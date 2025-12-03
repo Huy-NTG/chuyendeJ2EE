@@ -105,3 +105,65 @@ export default function LoginForm({onSwitch, onClose}) {
         </div>
     );
 }
+
+
+// export default function LoginForm({ onSubmit, onSwitch, onClose }) {
+//     const [username, setUsername] = useState("");
+//     const [password, setPassword] = useState("");
+//     const [loading, setLoading] = useState(false);
+
+//     const handleLogin = async (e) => {
+//         e.preventDefault();
+//         setLoading(true);
+//         try {
+//             const res = await login({ username, password });
+//             // res = { id, username, token }
+//             onSubmit(res); // Trả về App để setUser
+//         } catch (err) {
+//             alert(err.message);
+//         } finally {
+//             setLoading(false);
+//         }
+//     };
+
+//     return (
+//         <form
+//             onSubmit={handleLogin}
+//             className="bg-white p-5 rounded shadow-md w-96 flex flex-col gap-3"
+//         >
+//             <h2 className="text-2xl font-bold text-center">Đăng nhập</h2>
+//             <input
+//                 type="text"
+//                 placeholder="Username"
+//                 value={username}
+//                 onChange={(e) => setUsername(e.target.value)}
+//                 className="border p-2 rounded"
+//                 required
+//             />
+//             <input
+//                 type="password"
+//                 placeholder="Password"
+//                 value={password}
+//                 onChange={(e) => setPassword(e.target.value)}
+//                 className="border p-2 rounded"
+//                 required
+//             />
+//             <button
+//                 type="submit"
+//                 className="bg-blue-600 text-white p-2 rounded hover:bg-blue-700"
+//                 disabled={loading}
+//             >
+//                 {loading ? "Đang đăng nhập..." : "Đăng nhập"}
+//             </button>
+//             <p className="text-center text-sm">
+//                 Chưa có tài khoản?{" "}
+//                 <span className="text-blue-600 cursor-pointer" onClick={onSwitch}>
+//                     Đăng ký
+//                 </span>
+//             </p>
+//             <button type="button" onClick={onClose} className="text-red-500 mt-2">
+//                 Đóng
+//             </button>
+//         </form>
+//     );
+// }

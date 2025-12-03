@@ -45,7 +45,7 @@ public class BookingService {
     }
 
     // Lấy booking theo ID
-    public BookingResponse getBookingById(Long id) {
+    public BookingResponse findById(Long id) {
         Booking booking = bookingRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Booking not found"));
 
@@ -71,4 +71,13 @@ public class BookingService {
     public long countBooking() {
         return bookingRepository.count();
     }
+
+    public void updateStatus(Long bookingId, Booking.BookingStatus status) {
+        Booking booking = bookingRepository.findById(bookingId)
+                .orElseThrow(() -> new RuntimeException("Booking not found"));
+
+        booking.setStatus(status);
+        bookingRepository.save(booking);
+    }
+
 }

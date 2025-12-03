@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: "email-service"
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: email-service-group
+      auto-offset-reset: earliest
+      properties:
+        spring.json.trusted.packages: "*"
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: phanthanhthoai007@gmail.com
+    password: "fsauqeyugjyneacf"
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+
+server:
+  port: 8081

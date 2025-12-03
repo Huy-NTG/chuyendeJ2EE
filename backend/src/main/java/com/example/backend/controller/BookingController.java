@@ -36,7 +36,7 @@ public class BookingController {
     // Lấy booking theo ID
     @GetMapping("/{id}")
     public ResponseEntity<BookingResponse> getBookingById(@PathVariable Long id) {
-        BookingResponse response = bookingService.getBookingById(id);
+        BookingResponse response = bookingService.findById(id);
         return ResponseEntity.ok(response);
     }
 

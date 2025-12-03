@@ -6,6 +6,9 @@ import { getTourById } from '../services/tourService';
 import Note from '../components/Tour/Note';
 import { note } from '../assets/data/Tour';
 import { formatCurrency } from '../utils/formatCurrency';
+import Modal from 'react-modal';
+
+Modal.setAppElement('#root'); // accessibility
 
 export default function TourDetailPage(){
     const { id } = useParams();
@@ -17,17 +20,18 @@ export default function TourDetailPage(){
                 const res = await getTourById(id);
                 setTour(res.data);
                 console.log(res.data);
-            } catch (error) {
+                } catch (error) {
                 console.error("Lỗi khi lấy chi tiết tour:", error);
             }
         };
         fetchTour();
-    },[id]);
+        }, [id]);
+
     if (!tour) return <div className="text-center mt-10">Đang tải...</div>;
 
     return (
         <div>
-            <Header></Header>
+            <Header />
             <div className='main flex justify-center'>
                 <div className="main--wrapper w-10/12">
                     <div className="main__content">
